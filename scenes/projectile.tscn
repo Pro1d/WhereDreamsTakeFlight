@@ -1,23 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2w37k46f2mhw"]
+[gd_scene load_steps=6 format=3 uid="uid://d2w37k46f2mhw"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_flhb0"]
+[ext_resource type="Curve" uid="uid://cpevpiqn8vjbo" path="res://resources/materials/curve_width_4.tres" id="2_wm83e"]
+[ext_resource type="Texture2D" uid="uid://da0uv6a1fj1w8" path="res://resources/materials/line_texture.tres" id="3_36d25"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2c466"]
 resource_local_to_scene = true
 radius = 20.0
 
-[sub_resource type="Curve" id="Curve_q5y6a"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.204461, 0.830781), 0.0, 0.0, 0, 0, Vector2(0.472119, 1), 0.0, 0.0, 0, 0, Vector2(0.72119, 0.761103), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 5
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_kxsjb"]
 resource_local_to_scene = true
-radius = 100.0
+radius = 150.0
 
 [node name="Projectile" type="CharacterBody2D"]
 collision_layer = 24
 motion_mode = 1
 script = ExtResource("1_flhb0")
+shape_type = null
+radius = null
+color = null
+by_player = null
+current_velocity = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2c466")
@@ -25,24 +28,62 @@ shape = SubResource("CircleShape2D_2c466")
 [node name="Shape" type="Node2D" parent="."]
 
 [node name="Circle" type="Line2D" parent="Shape"]
-points = PackedVector2Array(0, 20, 15, 14, 21, 0, 14, -15, 0, -19, -15, -13, -20, 0, -14, 14)
+visible = false
+points = PackedVector2Array(0, 18, 12, 14, 18, 0, 13, -13, 0, -19, -13, -12, -18, 1, -13, 12)
 closed = true
-width_curve = SubResource("Curve_q5y6a")
-joint_mode = 1
+width = 6.0
+width_curve = ExtResource("2_wm83e")
+texture = ExtResource("3_36d25")
+texture_mode = 2
+joint_mode = 2
+round_precision = 4
+
+[node name="Polygon2D4" type="Polygon2D" parent="Shape/Circle"]
+visible = false
+polygon = PackedVector2Array(0, 18, 12, 14, 18, 0, 13, -13, 0, -19, -13, -12, -18, 1, -13, 12)
 
 [node name="Square" type="Line2D" parent="Shape"]
 visible = false
 points = PackedVector2Array(20, 20, 20, -20, -20, -20, -20, 20)
 closed = true
-width_curve = SubResource("Curve_q5y6a")
-joint_mode = 1
+width = 6.0
+width_curve = ExtResource("2_wm83e")
+texture = ExtResource("3_36d25")
+texture_mode = 2
+joint_mode = 2
+round_precision = 4
+
+[node name="Polygon2D3" type="Polygon2D" parent="Shape/Square"]
+visible = false
+polygon = PackedVector2Array(20, 20, 20, -20, -20, -20, -20, 20)
 
 [node name="Triangle" type="Line2D" parent="Shape"]
 visible = false
-points = PackedVector2Array(-20, 24, 30, 0, -20, -24)
+points = PackedVector2Array(-18, 23, 30, 0, -17, -23)
 closed = true
-width_curve = SubResource("Curve_q5y6a")
-joint_mode = 1
+width = 6.0
+width_curve = ExtResource("2_wm83e")
+texture = ExtResource("3_36d25")
+texture_mode = 2
+joint_mode = 2
+round_precision = 4
+
+[node name="Polygon2D2" type="Polygon2D" parent="Shape/Triangle"]
+visible = false
+polygon = PackedVector2Array(-18, 23, 30, 0, -17, -23)
+
+[node name="Cross" type="Line2D" parent="Shape"]
+points = PackedVector2Array(-9, 15, -1, 11, 3, 18, 13, 12, 10, 5, 17, 3, 16, -8, 8, -8, 8, -16, -3, -17, -5, -11, -12, -12, -17, -3, -11, 1, -16, 7)
+closed = true
+width = 6.0
+width_curve = ExtResource("2_wm83e")
+texture = ExtResource("3_36d25")
+texture_mode = 2
+joint_mode = 2
+round_precision = 4
+
+[node name="Polygon2D" type="Polygon2D" parent="Shape/Cross"]
+polygon = PackedVector2Array(-8, 15, -1, 10, 4, 17, 13, 12, 10, 5, 17, 3, 16, -8, 8, -8, 8, -16, -3, -17, -5, -11, -12, -12, -17, -3, -11, 1, -15, 7)
 
 [node name="SeekArea2D" type="Area2D" parent="."]
 collision_layer = 0

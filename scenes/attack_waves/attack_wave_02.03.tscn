@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhd8httx1rh0w"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_r7td8"]
+[ext_resource type="PackedScene" uid="uid://c5ry6bp7muw3l" path="res://scenes/enemies/ball.tscn" id="2_5p648"]
+
+[sub_resource type="Curve2D" id="Curve2D_rhspx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1408, 960, 0, 0, 0, 0, 1152, 96, 0, 0, 0, 0, 896, 672, 0, 0, 0, 0, 672, 96, 0, 0, 0, 0, 416, 672, 0, 0, 0, 0, 192, 96, 0, 0, 0, 0, -128, 864)
+}
+point_count = 7
+
+[node name="AttackWave" instance=ExtResource("1_r7td8")]
+
+[node name="Straight" type="Path2D" parent="." index="1"]
+curve = SubResource("Curve2D_rhspx")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Straight" index="0"]
+position = Vector2(1408, 960)
+rotation = -1.85885
+loop = false
+
+[node name="Ball" parent="Straight/PathFollow2D" index="0" instance=ExtResource("2_5p648")]

@@ -1,4 +1,7 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://gb6xs51pfjky"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://gb6xs51pfjky"]
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_mhav5"]
+resource_name = "Compressor"
 
 [resource]
 bus/1/name = &"Music"
@@ -19,3 +22,5 @@ bus/3/mute = false
 bus/3/bypass_fx = false
 bus/3/volume_db = 0.0
 bus/3/send = &"Master"
+bus/3/effect/0/effect = SubResource("AudioEffectCompressor_mhav5")
+bus/3/effect/0/enabled = true

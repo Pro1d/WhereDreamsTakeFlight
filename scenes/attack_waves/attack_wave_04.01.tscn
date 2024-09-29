@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs2fsr3v23v85"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_obqil"]
+[ext_resource type="PackedScene" uid="uid://ptyf7vrsn81p" path="res://scenes/enemies/spinning.tscn" id="2_gx6jb"]
+
+[sub_resource type="Curve2D" id="Curve2D_7sm8g"]
+_data = {
+"points": PackedVector2Array(0, -133.552, 0, 133.552, 1024, 384, 29.3859, 0, -29.3859, 0, 960, 544, 1.25992, 132.292, -1.25992, -132.292, 896, 384, -26.344, 0.859006, 26.344, -0.859006, 960, 224, -0.66742, -133.484, 0.66742, 133.484, 1024, 384)
+}
+point_count = 5
+
+[node name="AttackWave" instance=ExtResource("1_obqil")]
+
+[node name="Ellipse" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
+position = Vector2(-160, 0)
+curve = SubResource("Curve2D_7sm8g")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Ellipse" index="0"]
+position = Vector2(1024, 384)
+rotation = 1.5708
+rotates = false
+
+[node name="Spinning" parent="FromBackPath/FromBackPathFollow2D/Ellipse/PathFollow2D" index="0" instance=ExtResource("2_gx6jb")]

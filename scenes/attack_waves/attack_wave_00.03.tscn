@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7gwwlspus7te"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_gs0cn"]
+[ext_resource type="PackedScene" uid="uid://dkg7gcrs3s7jc" path="res://scenes/enemies/bird.tscn" id="2_2uv5m"]
+[ext_resource type="Script" path="res://scenes/attack_waves/path_follow_with_offset.gd" id="3_yhbus"]
+
+[sub_resource type="Curve2D" id="Curve2D_26psn"]
+_data = {
+"points": PackedVector2Array(571.31, -3.44164, -571.31, 3.44164, 1504, 71, 2.08761, -125.036, -2.08761, 125.036, 693, 160, -4.0686, -131.443, 4.0686, 131.443, 1297, 275, 0, -118.981, 0, 118.981, 691, 466, 0, -123.471, 0, 123.471, 1306, 576, 320.229, -4.16521, -320.229, 4.16521, 718, 695, 318.707, 7.13524, -318.707, -7.13524, -190, 699)
+}
+point_count = 7
+
+[node name="AttackWave" instance=ExtResource("1_gs0cn")]
+
+[node name="WaveAndPick" type="Path2D" parent="." index="1"]
+curve = SubResource("Curve2D_26psn")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="WaveAndPick" index="0"]
+position = Vector2(1504, 71)
+rotation = 3.13557
+loop = false
+script = ExtResource("3_yhbus")
+
+[node name="Bird" parent="WaveAndPick/PathFollow2D" index="0" instance=ExtResource("2_2uv5m")]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="WaveAndPick" index="1"]
+position = Vector2(1504, 71)
+rotation = 3.13557
+loop = false
+script = ExtResource("3_yhbus")
+start_distance_offset = 140.0
+
+[node name="Bird" parent="WaveAndPick/PathFollow2D2" index="0" instance=ExtResource("2_2uv5m")]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="WaveAndPick" index="2"]
+position = Vector2(1504, 71)
+rotation = 3.13557
+loop = false
+script = ExtResource("3_yhbus")
+start_distance_offset = 280.0
+
+[node name="Bird" parent="WaveAndPick/PathFollow2D3" index="0" instance=ExtResource("2_2uv5m")]
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="WaveAndPick" index="3"]
+position = Vector2(1504, 71)
+rotation = 3.13557
+loop = false
+script = ExtResource("3_yhbus")
+start_distance_offset = 420.0
+
+[node name="Bird" parent="WaveAndPick/PathFollow2D4" index="0" instance=ExtResource("2_2uv5m")]
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="WaveAndPick" index="4"]
+position = Vector2(1504, 71)
+rotation = 3.13557
+loop = false
+script = ExtResource("3_yhbus")
+start_distance_offset = 560.0
+
+[node name="Bird" parent="WaveAndPick/PathFollow2D5" index="0" instance=ExtResource("2_2uv5m")]
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="WaveAndPick" index="5"]
+position = Vector2(1504, 71)
+rotation = 3.13557
+loop = false
+script = ExtResource("3_yhbus")
+start_distance_offset = 700.0
+
+[node name="Bird" parent="WaveAndPick/PathFollow2D6" index="0" instance=ExtResource("2_2uv5m")]
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="WaveAndPick" index="6"]
+position = Vector2(1504, 71)
+rotation = 3.13557
+loop = false
+script = ExtResource("3_yhbus")
+start_distance_offset = 840.0
+
+[node name="Bird" parent="WaveAndPick/PathFollow2D7" index="0" instance=ExtResource("2_2uv5m")]

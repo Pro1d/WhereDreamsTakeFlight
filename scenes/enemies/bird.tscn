@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkg7gcrs3s7jc"]
+
+[ext_resource type="PackedScene" uid="uid://bkgmgjhdcppcw" path="res://scenes/enemy.tscn" id="1_eswgx"]
+[ext_resource type="Texture2D" uid="uid://da0uv6a1fj1w8" path="res://resources/materials/line_texture.tres" id="2_2mo43"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vo1x1"]
+resource_local_to_scene = true
+radius = 40.0
+
+[sub_resource type="Curve" id="Curve_npmnb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.188192, 0.871775), 0.0, 0.0, 0, 0, Vector2(0.420664, 1), 0.0, 0.0, 0, 0, Vector2(0.697417, 0.753414), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="Bird" instance=ExtResource("1_eswgx")]
+move_speed = 500.0
+auto_shoot_delay = 0.0
+aim_player = false
+
+[node name="CollisionShape2D" parent="2D/Body" index="0"]
+shape = SubResource("CircleShape2D_vo1x1")
+
+[node name="Line2D3" type="Line2D" parent="2D/Body/Visual" index="0"]
+rotation = 3.14159
+points = PackedVector2Array(-29, -14, -42, 0, -30, 15, -12, 39, 25, 38, 0, 24, -9, -1, 0, -25, 24, -38, -13, -38)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_npmnb")
+texture = ExtResource("2_2mo43")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D4" type="Line2D" parent="2D/Body/Visual" index="1"]
+rotation = 3.14159
+points = PackedVector2Array(8, 10, 25, 5, 35, 20, 36, -19, 25, -6, 7, -9)
+width = 6.0
+width_curve = SubResource("Curve_npmnb")
+texture = ExtResource("2_2mo43")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4

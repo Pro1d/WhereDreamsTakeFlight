@@ -1,0 +1,315 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxepv2480dffd"]
+
+[ext_resource type="PackedScene" uid="uid://bkgmgjhdcppcw" path="res://scenes/enemy.tscn" id="1_62bnr"]
+[ext_resource type="Script" path="res://scripts/enemies/train.gd" id="2_o8xs6"]
+[ext_resource type="ArrayMesh" uid="uid://dukq88q3a01m4" path="res://assets/models/all/Train.res" id="2_yfx6w"]
+[ext_resource type="Texture2D" uid="uid://da0uv6a1fj1w8" path="res://resources/materials/line_texture.tres" id="3_rm257"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pq26a"]
+radius = 81.0
+height = 378.0
+
+[sub_resource type="Curve" id="Curve_8gx41"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.188192, 0.871775), 0.0, 0.0, 0, 0, Vector2(0.420664, 1), 0.0, 0.0, 0, 0, Vector2(0.697417, 0.753414), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="Train" instance=ExtResource("1_62bnr")]
+script = ExtResource("2_o8xs6")
+first_shoot_delay = 6.0
+auto_shoot_delay = 2.0
+hit_points = 1000.0
+
+[node name="Train" type="MeshInstance3D" parent="3D/Visual" index="0"]
+mesh = ExtResource("2_yfx6w")
+skeleton = NodePath("../../..")
+
+[node name="2D" parent="." index="1"]
+y_offset = -0.05
+
+[node name="CollisionShape2D" parent="2D/Body" index="0"]
+position = Vector2(6, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_pq26a")
+
+[node name="Line2D5" type="Line2D" parent="2D/Body/Visual" index="0"]
+position = Vector2(208, 32)
+points = PackedVector2Array(-65, 14, -52, 20, -41, 7, 5, 19, -35, -7, -33, -25, 7, -34, -33, -42, -34, -57, 6, -77, -37, -70, -50, -84, -65, -77, -54, -54, -54, -17)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D6" type="Line2D" parent="2D/Body/Visual" index="1"]
+position = Vector2(-106, 70.2377)
+points = PackedVector2Array(-41, -9, -41, 27, -27, -6)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D7" type="Line2D" parent="2D/Body/Visual" index="2"]
+position = Vector2(144.812, 71)
+points = PackedVector2Array(-46, -6, -39, 25, -30, -6)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D8" type="Line2D" parent="2D/Body/Visual" index="3"]
+position = Vector2(-183.553, -73.2768)
+rotation = -3.12044
+points = PackedVector2Array(-46.8252, -6.46267, -34.2358, 21.2773, -31.9132, -10.779)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D9" type="Line2D" parent="2D/Body/Visual" index="4"]
+position = Vector2(67.2591, -72.5145)
+rotation = -3.12044
+points = PackedVector2Array(-46, -6, -39, 25, -30, -6)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D10" type="Line2D" parent="2D/Body/Visual" index="5"]
+position = Vector2(-78.1883, 71)
+points = PackedVector2Array(-46, -6, -39, 25, -30, -6)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D11" type="Line2D" parent="2D/Body/Visual" index="6"]
+position = Vector2(-155.741, -72.5145)
+rotation = -3.12044
+points = PackedVector2Array(-46, -6, -39, 25, -30, -6)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Canon1" type="Node2D" parent="2D/Body/Visual" index="7"]
+unique_name_in_owner = true
+position = Vector2(54, -1)
+
+[node name="Line2D12" type="Line2D" parent="2D/Body/Visual/Canon1" index="0"]
+position = Vector2(183, 34)
+points = PackedVector2Array(-206, -20, -206, -11, -168, -12, -168, -58, -206, -58, -206, -48, -222, -48, -222, -20)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D13" type="Line2D" parent="2D/Body/Visual/Canon1" index="1"]
+position = Vector2(183, 34)
+points = PackedVector2Array(-168, -10, -169, 13, -155, -11, -155, -59, -167, -81, -167.213, -59.2395)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D14" type="Line2D" parent="2D/Body/Visual/Canon1" index="2"]
+position = Vector2(183, 34)
+points = PackedVector2Array(-154, -27, -99, -29, -99, -40, -154, -42)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D15" type="Line2D" parent="2D/Body/Visual/Canon1" index="3"]
+position = Vector2(183, 34)
+points = PackedVector2Array(-213, -29, -190, -27, -181, -18, -174, -18, -174, -27.189, -169, -26, -169, -41, -174, -41.4756, -174, -50, -182, -50, -190, -42, -213, -40)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="2D/Body/Visual/Canon1" index="4"]
+position = Vector2(83, -2)
+remote_path = NodePath("../../../ProjectileSpawns/Marker2D")
+
+[node name="Canon2" type="Node2D" parent="2D/Body/Visual" index="8"]
+unique_name_in_owner = true
+position = Vector2(-47, -68)
+
+[node name="Line2D12" type="Line2D" parent="2D/Body/Visual/Canon2" index="0"]
+position = Vector2(184, 34)
+points = PackedVector2Array(-206, -20, -206, -11, -168, -12, -168, -58, -206, -58, -206, -48, -222, -48, -222, -20)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D13" type="Line2D" parent="2D/Body/Visual/Canon2" index="1"]
+position = Vector2(184, 34)
+points = PackedVector2Array(-168, -10, -169, 13, -155, -11, -155, -59, -167, -81, -167.213, -59.2395)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D14" type="Line2D" parent="2D/Body/Visual/Canon2" index="2"]
+position = Vector2(184, 34)
+points = PackedVector2Array(-154, -27, -99, -29, -99, -40, -154, -42)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D15" type="Line2D" parent="2D/Body/Visual/Canon2" index="3"]
+position = Vector2(184, 34)
+points = PackedVector2Array(-213, -29, -190, -27, -181, -18, -174, -18, -174, -27.189, -169, -26, -169, -41, -174, -41.4756, -174, -50, -182, -50, -190, -42, -213, -40)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="2D/Body/Visual/Canon2" index="4"]
+position = Vector2(84, -1)
+remote_path = NodePath("../../../ProjectileSpawns/Marker2D2")
+
+[node name="Canon3" type="Node2D" parent="2D/Body/Visual" index="9"]
+unique_name_in_owner = true
+position = Vector2(-48, 67)
+
+[node name="Line2D12" type="Line2D" parent="2D/Body/Visual/Canon3" index="0"]
+position = Vector2(184, 34)
+points = PackedVector2Array(-206, -20, -206, -11, -168, -12, -168, -58, -206, -58, -206, -48, -222, -48, -222, -20)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D13" type="Line2D" parent="2D/Body/Visual/Canon3" index="1"]
+position = Vector2(184, 34)
+points = PackedVector2Array(-168, -10, -169, 13, -155, -11, -155, -59, -167, -81, -167.213, -59.2395)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D14" type="Line2D" parent="2D/Body/Visual/Canon3" index="2"]
+position = Vector2(184, 34)
+points = PackedVector2Array(-154, -27, -99, -29, -99, -40, -154, -42)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D15" type="Line2D" parent="2D/Body/Visual/Canon3" index="3"]
+position = Vector2(184, 34)
+points = PackedVector2Array(-213, -29, -190, -27, -181, -18, -174, -18, -174, -27.189, -169, -26, -169, -41, -174, -41.4756, -174, -50, -182, -50, -190, -42, -213, -40)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gx41")
+texture = ExtResource("3_rm257")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="2D/Body/Visual/Canon3" index="4"]
+position = Vector2(84, -1)
+remote_path = NodePath("../../../ProjectileSpawns/Marker2D3")
+
+[node name="Marker2D" parent="2D/Body/ProjectileSpawns" index="0"]
+position = Vector2(137, -3)
+
+[node name="Marker2D2" type="Marker2D" parent="2D/Body/ProjectileSpawns" index="1"]
+position = Vector2(37, -69)
+
+[node name="Marker2D3" type="Marker2D" parent="2D/Body/ProjectileSpawns" index="2"]
+position = Vector2(36, 66)

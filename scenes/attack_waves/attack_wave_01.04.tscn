@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqssatqko3wba"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_ie8va"]
+[ext_resource type="PackedScene" uid="uid://bkr5nqrgfbf2w" path="res://scenes/enemies/copter.tscn" id="2_kreds"]
+
+[sub_resource type="Curve2D" id="Curve2D_fopem"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1248, 160, 0, 0, 0, 0, 672, 160, 0, 0, 0, 0, 672, 384, 0, 0, 0, 0, 1248, 384, 0, 0, 0, 0, 1248, 608, 0, 0, 0, 0, 672, 608, 0, 0, 0, 0, 672, 384, 0, 0, 0, 0, 1248, 384, 0, 0, 0, 0, 1248, 160)
+}
+point_count = 9
+
+[node name="AttackWave" instance=ExtResource("1_ie8va")]
+from_back_speed = 150.0
+
+[node name="DoubleSquare" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
+curve = SubResource("Curve2D_fopem")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="0"]
+position = Vector2(1318, 230)
+h_offset = 70.0
+v_offset = 70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D" index="0" instance=ExtResource("2_kreds")]
+rotation = 3.14159
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="1"]
+position = Vector2(1318, 90)
+h_offset = 70.0
+v_offset = -70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D2" index="0" instance=ExtResource("2_kreds")]
+rotation = 3.14159
+first_shoot_delay = 3.0
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="2"]
+position = Vector2(1178, 90)
+h_offset = -70.0
+v_offset = -70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D3" index="0" instance=ExtResource("2_kreds")]
+rotation = 3.14159
+first_shoot_delay = 4.0
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="3"]
+position = Vector2(1178, 230)
+h_offset = -70.0
+v_offset = 70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D4" index="0" instance=ExtResource("2_kreds")]
+rotation = 3.14159
+first_shoot_delay = 5.0
+auto_shoot_delay = 4.0
+aim_player = false

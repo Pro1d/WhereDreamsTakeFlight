@@ -1,0 +1,203 @@
+[gd_scene load_steps=19 format=3 uid="uid://c3cgew3up283b"]
+
+[ext_resource type="Script" path="res://scripts/attack_wave.gd" id="1_xv26w"]
+
+[sub_resource type="Curve2D" id="Curve2D_d1hhl"]
+_data = {
+"points": PackedVector2Array(45.6203, -272.943, 0, 0, 700, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_gfu6s"]
+_data = {
+"points": PackedVector2Array(-361.519, -80.8661, 361.519, 80.8661, 548, -66, -102.272, -97.515, 102.272, 97.515, 1150, 144, 59.4603, -123.678, -59.4603, 123.678, 1200, 529, 133.191, -7.13524, -133.191, 7.13524, 864, 707, -4.75683, -14.2705, 4.75683, 14.2705, -258, 707)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_ocglt"]
+_data = {
+"points": PackedVector2Array(10.0756, -251.722, -10.0756, 251.722, 1300, -167, 146.25, -2.89739, -146.25, 2.89739, 1194, 708, 167.762, 0.282854, -167.762, -0.282854, 1011, 93, 140.635, -4.16521, -140.635, 4.16521, 825, 702, 318.707, 7.13524, -318.707, -7.13524, -220, 704)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_26psn"]
+_data = {
+"points": PackedVector2Array(571.31, -3.44164, -571.31, 3.44164, 1504, 71, 2.08761, -125.036, -2.08761, 125.036, 693, 160, -4.0686, -131.443, 4.0686, 131.443, 1297, 275, 0, -118.981, 0, 118.981, 691, 466, 0, -123.471, 0, 123.471, 1306, 576, 320.229, -4.16521, -320.229, 4.16521, 718, 695, 318.707, 7.13524, -318.707, -7.13524, -190, 699)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_eubsg"]
+_data = {
+"points": PackedVector2Array(333.348, 140.234, -333.348, -140.234, 1504, 488, 168.212, 0.679848, -168.212, -0.679848, 1068, 57, 65.7278, -166.189, -65.7278, 166.189, 1036, 599, 121.226, 7.77245e-05, -121.226, -7.77245e-05, 156, 705, -130.206, 2.24485, 130.206, -2.24485, 173, 64, -77.6837, -155.035, 77.6837, 155.035, 1026, 169, -164.696, -0.459044, 164.696, 0.459044, 1079, 708, -300.893, 101.422, 300.893, -101.422, 1497, 246)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_m1ci0"]
+_data = {
+"points": PackedVector2Array(-131.988, 93.1165, 131.988, -93.1165, 903, 165, -5.34539, -235.197, 5.34539, 235.197, 1278, 398, 100.785, 139.271, -100.785, -139.271, 871, 576, -128.579, 109.531, 128.579, -109.531, 903, 165)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_qsey3"]
+_data = {
+"points": PackedVector2Array(-61.3527, 118.343, 61.3527, -118.343, 864, 160, -64.363, -121.262, 64.363, 121.262, 1184, 160, -45.9633, -154.798, 45.9633, 154.798, 864, 608, -55.9492, 144.298, 55.9492, -144.298, 1184, 608, -59.6255, 133.076, 59.6255, -133.076, 864, 160)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_bkehl"]
+_data = {
+"points": PackedVector2Array(197.06, 2.11893, -197.06, -2.11893, 1479, 96, 80.5192, -82.6381, -80.5192, 82.6381, 1127, 163, 69.9246, -72.0435, -69.9246, 72.0435, 1000, 488, 67.8056, 76.2813, -67.8056, -76.2813, 729, 502, -57.211, 76.2813, 57.211, -76.2813, 693, 257, -69.9246, -52.9732, 69.9246, 52.9732, 970, 233, 74.1624, -80.5192, -74.1624, 80.5192, 994, 481, 69.9246, 74.1624, -69.9246, -74.1624, 729, 502, -61.4489, 74.1624, 61.4489, -74.1624, 703, 259, -76.2813, -61.4489, 76.2813, 61.4489, 985, 233, -84.757, -72.0435, 84.757, 72.0435, 1136, 574, -201.298, -2.11893, 201.298, 2.11893, 1477, 640)
+}
+point_count = 12
+
+[sub_resource type="Curve2D" id="Curve2D_xpcee"]
+_data = {
+"points": PackedVector2Array(1.40943, 226.14, -1.40943, -226.14, 1196, 972, 3.49963, 142.016, -3.49963, -142.016, 1194, 536, 4.94735, 163.857, -4.94735, -163.857, 840, 166, -4.66664, -176.59, 4.66664, 176.59, 1177, 163, -2.69439, -166.734, 2.69439, 166.734, 840, 522, 3.63367, 180.857, -3.63367, -180.857, 1185, 542, 9.84684, 161.038, -9.84684, -161.038, 837, 140, 2.82843, 203.647, -2.82843, -203.647, 826, -242)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_wa215"]
+_data = {
+"points": PackedVector2Array(39.4302, -40.8301, -39.4302, 40.8301, 1004, 419.997, 0.278313, -39.6747, -0.278313, 39.6747, 940.001, 526.998, -38.1838, -0.707107, 38.1838, 0.707107, 1004, 590.997, 1.88136, 39.1948, -1.88136, -39.1948, 1068, 526.997, 30.8416, 42.9148, -30.8416, -42.9148, 1004, 419.997)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_7sm8g"]
+_data = {
+"points": PackedVector2Array(0, -133.552, 0, 133.552, 1024, 384, 29.3859, 0, -29.3859, 0, 960, 544, 1.25992, 132.292, -1.25992, -132.292, 896, 384, -26.344, 0.859006, 26.344, -0.859006, 960, 224, -0.66742, -133.484, 0.66742, 133.484, 1024, 384)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_oquck"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1216, -192, 0, 0, 0, 0, -1216, -576, 0, 0, 0, 0, -768, -576, 0, 0, 0, 0, -768, -192, 0, 0, 0, 0, -1216, -192)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_v1bc7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 832, 160, 0, 0, 0, 0, 832, 608)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_fopem"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1248, 160, 0, 0, 0, 0, 672, 160, 0, 0, 0, 0, 672, 384, 0, 0, 0, 0, 1248, 384, 0, 0, 0, 0, 1248, 608, 0, 0, 0, 0, 672, 608, 0, 0, 0, 0, 672, 384, 0, 0, 0, 0, 1248, 384, 0, 0, 0, 0, 1248, 160)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_dya61"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 608, 160, 0, 0, 0, 0, 1216, 160, 0, 0, 0, 0, 1216, 640, 0, 0, 0, 0, 1216, 160, 0, 0, 0, 0, 608, 160)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_k5wei"]
+_data = {
+"points": PackedVector2Array(154.682, 50.8542, -154.682, -50.8542, 1664, 128, 108.065, -82.6381, -108.065, 82.6381, 1152, 160, 127.136, -122.898, -127.136, 122.898, 800, 640, 125.017, 137.73, -125.017, -137.73, 160, 608, 199.179, -1.52588e-05, -199.179, 1.52588e-05, -96, 64)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_riwrd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1536, 448, 318.355, 12.6571, -318.355, -12.6571, 992, 128, 273.743, -46.79, -273.743, 46.79, 160, 320, 0, 0, 0, 0, -448, 352)
+}
+point_count = 4
+
+[node name="AttackWave" type="Node2D"]
+script = ExtResource("1_xv26w")
+
+[node name="FromBackPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_d1hhl")
+
+[node name="FromBackPathFollow2D" type="PathFollow2D" parent="FromBackPath"]
+unique_name_in_owner = true
+position = Vector2(6.10352e-05, 0)
+progress = 700.0
+rotates = false
+loop = false
+
+[node name="PathCollections" type="Node2D" parent="."]
+
+[node name="Bird" type="Node2D" parent="PathCollections"]
+
+[node name="TurnAndPick" type="Path2D" parent="PathCollections/Bird"]
+visible = false
+curve = SubResource("Curve2D_gfu6s")
+
+[node name="Wave2AndPick" type="Path2D" parent="PathCollections/Bird"]
+visible = false
+curve = SubResource("Curve2D_ocglt")
+
+[node name="WaveAndPick" type="Path2D" parent="PathCollections/Bird"]
+visible = false
+curve = SubResource("Curve2D_26psn")
+
+[node name="Back" type="Path2D" parent="PathCollections/Bird"]
+visible = false
+curve = SubResource("Curve2D_eubsg")
+
+[node name="Circle" type="Path2D" parent="PathCollections/Bird"]
+visible = false
+curve = SubResource("Curve2D_m1ci0")
+
+[node name="EightLoop" type="Path2D" parent="PathCollections/Bird"]
+visible = false
+curve = SubResource("Curve2D_qsey3")
+
+[node name="WarPlane" type="Node2D" parent="PathCollections"]
+
+[node name="TwoCircles" type="Path2D" parent="PathCollections/WarPlane"]
+visible = false
+curve = SubResource("Curve2D_bkehl")
+
+[node name="Eight" type="Path2D" parent="PathCollections/WarPlane"]
+visible = false
+position = Vector2(20, 29)
+curve = SubResource("Curve2D_xpcee")
+
+[node name="Spinning" type="Node2D" parent="PathCollections"]
+
+[node name="BounceDown" type="Path2D" parent="PathCollections/Spinning"]
+visible = false
+position = Vector2(-71, 9)
+curve = SubResource("Curve2D_wa215")
+
+[node name="BounceUp" type="Path2D" parent="PathCollections/Spinning"]
+visible = false
+position = Vector2(1932, 751)
+rotation = -3.14159
+curve = SubResource("Curve2D_wa215")
+
+[node name="Ellipse" type="Path2D" parent="PathCollections/Spinning"]
+visible = false
+curve = SubResource("Curve2D_7sm8g")
+
+[node name="copter" type="Node2D" parent="PathCollections"]
+
+[node name="Square" type="Path2D" parent="PathCollections/copter"]
+visible = false
+rotation = 3.14159
+curve = SubResource("Curve2D_oquck")
+
+[node name="Line" type="Path2D" parent="PathCollections/copter"]
+visible = false
+curve = SubResource("Curve2D_v1bc7")
+
+[node name="DoubleSquare" type="Path2D" parent="PathCollections/copter"]
+visible = false
+curve = SubResource("Curve2D_fopem")
+
+[node name="Lshape" type="Path2D" parent="PathCollections/copter"]
+visible = false
+curve = SubResource("Curve2D_dya61")
+
+[node name="Ball" type="Node2D" parent="PathCollections"]
+
+[node name="Wave" type="Path2D" parent="PathCollections/Ball"]
+visible = false
+curve = SubResource("Curve2D_k5wei")
+
+[node name="Straight" type="Path2D" parent="PathCollections/Ball"]
+visible = false
+curve = SubResource("Curve2D_riwrd")

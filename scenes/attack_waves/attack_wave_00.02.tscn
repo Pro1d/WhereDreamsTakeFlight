@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://cytlgmc2lwfw3"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_exkb3"]
+[ext_resource type="PackedScene" uid="uid://dkg7gcrs3s7jc" path="res://scenes/enemies/bird.tscn" id="2_pjdnt"]
+
+[sub_resource type="Curve2D" id="Curve2D_qsey3"]
+_data = {
+"points": PackedVector2Array(-61.3527, 118.343, 61.3527, -118.343, 864, 160, -64.363, -121.262, 64.363, 121.262, 1184, 160, -45.9633, -154.798, 45.9633, 154.798, 864, 608, -55.9492, 144.298, 55.9492, -144.298, 1184, 608, -59.6255, 133.076, 59.6255, -133.076, 864, 160)
+}
+point_count = 5
+
+[node name="AttackWave" instance=ExtResource("1_exkb3")]
+
+[node name="EightLoop" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
+curve = SubResource("Curve2D_qsey3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/EightLoop" index="0"]
+position = Vector2(864, 160)
+rotation = -1.09251
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/EightLoop/PathFollow2D" index="0" instance=ExtResource("2_pjdnt")]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/EightLoop" index="1"]
+position = Vector2(1109.46, 89.1626)
+rotation = 0.448909
+progress = 281.252
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/EightLoop/PathFollow2D2" index="0" instance=ExtResource("2_pjdnt")]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/EightLoop" index="2"]
+position = Vector2(1108.08, 306.063)
+rotation = 2.40788
+progress = 562.306
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/EightLoop/PathFollow2D3" index="0" instance=ExtResource("2_pjdnt")]
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/EightLoop" index="3"]
+position = Vector2(899.81, 494.491)
+rotation = 2.2434
+progress = 843.558
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/EightLoop/PathFollow2D4" index="0" instance=ExtResource("2_pjdnt")]
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/EightLoop" index="4"]
+position = Vector2(970.442, 714.003)
+rotation = 0.270268
+progress = 1124.61
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/EightLoop/PathFollow2D5" index="0" instance=ExtResource("2_pjdnt")]
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/EightLoop" index="5"]
+position = Vector2(1188.66, 588.295)
+rotation = -1.47844
+progress = 1405.86
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/EightLoop/PathFollow2D6" index="0" instance=ExtResource("2_pjdnt")]
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/EightLoop" index="6"]
+position = Vector2(1018.01, 376.019)
+rotation = -2.45558
+progress = 1686.92
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/EightLoop/PathFollow2D7" index="0" instance=ExtResource("2_pjdnt")]

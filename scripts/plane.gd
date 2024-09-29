@@ -1,6 +1,8 @@
 class_name PlayerPlane
 extends Node3D
 
+signal destroyed()
+
 enum Type {
 	Wood = 0,
 	FireRed,
@@ -22,7 +24,7 @@ var speed := base_speed
 @onready var _default_y_pos := global_position.y
 @onready var weapon_slots : Array[Node3D]
 @onready var plane_mesh := %Plane as MeshInstance3D
-
+@onready var _hit_box_area := %HitBoxArea as Area2D
 var equipped_weapons : Array[Weapon] = []
 
 # Called when the node enters the scene tree for the first time.
@@ -37,15 +39,17 @@ func _ready() -> void:
 			equipped_weapons.append(null)
 		i += 1
 	_update_plane_type()
+	_hit_box_area.body_entered.connect(_on_hit_box_entered)
 
 func _physics_process(delta: float) -> void:
 	var command := Vector2(
 		Input.get_axis("player_left", "player_right"),
 		-Input.get_axis("player_up", "player_down"),
 	)
+	const margin := Vector2(0.02, 0.07)
 	var pos_2d := Vector2(global_position.x, -global_position.z)
 	pos_2d += command * speed * delta
-	pos_2d = pos_2d.clamp(Config.PLAYER_AREA.position, Config.PLAYER_AREA.position + Config.PLAYER_AREA.size)
+	pos_2d = pos_2d.clamp(Config.PLAYER_AREA.position+margin, Config.PLAYER_AREA.position + Config.PLAYER_AREA.size - margin)
 	global_position = Vector3(pos_2d.x, _default_y_pos, -pos_2d.y)
 	global_rotation.x = signf(pos_2d.y) * absf(pos_2d.y / Config.PLAYER_AREA.size.y*2) ** 1.3 * (PI / 6)
 
@@ -85,3 +89,27 @@ func _update_plane_type() -> void:
 	speed = base_speed * (1.15 if type == Type.AboveSky else 1.0)
 	if plane_mesh == null: return
 	plane_mesh.mesh = meshes_by_type[type]
+
+func _on_hit_box_entered(body: PhysicsBody2D) -> void:
+	var proj := body as Projectile
+	if proj != null and not proj.by_player:
+		proj.destroy_projectile(true)
+		take_damage()
+	var enemy := Enemy.find_parent_enemy(body)
+	if enemy != null:
+		take_damage()
+
+func take_damage() -> void:
+	destroyed.emit()
+	# TODO fx, shield, life
+
+func get_2d_position() -> Vector2:
+	return ($"2D" as Node2D).global_position
+
+static func find_parent_plane(body: PhysicsBody2D) -> PlayerPlane:
+	# body = "Plane/2D/Body"
+	var p := body.get_parent() # "Plane/2D"
+	if p == null:
+		return null
+	var pp := p.get_parent() # "Plane"
+	return pp as PlayerPlane

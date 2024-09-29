@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxkjdpg6wjw31"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_sxffy"]
+[ext_resource type="PackedScene" uid="uid://ptyf7vrsn81p" path="res://scenes/enemies/spinning.tscn" id="2_tamqh"]
+[ext_resource type="PackedScene" uid="uid://bkr5nqrgfbf2w" path="res://scenes/enemies/copter.tscn" id="3_axkee"]
+
+[sub_resource type="Curve2D" id="Curve2D_yn1nb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1216, -192, 0, 0, 0, 0, -1216, -576, 0, 0, 0, 0, -768, -576, 0, 0, 0, 0, -768, -192, 0, 0, 0, 0, -1216, -192)
+}
+point_count = 5
+
+[node name="AttackWave" instance=ExtResource("1_sxffy")]
+
+[node name="Spinning" parent="FromBackPath/FromBackPathFollow2D" index="0" instance=ExtResource("2_tamqh")]
+position = Vector2(986, 384)
+
+[node name="Path2D" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="1"]
+rotation = 3.14159
+curve = SubResource("Curve2D_yn1nb")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="0"]
+position = Vector2(-1216, -192)
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D" index="0" instance=ExtResource("3_axkee")]
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="1"]
+position = Vector2(-1216, -400.001)
+progress = 208.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D2" index="0" instance=ExtResource("3_axkee")]
+first_shoot_delay = 3.0
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="2"]
+position = Vector2(-1184, -576)
+progress = 416.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D3" index="0" instance=ExtResource("3_axkee")]
+first_shoot_delay = 4.0
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="3"]
+position = Vector2(-976, -576)
+progress = 624.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D4" index="0" instance=ExtResource("3_axkee")]
+first_shoot_delay = 5.0
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D5-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="4"]
+position = Vector2(-768, -576)
+progress = 832.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D5-IF+1" index="0" instance=ExtResource("3_axkee")]
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D6-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="5"]
+position = Vector2(-768, -367.999)
+progress = 1040.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D6-IF+1" index="0" instance=ExtResource("3_axkee")]
+first_shoot_delay = 3.0
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D7-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="6"]
+position = Vector2(-799.996, -192)
+progress = 1248.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D7-IF+1" index="0" instance=ExtResource("3_axkee")]
+first_shoot_delay = 4.0
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D8-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="7"]
+position = Vector2(-1008, -192)
+progress = 1456.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D8-IF+1" index="0" instance=ExtResource("3_axkee")]
+first_shoot_delay = 5.0
+auto_shoot_delay = 4.0
+aim_player = false

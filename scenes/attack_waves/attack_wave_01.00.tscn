@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1hfgblyxoyaa"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_u42cg"]
+[ext_resource type="PackedScene" uid="uid://bkr5nqrgfbf2w" path="res://scenes/enemies/copter.tscn" id="2_y2kgi"]
+
+[sub_resource type="Curve2D" id="Curve2D_s13m3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1216, -192, 0, 0, 0, 0, -1216, -576, 0, 0, 0, 0, -768, -576, 0, 0, 0, 0, -768, -192, 0, 0, 0, 0, -1216, -192)
+}
+point_count = 5
+
+[node name="AttackWave" instance=ExtResource("1_u42cg")]
+from_back_speed = 150.0
+
+[node name="Path2D" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
+rotation = 3.14159
+curve = SubResource("Curve2D_s13m3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="0"]
+position = Vector2(-1146, -122)
+h_offset = 70.0
+v_offset = 70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D" index="0" instance=ExtResource("2_y2kgi")]
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="1"]
+position = Vector2(-1146, -262)
+h_offset = 70.0
+v_offset = -70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D2" index="0" instance=ExtResource("2_y2kgi")]
+first_shoot_delay = 3.0
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="2"]
+position = Vector2(-1286, -262)
+h_offset = -70.0
+v_offset = -70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D3" index="0" instance=ExtResource("2_y2kgi")]
+first_shoot_delay = 4.0
+auto_shoot_delay = 4.0
+aim_player = false
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="3"]
+position = Vector2(-1286, -122)
+h_offset = -70.0
+v_offset = 70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D4" index="0" instance=ExtResource("2_y2kgi")]
+first_shoot_delay = 5.0
+auto_shoot_delay = 4.0
+aim_player = false

@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="Whalepass Gamejam 1"
-run/main_scene="res://scenes/world_2D_and_3d.tscn"
+config/description="From reality to imaginary, go in kid's thoughts and join the most epic dogfight we could imagine."
+run/main_scene="res://scenes/world_2d_and_3d.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -70,7 +71,7 @@ shader_language/warnings/treat_warnings_as_errors=true
 
 window/size/viewport_width=1366
 window/size/viewport_height=768
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [global_group]
 

@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://088brukj5isd"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_sj7sg"]
+[ext_resource type="PackedScene" uid="uid://dkg7gcrs3s7jc" path="res://scenes/enemies/bird.tscn" id="2_7emqh"]
+
+[sub_resource type="Curve2D" id="Curve2D_m1ci0"]
+_data = {
+"points": PackedVector2Array(-131.988, 93.1165, 131.988, -93.1165, 903, 165, -5.34539, -235.197, 5.34539, 235.197, 1278, 398, 100.785, 139.271, -100.785, -139.271, 871, 576, -128.579, 109.531, 128.579, -109.531, 903, 165)
+}
+point_count = 4
+
+[node name="AttackWave" instance=ExtResource("1_sj7sg")]
+
+[node name="Circle" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
+curve = SubResource("Curve2D_m1ci0")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Circle" index="0"]
+position = Vector2(903, 165)
+rotation = -0.614402
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/Circle/PathFollow2D" index="0" instance=ExtResource("2_7emqh")]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Circle" index="1"]
+position = Vector2(1149, 164.555)
+rotation = 0.535341
+progress = 259.772
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/Circle/PathFollow2D2" index="0" instance=ExtResource("2_7emqh")]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Circle" index="2"]
+position = Vector2(1277.16, 380.468)
+rotation = 1.49696
+progress = 521.11
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/Circle/PathFollow2D3" index="0" instance=ExtResource("2_7emqh")]
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Circle" index="3"]
+position = Vector2(1166.57, 602.06)
+rotation = 2.58325
+progress = 782.447
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/Circle/PathFollow2D4" index="0" instance=ExtResource("2_7emqh")]
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Circle" index="4"]
+position = Vector2(918.936, 618.733)
+rotation = -2.62104
+progress = 1042.22
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/Circle/PathFollow2D5" index="0" instance=ExtResource("2_7emqh")]
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Circle" index="5"]
+position = Vector2(801.18, 396.522)
+rotation = -1.64287
+progress = 1301.99
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/Circle/PathFollow2D6" index="0" instance=ExtResource("2_7emqh")]

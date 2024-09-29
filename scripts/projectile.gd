@@ -1,7 +1,7 @@
 class_name Projectile
 extends CharacterBody2D
 
-enum Shape { Circle = 0, Square, Triangle }
+enum Shape { Circle = 0, Square, Triangle, Cross }
 const ProjectileResource := preload("res://scenes/projectile.tscn")
 
 @export var shape_type := Shape.Circle :
@@ -9,7 +9,7 @@ const ProjectileResource := preload("res://scenes/projectile.tscn")
 		if s != shape_type:
 			shape_type = s
 			_update_shape_type()
-@export var radius := 20.0 :
+@export var radius := 15.0 :
 	set(r):
 		if radius != r:
 			radius = r
@@ -23,7 +23,8 @@ const ProjectileResource := preload("res://scenes/projectile.tscn")
 	set(p):
 		by_player = p
 		_update_mask()
-@export var current_velocity := Vector2.RIGHT * 900.0
+const base_velocity := 900.0
+@export var current_velocity := Vector2.RIGHT * base_velocity
 
 @onready var _shape := ($CollisionShape2D as CollisionShape2D).shape as CircleShape2D
 @onready var _seek_area := $SeekArea2D as Area2D
@@ -36,10 +37,12 @@ var explosive := false
 var split_on_hit := false
 
 var damage := 10.0
-var lifetime := 1.0
-const seek_radius := 100.0
+var lifetime := 1.0 :
+	set(l):
+		lifetime = l
+const seek_radius := 150.0
 const explosion_radius := 60.0
-const seek_strength := 20.0
+const seek_accel := base_velocity * 2.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,14 +50,16 @@ func _ready() -> void:
 	_update_color()
 	_update_mask()
 	_update_shape_type()
-	_seek_area.monitoring = seeking or explosive
+	
+	if not seeking or explosive:
+		_seek_area.monitoring = false
+		_seek_area.remove_child(_seek_area.get_child(0))
 
 func _physics_process(delta: float) -> void:
 	lifetime -= delta
 	if lifetime <= 0:
-		_destroy_projectile()
+		destroy_projectile(false)
 	else:
-		var seek_velocity := Vector2.ZERO
 		if seeking:
 			var dmin := seek_radius
 			var bmin : PhysicsBody2D = null
@@ -64,8 +69,9 @@ func _physics_process(delta: float) -> void:
 					dmin = d
 					bmin = b
 			if bmin != null:
-				seek_velocity = seek_strength * global_position.direction_to(bmin.global_position)
-		_move_by((current_velocity + seek_velocity) * delta)
+				var seek_velocity := seek_accel * global_position.direction_to(bmin.global_position) * delta
+				current_velocity = (current_velocity + seek_velocity).normalized() * current_velocity.length()
+		_move_by(current_velocity * delta)
 		rotation = current_velocity.angle()
 
 func _move_by(motion: Vector2, reccursive: int = 3) -> void:
@@ -81,22 +87,24 @@ func _move_by(motion: Vector2, reccursive: int = 3) -> void:
 		
 		# SPLIT
 		if split_on_hit:
-			var p := _clone_projectile()
-			p.radius *= 0.5
-			p.damage *= 0.5
-			p.bounce_left -= 2
-			p.current_velocity = p.current_velocity.length() * N
-			p.split_on_hit = false
+			for i in range(2):
+				var p := _clone_projectile()
+				p.radius *= 0.5
+				p.damage *= 0.5
+				p.bounce_left = maxi(p.bounce_left - 2, 0)
+				p.current_velocity = p.current_velocity.rotated((i * 2 - 1) * PI/2)
+				#p.current_velocity = p.current_velocity.length() * N.rotated((i * 2 - 1) * PI/10)
+				p.split_on_hit = false
 		
 		# BOUNCING
 		if bounce_left > 0:
 			if body.is_in_group("world_boundary"):
 				current_velocity = current_velocity.bounce(N)
 			else:
-				current_velocity = current_velocity.bounce(N).rotated(
-					clampf(randfn(0, PI/6), -PI/2, PI/2)
+				current_velocity = current_velocity.length() * N.rotated(
+					(randf() * 2 * PI)
 					if piercing else
-					clampf(randfn(0, PI), -PI, PI)
+					clampf(randfn(0, PI/6), -PI/2, PI/2)
 				)
 				add_collision_exception_with(body)
 				_on_body_hit(body)
@@ -110,24 +118,27 @@ func _move_by(motion: Vector2, reccursive: int = 3) -> void:
 		# EXPLOSIVE
 		elif explosive:
 			_on_body_hit(body)
-			_destroy_projectile()
+			destroy_projectile(true)
 		# NORMAL
 		else:
 			_on_body_hit(body)
-			_destroy_projectile()
+			destroy_projectile(true)
 
 func _on_body_hit(body: PhysicsBody2D) -> void:
-	if body.has_method("take_damage"):
-		@warning_ignore("unsafe_method_access")
-		body.take_damage(damage)
+	var enemy := Enemy.find_parent_enemy(body)
+	if enemy != null:
+		enemy.take_damage(damage)
+	var player := PlayerPlane.find_parent_plane(body)
+	if player != null:
+		player.take_damage()
 
-func _destroy_projectile() -> void:
+func destroy_projectile(_hit: bool = false) -> void:
 	if explosive:
 		for b: PhysicsBody2D in _seek_area.get_overlapping_bodies():
 			var d := global_position.distance_to(b.global_position)
-			if b.has_method("get_radius"):
-				@warning_ignore("unsafe_method_access")
-				d -= b.get_radius() as float
+			var e := Enemy.find_parent_enemy(b)
+			if e != null:
+				d -= e.radius
 			if d < explosion_radius:
 				_on_body_hit(b)
 		# TODO fx
@@ -142,6 +153,7 @@ func _clone_projectile() -> Projectile:
 	
 	p.radius = radius
 	p.color = color
+	p.shape_type = shape_type
 	p.by_player = by_player
 	p.current_velocity = current_velocity
 	p.bounce_left = bounce_left
@@ -159,12 +171,18 @@ func _update_shape_type() -> void:
 	var i := 0
 	for c: Node2D in $Shape.get_children():
 		c.visible = (shape_type == i)
+		if c.visible:
+			(c as Line2D).width_curve = Config.curve_width_resources.pick_random()
+			if i == Shape.Circle:
+				c.rotation = randf() * 2 * PI
 		i += 1
 
 func _update_shape_radius() -> void:
 	if _shape != null:
 		_shape.radius = radius
 		($Shape as Node2D).scale = Vector2.ONE * radius / 20.0
+		for c: Line2D in $Shape.get_children():
+			c.width = 6 * radius / 20.0
 
 func _update_color() -> void:
 	modulate = color
@@ -173,10 +191,10 @@ func _update_mask() -> void:
 	if by_player:
 		collision_layer |= Config.LAYER_PLAYER_PROJECTILE
 		collision_layer &= ~Config.LAYER_ENEMY_PROJECTILE
-		collision_mask |= Config.LAYER_PLAYER
-		collision_mask &= ~Config.LAYER_ENEMY
+		collision_mask &= ~Config.LAYER_PLAYER
+		collision_mask |= Config.LAYER_ENEMY
 	else:
 		collision_layer &= ~Config.LAYER_PLAYER_PROJECTILE
 		collision_layer |= Config.LAYER_ENEMY_PROJECTILE
-		collision_mask &= ~Config.LAYER_PLAYER
-		collision_mask |= Config.LAYER_ENEMY
+		collision_mask |= Config.LAYER_PLAYER
+		collision_mask &= ~Config.LAYER_ENEMY

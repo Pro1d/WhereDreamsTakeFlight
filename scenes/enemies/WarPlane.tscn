@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://imuct0ptm7lp"]
+
+[ext_resource type="PackedScene" uid="uid://bkgmgjhdcppcw" path="res://scenes/enemy.tscn" id="1_y80gs"]
+[ext_resource type="Texture2D" uid="uid://da0uv6a1fj1w8" path="res://resources/materials/line_texture.tres" id="2_spgpo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vo1x1"]
+resource_local_to_scene = true
+radius = 50.0
+
+[sub_resource type="Curve" id="Curve_npmnb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.188192, 0.871775), 0.0, 0.0, 0, 0, Vector2(0.420664, 1), 0.0, 0.0, 0, 0, Vector2(0.697417, 0.753414), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="WarPlane" instance=ExtResource("1_y80gs")]
+move_speed = 300.0
+radius = 50.0
+first_shoot_delay = 3.0
+auto_shoot_delay = 3.0
+hit_points = 75.0
+aim_player = true
+
+[node name="CollisionShape2D" parent="2D/Body" index="0"]
+shape = SubResource("CircleShape2D_vo1x1")
+
+[node name="Line2D3" type="Line2D" parent="2D/Body/Visual" index="0"]
+position = Vector2(4, 0)
+rotation = 3.14159
+points = PackedVector2Array(-12, -13, -31, -10.0001, -48, -0.000121689, -31, 8.99992, -12, 11, -7.15123, 20.4425, -17.0001, 27, -8.61962e-05, 34, 6.99988, 48, 27.9999, 50.0001, 22, 18.0001, 31, 4.00008, 45, 16.0001, 45, -16.9999, 31, -4.99992, 24, -15.9999, 28.0001, -49.9999, 7.00012, -49, 8.87314e-05, -35, -17.9999, -29, -6.99994, -23)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_npmnb")
+texture = ExtResource("2_spgpo")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Marker2D" parent="2D/Body/ProjectileSpawns" index="0"]
+position = Vector2(37, 0)

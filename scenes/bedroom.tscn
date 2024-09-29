@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1djw43u5ntsy"]
+[gd_scene load_steps=11 format=3 uid="uid://d1djw43u5ntsy"]
 
 [ext_resource type="ArrayMesh" uid="uid://bhxpj85uiwyqt" path="res://assets/models/all/Bed.res" id="1_x7td3"]
 
@@ -6,16 +6,43 @@
 flip_faces = true
 size = Vector3(3.225, 2.1, 2.955)
 
+[sub_resource type="Gradient" id="Gradient_iy2ek"]
+offsets = PackedFloat32Array(0, 0.192118)
+colors = PackedColorArray(0.600937, 0.600937, 0.600937, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gbg6u"]
+frequency = 1.0
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oa0t7"]
+width = 128
+height = 128
+color_ramp = SubResource("Gradient_iy2ek")
+noise = SubResource("FastNoiseLite_gbg6u")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbnis"]
-albedo_color = Color(0.676144, 0.475738, 0.219979, 1)
+albedo_color = Color(0.412352, 0.607299, 0.677231, 1)
+albedo_texture = SubResource("NoiseTexture2D_oa0t7")
+uv1_scale = Vector3(50, 50, 50)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_j4rot"]
 size = Vector2(3.41, 3.32)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q23og"]
-albedo_color = Color(0.278616, 0.226263, 0, 1)
+[sub_resource type="Gradient" id="Gradient_w6sw4"]
+colors = PackedColorArray(0.295566, 0.295566, 0.295566, 1, 1, 1, 1, 1)
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hivua"]
+width = 128
+height = 128
+color_ramp = SubResource("Gradient_w6sw4")
+noise = SubResource("FastNoiseLite_gbg6u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q23og"]
+albedo_color = Color(0.0482754, 0.172201, 0.239075, 1)
+albedo_texture = SubResource("NoiseTexture2D_hivua")
+uv1_scale = Vector3(40, 40, 40)
+
+[node name="BedRoom" type="Node3D"]
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.467, 1.01, 1.215)
@@ -30,5 +57,5 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_q23og")
 
 [node name="Bed" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12, 0.22)
 mesh = ExtResource("1_x7td3")

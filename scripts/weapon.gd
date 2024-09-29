@@ -14,7 +14,7 @@ const ProjectileResource := preload("res://scenes/projectile.tscn")
 
 @onready var proj_spawn_position := $"2D/ProjectileSpawn" as Node2D
 		
-const base_fire_delay := 0.5
+const base_fire_delay := 0.55
 
 var cooldown := 0.0
 
@@ -60,6 +60,7 @@ func _fire() -> void:
 		projectile.explosive = ws.explosive
 		projectile.split_on_hit = ws.splitting
 		projectile.damage *= ws.damage_factor
+		projectile.lifetime *= ws.lifetime_factor
 		get_tree().root.add_child(projectile)
 		
 		angle += step_angle

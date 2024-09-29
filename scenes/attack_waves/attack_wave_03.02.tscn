@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://drp6vfe2y5lkc"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_rnfde"]
+[ext_resource type="Script" path="res://scenes/attack_waves/path_follow_with_offset.gd" id="2_2b0pl"]
+[ext_resource type="PackedScene" uid="uid://imuct0ptm7lp" path="res://scenes/enemies/WarPlane.tscn" id="3_k4wv6"]
+
+[sub_resource type="Curve2D" id="Curve2D_bkehl"]
+_data = {
+"points": PackedVector2Array(197.06, 2.11893, -197.06, -2.11893, 1479, 96, 80.5192, -82.6381, -80.5192, 82.6381, 1127, 163, 69.9246, -72.0435, -69.9246, 72.0435, 1000, 488, 67.8056, 76.2813, -67.8056, -76.2813, 729, 502, -57.211, 76.2813, 57.211, -76.2813, 693, 257, -69.9246, -52.9732, 69.9246, 52.9732, 970, 233, 74.1624, -80.5192, -74.1624, 80.5192, 994, 481, 69.9246, 74.1624, -69.9246, -74.1624, 729, 502, -61.4489, 74.1624, 61.4489, -74.1624, 703, 259, -76.2813, -61.4489, 76.2813, 61.4489, 985, 233, -84.757, -72.0435, 84.757, 72.0435, 1136, 574, -201.298, -2.11893, 201.298, 2.11893, 1477, 640)
+}
+point_count = 12
+
+[sub_resource type="Curve2D" id="Curve2D_xpcee"]
+_data = {
+"points": PackedVector2Array(1.40943, 226.14, -1.40943, -226.14, 1196, 867, 3.49963, 142.016, -3.49963, -142.016, 1194, 536, 4.94735, 163.857, -4.94735, -163.857, 840, 166, -4.66664, -176.59, 4.66664, 176.59, 1177, 163, -2.69439, -166.734, 2.69439, 166.734, 840, 522, 3.63367, 180.857, -3.63367, -180.857, 1185, 542, 9.84684, 161.038, -9.84684, -161.038, 837, 140, 2.82843, 203.647, -2.82843, -203.647, 844, -189)
+}
+point_count = 8
+
+[node name="AttackWave" instance=ExtResource("1_rnfde")]
+
+[node name="TwoCircles" type="Path2D" parent="." index="1"]
+curve = SubResource("Curve2D_bkehl")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="TwoCircles" index="0"]
+position = Vector2(1479, 96)
+rotation = -3.13084
+loop = false
+script = ExtResource("2_2b0pl")
+
+[node name="WarPlane" parent="TwoCircles/PathFollow2D" index="0" instance=ExtResource("3_k4wv6")]
+auto_shoot_delay = 8.0
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="TwoCircles" index="1"]
+position = Vector2(1479, 96)
+rotation = -3.13084
+loop = false
+script = ExtResource("2_2b0pl")
+start_distance_offset = 180.0
+
+[node name="WarPlane" parent="TwoCircles/PathFollow2D2" index="0" instance=ExtResource("3_k4wv6")]
+first_shoot_delay = 7.5
+auto_shoot_delay = 8.0
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="TwoCircles" index="2"]
+position = Vector2(1479, 96)
+rotation = -3.13084
+loop = false
+script = ExtResource("2_2b0pl")
+start_distance_offset = 360.0
+
+[node name="WarPlane" parent="TwoCircles/PathFollow2D3" index="0" instance=ExtResource("3_k4wv6")]
+first_shoot_delay = 9.0
+auto_shoot_delay = 8.0
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="TwoCircles" index="3"]
+position = Vector2(1479, 96)
+rotation = -3.13084
+loop = false
+script = ExtResource("2_2b0pl")
+start_distance_offset = 540.0
+
+[node name="WarPlane" parent="TwoCircles/PathFollow2D4" index="0" instance=ExtResource("3_k4wv6")]
+first_shoot_delay = 4.5
+auto_shoot_delay = 8.0
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="TwoCircles" index="4"]
+position = Vector2(1479, 96)
+rotation = -3.13084
+loop = false
+script = ExtResource("2_2b0pl")
+start_distance_offset = 720.0
+
+[node name="WarPlane" parent="TwoCircles/PathFollow2D5" index="0" instance=ExtResource("3_k4wv6")]
+first_shoot_delay = 6.0
+auto_shoot_delay = 8.0
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="TwoCircles" index="5"]
+position = Vector2(1479, 96)
+rotation = -3.13084
+loop = false
+script = ExtResource("2_2b0pl")
+start_distance_offset = 900.0
+
+[node name="WarPlane" parent="TwoCircles/PathFollow2D6" index="0" instance=ExtResource("3_k4wv6")]
+first_shoot_delay = 10.5
+auto_shoot_delay = 8.0
+
+[node name="TwoCircles" parent="PathCollections/WarPlane" index="0"]
+curve = SubResource("Curve2D_bkehl")
+
+[node name="Eight" parent="PathCollections/WarPlane" index="1"]
+curve = SubResource("Curve2D_xpcee")

@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scripts/utils/remote_transform_3d_to_2d.gd" id="8_xei33"]
 
 [node name="Weapon" type="Node3D"]
+process_mode = 1
 script = ExtResource("1_cbk60")
 weapon_spec = ExtResource("2_04f7h")
 

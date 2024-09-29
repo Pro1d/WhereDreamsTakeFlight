@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkr5nqrgfbf2w"]
+
+[ext_resource type="PackedScene" uid="uid://bkgmgjhdcppcw" path="res://scenes/enemy.tscn" id="1_xeiv4"]
+[ext_resource type="Texture2D" uid="uid://da0uv6a1fj1w8" path="res://resources/materials/line_texture.tres" id="2_lx45h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6feic"]
+resource_local_to_scene = true
+radius = 45.0
+
+[sub_resource type="Curve" id="Curve_nn6ke"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.188192, 0.871775), 0.0, 0.0, 0, 0, Vector2(0.420664, 1), 0.0, 0.0, 0, 0, Vector2(0.697417, 0.753414), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Animation" id="Animation_a6h35"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D4:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Line2D5:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1roxy"]
+resource_name = "flying"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D4:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-3.14159, 3.14159]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Line2D5:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mktsu"]
+_data = {
+"RESET": SubResource("Animation_a6h35"),
+"flying": SubResource("Animation_1roxy")
+}
+
+[node name="Copter" instance=ExtResource("1_xeiv4")]
+radius = 45.0
+hit_points = 100.0
+aim_player = true
+
+[node name="CollisionShape2D" parent="2D/Body" index="0"]
+shape = SubResource("CircleShape2D_6feic")
+
+[node name="Line2D3" type="Line2D" parent="2D/Body/Visual" index="0"]
+points = PackedVector2Array(-39, -1.0001, -33, 30, 31, 30, 39, 9.88721e-05, 29, -33, -31, -33)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_nn6ke")
+texture = ExtResource("2_lx45h")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D4" type="Line2D" parent="2D/Body/Visual" index="1"]
+position = Vector2(0, -38)
+rotation = 3.14159
+points = PackedVector2Array(-30, -1.00008, -3.00001, 4.99999, 17.9999, 21, 7, -0.999982, 13.0001, -30, -2.99998, -7.00001)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_nn6ke")
+texture = ExtResource("2_lx45h")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D5" type="Line2D" parent="2D/Body/Visual" index="2"]
+position = Vector2(0, 33)
+points = PackedVector2Array(-30, -1.00008, -3.00001, 4.99999, 17.9999, 21, 7, -0.999982, 13.0001, -30, -2.99998, -7.00001)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_nn6ke")
+texture = ExtResource("2_lx45h")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="2D/Body/Visual" index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_mktsu")
+}
+
+[node name="Marker2D" parent="2D/Body/ProjectileSpawns" index="0"]
+position = Vector2(45, 0)

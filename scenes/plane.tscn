@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://du0t6jpbiva8l"]
+[gd_scene load_steps=10 format=3 uid="uid://du0t6jpbiva8l"]
 
 [ext_resource type="Script" path="res://scripts/plane.gd" id="1_2wtlq"]
 [ext_resource type="ArrayMesh" uid="uid://dry3um5mv3hvb" path="res://assets/models/all/Plane.res" id="1_35y2v"]
@@ -8,13 +8,19 @@
 [ext_resource type="ArrayMesh" uid="uid://d4fen1yp5t0kn" path="res://assets/models/all/PlaneGreen.res" id="5_s8m8w"]
 [ext_resource type="ArrayMesh" uid="uid://c21ebwok6womi" path="res://assets/models/all/PlaneSky.res" id="6_rby8f"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tnbl4"]
-radius = 140.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w2wh5"]
+radius = 28.0
+height = 241.6
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dw86g"]
+radius = 27.2
+height = 190.4
 
 [node name="Plane" type="Node3D"]
 top_level = true
 script = ExtResource("1_2wtlq")
 meshes_by_type = Array[ArrayMesh]([ExtResource("1_35y2v"), ExtResource("3_63idk"), ExtResource("4_oecbc"), ExtResource("5_s8m8w"), ExtResource("6_rby8f")])
+metadata/_edit_vertical_guides_ = [93.0, -144.0]
 
 [node name="3D" type="Node3D" parent="." node_paths=PackedStringArray("_target_2d")]
 script = ExtResource("2_h07p1")
@@ -22,6 +28,7 @@ _target_2d = NodePath("../2D")
 
 [node name="Plane" type="MeshInstance3D" parent="3D"]
 unique_name_in_owner = true
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.00770745, 0)
 mesh = ExtResource("1_35y2v")
 skeleton = NodePath("../..")
 
@@ -46,9 +53,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0197434, 0.044, -0.065)
 gizmo_extents = 0.05
 
 [node name="2D" type="Node2D" parent="."]
+process_mode = 1
 
-[node name="Area2D" type="Area2D" parent="2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="2D"]
+collision_layer = 2
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="2D/Area2D"]
-position = Vector2(-20, 0)
-shape = SubResource("CircleShape2D_tnbl4")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2D/CharacterBody2D"]
+position = Vector2(20, 0)
+shape = SubResource("CapsuleShape2D_w2wh5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="2D/CharacterBody2D"]
+position = Vector2(-25, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dw86g")
+
+[node name="HitBoxArea" type="Area2D" parent="2D/CharacterBody2D"]
+unique_name_in_owner = true
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2D/CharacterBody2D/HitBoxArea"]
+position = Vector2(20, 0)
+shape = SubResource("CapsuleShape2D_w2wh5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="2D/CharacterBody2D/HitBoxArea"]
+position = Vector2(-25, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dw86g")
