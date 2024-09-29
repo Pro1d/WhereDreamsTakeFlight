@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponSpec" load_steps=3 format=3 uid="uid://xvr65sttso2t"]
+
+[ext_resource type="ArrayMesh" uid="uid://owoev2f1ihim" path="res://assets/models/all/DollFork.res" id="1_inovb"]
+[ext_resource type="Script" path="res://scripts/weapon_spec.gd" id="2_8kig7"]
+
+[resource]
+script = ExtResource("2_8kig7")
+type = 5
+fire_delay_factor = 1.0
+damage_factor = 1.0
+bonus_projectile = 2
+explosive = false
+piercing = false
+bouncing = false
+splitting = false
+seeking = false
+mesh = ExtResource("1_inovb")

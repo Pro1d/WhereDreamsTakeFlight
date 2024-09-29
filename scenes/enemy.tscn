@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkgmgjhdcppcw"]
+
+[ext_resource type="Script" path="res://scripts/utils/remote_transform_2d_to_3d.gd" id="1_lfsxq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kcnqa"]
+radius = 40.0
+
+[node name="Enemy" type="Node2D"]
+
+[node name="3D" type="Node3D" parent="."]
+
+[node name="2D" type="Node2D" parent="." node_paths=PackedStringArray("_target_3d")]
+script = ExtResource("1_lfsxq")
+_target_3d = NodePath("../3D")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2D/CharacterBody2D"]
+shape = SubResource("CircleShape2D_kcnqa")

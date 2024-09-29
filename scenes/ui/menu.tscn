@@ -1,0 +1,122 @@
+[gd_scene load_steps=2 format=3 uid="uid://chckwtnrrluej"]
+
+[ext_resource type="Script" path="res://scripts/ui/menu.gd" id="1_qn871"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qn871")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WhalepassTopBar" type="MarginContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/WhalepassTopBar"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/WhalepassTopBar/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+value = 50.0
+
+[node name="PlayerLevelLabel" type="Label" parent="VBoxContainer/WhalepassTopBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Level 5 (max)"
+horizontal_alignment = 1
+
+[node name="VisitButton" type="Button" parent="VBoxContainer/WhalepassTopBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Link your account, claim your rewards."
+text = "Visit discover.games"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ScoreScreen" type="Control" parent="VBoxContainer/MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Main" type="Control" parent="VBoxContainer/MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/CenterContainer/Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/CenterContainer/Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PrevPlaneButton" type="Button" parent="VBoxContainer/MarginContainer/CenterContainer/Main/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "<<<"
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/MarginContainer/CenterContainer/Main/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PlaneLabel" type="Label" parent="VBoxContainer/MarginContainer/CenterContainer/Main/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Wooden Plane - \"My very first plane!\"
+\"Uncle's gift for my birthday.\"
+\"It's a strong plane.\"
+\"My favorite color.\"
+\"Sky isn't the limit.\"
++20% damage with only one weapon equipped
++15% projectiles and plane speed
++5% fire rate and damage"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/MarginContainer/CenterContainer/Main/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="NextPlaneButton" type="Button" parent="VBoxContainer/MarginContainer/CenterContainer/Main/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = ">>>"
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/MarginContainer/CenterContainer/Main/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Take off!"

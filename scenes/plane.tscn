@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://du0t6jpbiva8l"]
+
+[ext_resource type="Script" path="res://scripts/plane.gd" id="1_2wtlq"]
+[ext_resource type="ArrayMesh" uid="uid://dry3um5mv3hvb" path="res://assets/models/all/Plane.res" id="1_35y2v"]
+[ext_resource type="Script" path="res://scripts/utils/remote_transform_3d_to_2d.gd" id="2_h07p1"]
+[ext_resource type="ArrayMesh" uid="uid://bnb37065ovdrd" path="res://assets/models/all/PlaneRed.res" id="3_63idk"]
+[ext_resource type="ArrayMesh" uid="uid://cwo7mwj2biodh" path="res://assets/models/all/PlaneBlackWhite.res" id="4_oecbc"]
+[ext_resource type="ArrayMesh" uid="uid://d4fen1yp5t0kn" path="res://assets/models/all/PlaneGreen.res" id="5_s8m8w"]
+[ext_resource type="ArrayMesh" uid="uid://c21ebwok6womi" path="res://assets/models/all/PlaneSky.res" id="6_rby8f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tnbl4"]
+radius = 140.0
+
+[node name="Plane" type="Node3D"]
+top_level = true
+script = ExtResource("1_2wtlq")
+meshes_by_type = Array[ArrayMesh]([ExtResource("1_35y2v"), ExtResource("3_63idk"), ExtResource("4_oecbc"), ExtResource("5_s8m8w"), ExtResource("6_rby8f")])
+
+[node name="3D" type="Node3D" parent="." node_paths=PackedStringArray("_target_2d")]
+script = ExtResource("2_h07p1")
+_target_2d = NodePath("../2D")
+
+[node name="Plane" type="MeshInstance3D" parent="3D"]
+unique_name_in_owner = true
+mesh = ExtResource("1_35y2v")
+skeleton = NodePath("../..")
+
+[node name="HandPose" type="Marker3D" parent="3D"]
+transform = Transform3D(-1, 8.74228e-08, 0, 3.82137e-15, 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, -0.0411475, 0.0228266, 0.049329)
+
+[node name="WeaponPositions" type="Node3D" parent="3D"]
+
+[node name="Weapon1" type="Marker3D" parent="3D/WeaponPositions"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0197434, 0.044, 0.065)
+gizmo_extents = 0.05
+
+[node name="Weapon2" type="Marker3D" parent="3D/WeaponPositions"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0197653, 0.0436851, 0)
+gizmo_extents = 0.05
+
+[node name="Weapon3" type="Marker3D" parent="3D/WeaponPositions"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0197434, 0.044, -0.065)
+gizmo_extents = 0.05
+
+[node name="2D" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2D/Area2D"]
+position = Vector2(-20, 0)
+shape = SubResource("CircleShape2D_tnbl4")

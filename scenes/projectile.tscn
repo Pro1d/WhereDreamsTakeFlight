@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2w37k46f2mhw"]
+
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_flhb0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2c466"]
+resource_local_to_scene = true
+radius = 20.0
+
+[sub_resource type="Curve" id="Curve_q5y6a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.204461, 0.830781), 0.0, 0.0, 0, 0, Vector2(0.472119, 1), 0.0, 0.0, 0, 0, Vector2(0.72119, 0.761103), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kxsjb"]
+resource_local_to_scene = true
+radius = 100.0
+
+[node name="Projectile" type="CharacterBody2D"]
+collision_layer = 24
+motion_mode = 1
+script = ExtResource("1_flhb0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2c466")
+
+[node name="Shape" type="Node2D" parent="."]
+
+[node name="Circle" type="Line2D" parent="Shape"]
+points = PackedVector2Array(0, 20, 15, 14, 21, 0, 14, -15, 0, -19, -15, -13, -20, 0, -14, 14)
+closed = true
+width_curve = SubResource("Curve_q5y6a")
+joint_mode = 1
+
+[node name="Square" type="Line2D" parent="Shape"]
+visible = false
+points = PackedVector2Array(20, 20, 20, -20, -20, -20, -20, 20)
+closed = true
+width_curve = SubResource("Curve_q5y6a")
+joint_mode = 1
+
+[node name="Triangle" type="Line2D" parent="Shape"]
+visible = false
+points = PackedVector2Array(-20, 24, 30, 0, -20, -24)
+closed = true
+width_curve = SubResource("Curve_q5y6a")
+joint_mode = 1
+
+[node name="SeekArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeekArea2D"]
+shape = SubResource("CircleShape2D_kxsjb")
+debug_color = Color(0.56939, 0.3977, 0.97, 0.239216)

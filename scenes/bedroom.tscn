@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1djw43u5ntsy"]
+
+[ext_resource type="ArrayMesh" uid="uid://bhxpj85uiwyqt" path="res://assets/models/all/Bed.res" id="1_x7td3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4nd16"]
+flip_faces = true
+size = Vector3(3.225, 2.1, 2.955)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbnis"]
+albedo_color = Color(0.676144, 0.475738, 0.219979, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j4rot"]
+size = Vector2(3.41, 3.32)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q23og"]
+albedo_color = Color(0.278616, 0.226263, 0, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.467, 1.01, 1.215)
+mesh = SubResource("BoxMesh_4nd16")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_kbnis")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.467, 0, 1.215)
+mesh = SubResource("PlaneMesh_j4rot")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_q23og")
+
+[node name="Bed" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.22)
+mesh = ExtResource("1_x7td3")

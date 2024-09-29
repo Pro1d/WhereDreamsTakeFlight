@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cske0mslikh06"]
+
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="1_cbk60"]
+[ext_resource type="Resource" uid="uid://xvr65sttso2t" path="res://resources/weapons/doll_fork.tres" id="2_04f7h"]
+[ext_resource type="Script" path="res://scripts/utils/remote_transform_3d_to_2d.gd" id="8_xei33"]
+
+[node name="Weapon" type="Node3D"]
+script = ExtResource("1_cbk60")
+weapon_spec = ExtResource("2_04f7h")
+
+[node name="3D" type="Node3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="3D"]
+unique_name_in_owner = true
+
+[node name="ProjectileSpawn" type="Marker3D" parent="3D" node_paths=PackedStringArray("_target_2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0381061, 0.00541123, 0)
+script = ExtResource("8_xei33")
+_target_2d = NodePath("../../2D/ProjectileSpawn")
+
+[node name="2D" type="Node2D" parent="."]
+
+[node name="ProjectileSpawn" type="Marker2D" parent="2D"]

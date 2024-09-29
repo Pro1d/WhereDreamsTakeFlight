@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="WeaponSpec" load_steps=3 format=3 uid="uid://dpeghur16lt46"]
+
+[ext_resource type="ArrayMesh" uid="uid://chdm1jrvmhder" path="res://assets/models/all/BatteryCell.res" id="1_0tbmf"]
+[ext_resource type="Script" path="res://scripts/weapon_spec.gd" id="1_ngfcq"]
+
+[resource]
+script = ExtResource("1_ngfcq")
+type = 0
+fire_delay_factor = 1.0
+damage_factor = 1.0
+bonus_projectile = 0
+explosive = true
+piercing = false
+bouncing = false
+splitting = false
+seeking = false
+proj_shape = 1
+proj_color = Color(0.72, 0.72, 0.72, 1)
+mesh = ExtResource("1_0tbmf")
