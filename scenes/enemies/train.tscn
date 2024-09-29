@@ -24,7 +24,7 @@ mesh = ExtResource("2_yfx6w")
 skeleton = NodePath("../../..")
 
 [node name="2D" parent="." index="1"]
-y_offset = -0.05
+y_offset = 0.05
 
 [node name="CollisionShape2D" parent="2D/Body" index="0"]
 position = Vector2(6, 0)

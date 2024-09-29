@@ -4,12 +4,13 @@
 [ext_resource type="Resource" uid="uid://xvr65sttso2t" path="res://resources/weapons/doll_fork.tres" id="2_04f7h"]
 [ext_resource type="Script" path="res://scripts/utils/remote_transform_3d_to_2d.gd" id="8_xei33"]
 
-[node name="Weapon" type="Node3D"]
+[node name="Weapon" type="Node"]
 process_mode = 1
 script = ExtResource("1_cbk60")
 weapon_spec = ExtResource("2_04f7h")
 
 [node name="3D" type="Node3D" parent="."]
+unique_name_in_owner = true
 
 [node name="Mesh" type="MeshInstance3D" parent="3D"]
 unique_name_in_owner = true

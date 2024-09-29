@@ -9,17 +9,18 @@ var current_wave : AttackWave
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Config.player_node = %Player
+	Config.player_node = %PlayerPlane
 	Config.root_2d = $"2D"
 	Config.root_3d = $"3D"
 	_menu.hide()
 	_modulate_2d.color.a = 0.9
 	load_next_wave()
 	assert(arm_mesh != null)
-	await get_tree().create_timer(5.0).timeout
-	await pause_2d()
-	await get_tree().create_timer(2.0).timeout
-	resume_2d()
+	
+	#await get_tree().create_timer(5.0).timeout
+	#await pause_2d()
+	#await get_tree().create_timer(2.0).timeout
+	#resume_2d()
 
 func load_next_wave() -> void:
 	current_wave_index += 1

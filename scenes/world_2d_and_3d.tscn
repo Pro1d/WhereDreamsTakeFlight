@@ -1,6 +1,5 @@
-[gd_scene load_steps=34 format=3 uid="uid://do4q1xtyjh4u1"]
+[gd_scene load_steps=33 format=3 uid="uid://do4q1xtyjh4u1"]
 
-[ext_resource type="PackedScene" uid="uid://du0t6jpbiva8l" path="res://scenes/plane.tscn" id="1_4ctqv"]
 [ext_resource type="Script" path="res://scripts/world_2d_and_3d.gd" id="1_xm0yb"]
 [ext_resource type="PackedScene" uid="uid://cske0mslikh06" path="res://scenes/weapon.tscn" id="2_01kl4"]
 [ext_resource type="PackedScene" uid="uid://088brukj5isd" path="res://scenes/attack_waves/attack_wave_00.01.tscn" id="2_gni8t"]
@@ -27,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://cs2fsr3v23v85" path="res://scenes/attack_waves/attack_wave_04.01.tscn" id="17_ko5cc"]
 [ext_resource type="PackedScene" uid="uid://cxkjdpg6wjw31" path="res://scenes/attack_waves/attack_wave_10.01.tscn" id="18_st0n8"]
 [ext_resource type="PackedScene" uid="uid://bhd8httx1rh0w" path="res://scenes/attack_waves/attack_wave_02.03.tscn" id="19_xj7dd"]
-[ext_resource type="Resource" uid="uid://0a6c26hv0xqb" path="res://resources/weapons/pen.tres" id="27_6qrmi"]
+[ext_resource type="PackedScene" uid="uid://dfoaaqydn6rhb" path="res://scenes/plane_2d.tscn" id="29_tqvap"]
 
 [sub_resource type="Environment" id="Environment_afcjq"]
 ambient_light_source = 2
@@ -57,6 +56,13 @@ process_mode = 3
 script = ExtResource("1_xm0yb")
 wave_resources = Array[PackedScene]([ExtResource("2_gni8t"), ExtResource("3_njpqx"), ExtResource("10_jelau"), ExtResource("5_xup8t"), ExtResource("6_pkfoh"), ExtResource("7_8inxn"), ExtResource("8_nbmmi"), ExtResource("9_1nvwp"), ExtResource("10_pmghl"), ExtResource("11_4w0vp"), ExtResource("12_5pbxc"), ExtResource("13_de0b8"), ExtResource("13_0yd8b"), ExtResource("15_sqdrm"), ExtResource("16_o3oru"), ExtResource("17_ko5cc"), ExtResource("18_st0n8"), ExtResource("19_xj7dd")])
 current_wave_index = 14
+
+[node name="HUD" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="Menu" parent="HUD" instance=ExtResource("7_mpqx2")]
+unique_name_in_owner = true
+visible = false
 
 [node name="3D" type="Node3D" parent="."]
 process_mode = 3
@@ -164,33 +170,10 @@ surface_material_override/0 = ExtResource("6_d81i7")
 [node name="SkeletonIK3D" type="SkeletonIK3D" parent="3D/arms_low_poly2/metarig/Skeleton3D" index="1"]
 root_bone = &"upper_arm.L"
 tip_bone = &"hand.L"
-target_node = NodePath("../../../../Player/3D/HandPose")
+target_node = NodePath("../../../../../2D/PlayerPlane/3D/HandPose")
 min_distance = 0.003
 max_iterations = 20
 script = SubResource("GDScript_b3vgf")
-
-[node name="Player" parent="3D" instance=ExtResource("1_4ctqv")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.065, 0.098417, 0)
-
-[node name="Weapon" parent="3D/Player/3D/WeaponPositions/Weapon1" index="0" node_paths=PackedStringArray("player_plane") instance=ExtResource("2_01kl4")]
-weapon_spec = ExtResource("3_a6i1r")
-player_plane = NodePath("../../../..")
-
-[node name="Weapon2" parent="3D/Player/3D/WeaponPositions/Weapon2" index="0" node_paths=PackedStringArray("player_plane") instance=ExtResource("2_01kl4")]
-weapon_spec = ExtResource("5_08cbb")
-player_plane = NodePath("../../../..")
-
-[node name="Weapon2" parent="3D/Player/3D/WeaponPositions/Weapon3" index="0" node_paths=PackedStringArray("player_plane") instance=ExtResource("2_01kl4")]
-weapon_spec = ExtResource("27_6qrmi")
-player_plane = NodePath("../../../..")
-
-[node name="HUD" type="CanvasLayer" parent="."]
-process_mode = 3
-
-[node name="Menu" parent="HUD" instance=ExtResource("7_mpqx2")]
-unique_name_in_owner = true
-visible = false
 
 [node name="2D" type="Node2D" parent="."]
 process_mode = 1
@@ -207,21 +190,34 @@ position = Vector2(0, 350)
 rotation = -3.14159
 shape = SubResource("WorldBoundaryShape2D_v40am")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="2D/WorldBoundary"]
-position = Vector2(650, 2.84124e-05)
+[node name="PlayerBoundary" type="StaticBody2D" parent="2D" groups=["world_boundary"]]
+position = Vector2(683, 384)
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="2D/PlayerBoundary"]
+position = Vector2(50, -2.10518e-06)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_v40am")
-disabled = true
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="2D/WorldBoundary"]
-position = Vector2(-650, -2.84124e-05)
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="2D/PlayerBoundary"]
+position = Vector2(-743, -2)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_v40am")
-disabled = true
+
+[node name="PlayerPlane" parent="2D" instance=ExtResource("29_tqvap")]
+unique_name_in_owner = true
+position = Vector2(269, 382)
+
+[node name="Weapon" parent="2D/PlayerPlane/3D/WeaponPositions/Weapon1" index="0" instance=ExtResource("2_01kl4")]
+weapon_spec = ExtResource("3_a6i1r")
+
+[node name="Weapon2" parent="2D/PlayerPlane/3D/WeaponPositions/Weapon3" index="0" instance=ExtResource("2_01kl4")]
+weapon_spec = ExtResource("5_08cbb")
 
 [node name="CanvasModulate2D" type="CanvasModulate" parent="."]
 unique_name_in_owner = true
 process_mode = 3
 
 [editable path="3D/arms_low_poly2"]
-[editable path="3D/Player"]
+[editable path="2D/PlayerPlane"]

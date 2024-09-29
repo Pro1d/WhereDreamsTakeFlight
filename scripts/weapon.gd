@@ -1,18 +1,21 @@
 class_name Weapon
-extends Node3D
+extends Node
 
 
 const ProjectileResource := preload("res://scenes/projectile.tscn")
 
 @export var index := -1  # index in player plane, for caching
 @export var weapon_spec : WeaponSpec
-@export var player_plane : PlayerPlane
+var player_plane : PlayerPlane :
+	get:
+		return get_parent() as PlayerPlane
 @export var firing := true :
 	set(f):
 		cooldown = 0.0
 		firing = f
 
 @onready var proj_spawn_position := $"2D/ProjectileSpawn" as Node2D
+@onready var _root_3d := %"3D" as Node3D
 		
 const base_fire_delay := 0.55
 
@@ -69,3 +72,14 @@ func _fire() -> void:
 
 func _update_mesh() -> void:
 	(%Mesh as MeshInstance3D).mesh = weapon_spec.mesh
+
+func take_root_3d() -> Node3D:
+	if _root_3d.get_parent() != null:
+		_root_3d.get_parent().remove_child(_root_3d)
+	_root_3d.owner = null
+	return _root_3d
+func return_root_3d() -> Node3D:
+	if _root_3d.get_parent() != null:
+		_root_3d.get_parent().remove_child(_root_3d)
+	_root_3d.owner = self
+	return _root_3d

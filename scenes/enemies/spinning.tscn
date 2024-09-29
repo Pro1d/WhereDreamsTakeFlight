@@ -140,7 +140,6 @@ move_speed = 150.0
 radius = 50.0
 auto_shoot_delay = 2.5
 hit_points = 350.0
-aim_player = false
 
 [node name="Axis" type="Node3D" parent="3D/Visual" index="0"]
 
@@ -155,7 +154,7 @@ libraries = {
 }
 
 [node name="2D" parent="." index="1"]
-y_offset = -0.03
+y_offset = 0.03
 
 [node name="CollisionShape2D" parent="2D/Body" index="0"]
 shape = SubResource("CircleShape2D_mhd34")

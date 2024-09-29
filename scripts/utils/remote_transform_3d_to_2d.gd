@@ -8,6 +8,9 @@ extends Node3D
 func _enter_tree() -> void:
 	process_physics_priority = -100
 
+func _ready() -> void:
+	_target_2d.top_level = true
+
 func _physics_process(_delta: float) -> void:
 	_target_2d.global_position = _camera_3d.unproject_position(global_position+offset)
 	#var ahead := _camera_3d.unproject_position(global_position + global_transform.basis.x * 0.05)

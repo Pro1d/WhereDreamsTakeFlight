@@ -42,7 +42,7 @@ var lifetime := 1.0 :
 		lifetime = l
 const seek_radius := 150.0
 const explosion_radius := 60.0
-const seek_accel := base_velocity * 2.5
+const seek_accel := base_velocity * 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
