@@ -8,6 +8,7 @@ const WeaponPackedScene := preload("res://scenes/weapon.tscn")
 enum State {
 	IDLE,
 	PLAYING,
+	WEAPON_SELECTION,
 	ENDING
 }
 
@@ -56,7 +57,7 @@ func start_game() -> void:
 	player_plane.reset()
 	var w := WeaponPackedScene.instantiate() as Weapon
 	w.index = 1
-	w.weapon_spec = weapon_specs.pick_random()
+	w.weapon_spec = weapon_specs[5]#.pick_random()
 	add_child(w)
 	player_plane.add_weapon(w)
 	player_plane.set_firing(true)
@@ -68,6 +69,11 @@ func start_game() -> void:
 	_state = State.PLAYING
 
 func _on_wave_cleared() -> void:
+	if _state != State.PLAYING:
+		return
+	
+	reset_world()
+	
 	if fighting_boss:
 		boss_kill_count += current_wave.killed_enemies
 	else:
@@ -75,7 +81,9 @@ func _on_wave_cleared() -> void:
 	
 	completed_waves += 1
 	if completed_waves < waves_count:
+		_state = State.WEAPON_SELECTION
 		await drop_and_pick_weapon()
+		_state = State.PLAYING
 		load_next_wave()
 	else:
 		finish_game(true)
@@ -147,6 +155,7 @@ func finish_game(victory: bool) -> void:
 	_state = State.ENDING
 	current_wave.queue_free()
 	current_wave = null
+	player_plane.invunerability = true
 	overlay.hide()
 	
 	score_overlay.set_victory(victory)
@@ -161,6 +170,7 @@ func finish_game(victory: bool) -> void:
 	_state = State.IDLE
 	player_plane.set_firing(false)
 	player_plane.reset()
+	reset_world()
 	game_finished.emit()
 
 func _clear_nodes(n: Node) -> void:

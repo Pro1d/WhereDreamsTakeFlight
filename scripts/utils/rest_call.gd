@@ -29,7 +29,7 @@ func rest_call(url: String, obj: Object, method: int = POST, headers: Array[Stri
 	return true
 
 func _on_completed(result: int, code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
-	print(result, "\n", code, "\n", _headers, "\n", body.get_string_from_utf8())
+	#print(result, "\n", code, "\n", _headers, "\n", body.get_string_from_utf8())
 	if result == HTTPRequest.Result.RESULT_SUCCESS and code == 200:
 		var json := JSON.parse_string(body.get_string_from_utf8()) as Dictionary
 		if json != null:

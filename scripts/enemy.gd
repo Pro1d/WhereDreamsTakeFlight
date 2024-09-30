@@ -73,7 +73,7 @@ func shoot(origin: Vector2, dir: Vector2) -> Projectile:
 	projectile.current_velocity = dir * (200.0 if aim_player else 300.0)
 	projectile.damage = 1
 	projectile.lifetime = 5.0
-	get_tree().root.add_child(projectile)
+	Config.root_2d.add_child(projectile)
 	return projectile
 
 func take_damage(dmg: float) ->  void:

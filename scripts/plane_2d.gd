@@ -25,6 +25,7 @@ var _shielded := false :
 		_shielded = s
 		_update_shield()
 var shield_tween : Tween
+var invunerability := false
 
 @onready var _remote_transform := %RemoteTransform2DTo3D as RemoteTransform2DTo3D
 @onready var _root_3d := %"3D" as Node3D
@@ -74,6 +75,7 @@ func reset() -> void:
 		if equipped_weapons[i] != null:
 			remove_weapon(i)
 	global_position = Vector2(300.0, 768.0 / 2)
+	invunerability = false
 
 func set_firing(f: bool) -> void:
 	for w in equipped_weapons:
@@ -177,7 +179,7 @@ func _on_hit_box_entered(body: PhysicsBody2D) -> void:
 		take_damage()
 
 func take_damage() -> void:
-	if _shielded:
+	if _shielded or invunerability:
 		return
 	
 	hitpoint -= 1
@@ -185,7 +187,7 @@ func take_damage() -> void:
 		destroyed.emit()
 	else:
 		trigger_shield()
-	# TODO fx, shield
+	# TODO sound fx
 
 func trigger_shield() -> void:
 	const duration := 2.5

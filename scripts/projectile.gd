@@ -28,6 +28,9 @@ const base_velocity := 900.0
 
 @onready var _shape := ($CollisionShape2D as CollisionShape2D).shape as CircleShape2D
 @onready var _seek_area := $SeekArea2D as Area2D
+@onready var _particles := %CPUParticles2D as CPUParticles2D
+@onready var _explode_fx_root := %ExplodeCircle as Node2D
+@onready var _explode_fx_animation := %ExplodeAnimationPlayer as AnimationPlayer
 
 var exception_body : Array[PhysicsBody2D] = []
 var bounce_left := 0 # 3
@@ -41,7 +44,7 @@ var lifetime := 1.0 :
 	set(l):
 		lifetime = l
 #const seek_radius := 150.0
-const explosion_radius := 60.0
+#const explosion_radius := 120.0
 const seek_accel := base_velocity * 5
 
 # Called when the node enters the scene tree for the first time.
@@ -100,6 +103,7 @@ func _move_by(motion: Vector2, reccursive: int = 3) -> void:
 		if bounce_left > 0:
 			if body.is_in_group("world_boundary"):
 				current_velocity = current_velocity.bounce(N)
+				_on_body_hit(body)
 			else:
 				current_velocity = current_velocity.length() * N.rotated(
 					(randf() * 2 * PI)
@@ -132,21 +136,36 @@ func _on_body_hit(body: PhysicsBody2D) -> void:
 	var player := body as PlayerPlane
 	if player != null:
 		player.take_damage()
+	_particles.emitting = true
 
 func destroy_projectile(_hit: bool = false) -> void:
+	queue_free()
+	
 	if explosive:
 		for b: PhysicsBody2D in _seek_area.get_overlapping_bodies():
-			var d := global_position.distance_to(b.global_position)
-			var e := Enemy.find_parent_enemy(b)
-			if e != null:
-				d -= e.radius
-			if d < explosion_radius:
-				_on_body_hit(b)
-		# TODO fx
+			#var d := global_position.distance_to(b.global_position)
+			#var e := Enemy.find_parent_enemy(b)
+			#if e != null:
+				#d -= e.radius
+			#if d < explosion_radius:
+			_on_body_hit(b)
+		# Explode fx
+		_explode_fx_root.show()
+		_explode_fx_animation.play("explode")
+		_keep_fx_until_death(_explode_fx_root, _explode_fx_animation.animation_finished)
 	else:
-		pass
-		# TODO fx
-	queue_free()
+		# Hit fx
+		_particles.emitting = true
+		_keep_fx_until_death(_particles, _particles.finished)
+
+func _keep_fx_until_death(node: Node2D, s: Signal) -> void:
+	var gpos := node.global_transform
+	node.modulate = modulate
+	remove_child(node)
+	get_parent().add_child(node)
+	node.global_transform = gpos
+	await s
+	node.queue_free()
 
 func _clone_projectile() -> Projectile:
 	var p := ProjectileResource.instantiate() as Projectile
@@ -180,10 +199,11 @@ func _update_shape_type() -> void:
 
 func _update_shape_radius() -> void:
 	if _shape != null:
+		var s := radius / 20.0
 		_shape.radius = radius
-		($Shape as Node2D).scale = Vector2.ONE * radius / 20.0
+		($Shape as Node2D).scale = Vector2.ONE * s
 		for c: Line2D in $Shape.get_children():
-			c.width = 6 * radius / 20.0
+			c.width = 6 * (1 / s)
 
 func _update_color() -> void:
 	modulate = color

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_bcthl")
 type = 3
-fire_delay_factor = 0.9
+fire_delay_factor = 0.75
 damage_factor = 1.0
 speed_factor = 1.2
 lifetime_factor = 1.0
@@ -17,5 +17,5 @@ bouncing = false
 splitting = false
 seeking = false
 proj_shape = 2
-proj_color = Color(0.890667, 0.84, 1, 1)
+proj_color = Color(0.767667, 0.66, 1, 1)
 mesh = ExtResource("1_fe7r6")

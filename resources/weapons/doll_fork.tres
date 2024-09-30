@@ -7,11 +7,15 @@
 script = ExtResource("2_8kig7")
 type = 5
 fire_delay_factor = 1.0
-damage_factor = 1.0
+damage_factor = 0.95
+speed_factor = 1.0
+lifetime_factor = 1.0
 bonus_projectile = 2
 explosive = false
 piercing = false
 bouncing = false
 splitting = false
 seeking = false
+proj_shape = 0
+proj_color = Color(1, 0.62, 0.62, 1)
 mesh = ExtResource("1_inovb")

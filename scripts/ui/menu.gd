@@ -25,13 +25,12 @@ func _ready() -> void:
 
 func _on_progress_updated() -> void:
 	_display_level_progression()
-	print("progress update")
+
 func _on_link_received() -> void:
 	_link = WhalepassSingleton.get_redirect_link()
-	print(_link)
+
 func _on_inventory_updated() -> void:
 	_display_plane()
-	print(Config.available_planes)
 
 func _display_level_progression() -> void:
 	var e := Config.get_level_from_xp()

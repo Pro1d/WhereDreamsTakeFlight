@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2w37k46f2mhw"]
+[gd_scene load_steps=11 format=3 uid="uid://d2w37k46f2mhw"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_flhb0"]
 [ext_resource type="Curve" uid="uid://cpevpiqn8vjbo" path="res://resources/materials/curve_width_4.tres" id="2_wm83e"]
@@ -10,14 +10,86 @@ radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kxsjb"]
 resource_local_to_scene = true
-radius = 150.0
+radius = 130.0
+
+[sub_resource type="Curve" id="Curve_t2c3m"]
+_data = [Vector2(0, 0.137895), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_308be"]
+_data = [Vector2(0.00280899, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Animation" id="Animation_kc2vf"]
+resource_name = "explode"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExplodeCPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.4),
+"transitions": PackedFloat32Array(0.353553, 2.37841, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 1.25), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ojb0u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExplodeCPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b1aew"]
+_data = {
+"RESET": SubResource("Animation_ojb0u"),
+"explode": SubResource("Animation_kc2vf")
+}
 
 [node name="Projectile" type="CharacterBody2D" groups=["unique_to_game"]]
 collision_layer = 24
 motion_mode = 1
 script = ExtResource("1_flhb0")
+metadata/_edit_vertical_guides_ = [-100.0, 100.0]
+metadata/_edit_horizontal_guides_ = [-100.0, 100.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("CircleShape2D_2c466")
 
 [node name="Shape" type="Node2D" parent="."]
@@ -88,3 +160,56 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SeekArea2D"]
 shape = SubResource("CircleShape2D_kxsjb")
 debug_color = Color(0.56939, 0.3977, 0.97, 0.239216)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." groups=["unique_to_game"]]
+unique_name_in_owner = true
+emitting = false
+amount = 3
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.64
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 350.0
+initial_velocity_max = 450.0
+linear_accel_min = -1300.0
+linear_accel_max = -1300.0
+angle_max = 360.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+
+[node name="ExplodeCircle" type="Line2D" parent="." groups=["unique_to_game"]]
+unique_name_in_owner = true
+visible = false
+points = PackedVector2Array(1, 97, 37, 92, 69, 70, 92, 35, 99, 0, 90, -41, 67, -72, 36, -92, 0, -97, -37, -91, -69, -67, -88, -39, -98, 0, -94, 33, -72, 64, -38, 92)
+closed = true
+width = 6.0
+texture = ExtResource("3_36d25")
+texture_mode = 2
+joint_mode = 2
+round_precision = 4
+
+[node name="ExplodeCPUParticles2D" type="CPUParticles2D" parent="ExplodeCircle"]
+emitting = false
+amount = 4
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.64
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 412.5
+initial_velocity_max = 562.5
+linear_accel_min = -1300.0
+linear_accel_max = -1300.0
+scale_amount_min = 15.0
+scale_amount_max = 30.0
+split_scale = true
+scale_curve_x = SubResource("Curve_t2c3m")
+scale_curve_y = SubResource("Curve_308be")
+
+[node name="ExplodeAnimationPlayer" type="AnimationPlayer" parent="ExplodeCircle"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_b1aew")
+}
