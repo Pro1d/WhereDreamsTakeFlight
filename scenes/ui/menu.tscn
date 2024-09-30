@@ -30,10 +30,24 @@ theme_override_constants/margin_bottom = 20
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/WhalepassTopBar"]
 layout_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/WhalepassTopBar/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+[node name="XpProgressBar" type="ProgressBar" parent="VBoxContainer/WhalepassTopBar/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 44)
 layout_mode = 2
 value = 50.0
+show_percentage = false
+
+[node name="XpLabel" type="Label" parent="VBoxContainer/WhalepassTopBar/HBoxContainer/XpProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "XP: 15 / 250"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlayerLevelLabel" type="Label" parent="VBoxContainer/WhalepassTopBar/HBoxContainer"]
 unique_name_in_owner = true
@@ -80,10 +94,11 @@ size_flags_vertical = 3
 
 [node name="PrevPlaneButton" type="Button" parent="VBoxContainer/MarginContainer/CenterContainer/Main/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "<<<"
+text = "<"
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/MarginContainer/CenterContainer/Main/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -109,14 +124,16 @@ layout_mode = 2
 
 [node name="NextPlaneButton" type="Button" parent="VBoxContainer/MarginContainer/CenterContainer/Main/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = ">>>"
+text = ">"
 
 [node name="PlayButton" type="Button" parent="VBoxContainer/MarginContainer/CenterContainer/Main/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Take off!"
+text = "Play!"

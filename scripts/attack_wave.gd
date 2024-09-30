@@ -10,6 +10,7 @@ const expected_back_path_length := 700.0
 
 var _enemies : Array[Enemy]
 var total_max_hitpoints := 0.0
+var killed_enemies := 0
 #var _path_follows : Array[PathFollow2D]
 
 func _ready() -> void:
@@ -40,7 +41,9 @@ func _physics_process(delta: float) -> void:
 		if pf.progress_ratio > 1.0-1e-4 and not pf.loop and pf != _from_back:
 			e.destroy(false)
 
-func _on_enemy_destroyed(e: Enemy) -> void:
+func _on_enemy_destroyed(killed: bool, e: Enemy) -> void:
+	if killed:
+		killed_enemies += 1
 	_remove_enemy(e)
 
 func _remove_enemy(e: Enemy) -> void:

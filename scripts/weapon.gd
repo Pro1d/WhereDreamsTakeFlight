@@ -62,7 +62,7 @@ func _fire() -> void:
 		projectile.split_on_hit = ws.splitting
 		projectile.damage *= ws.damage_factor
 		projectile.lifetime *= ws.lifetime_factor
-		get_tree().root.add_child(projectile)
+		Config.root_2d.add_child(projectile)
 		
 		angle += step_angle
 	

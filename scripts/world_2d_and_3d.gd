@@ -16,22 +16,41 @@ func _ready() -> void:
 	Config.root_3d = $"3D"
 	_modulate_2d.color.a = modulate_2_alpha
 	grab_with_right_hand(null)
-	_game_2d.start_game()
-	#await get_tree().create_timer(2.0).timeout
-	#await pause_2d()
-	#await get_tree().create_timer(2.0).timeout
-	#resume_2d()
-
-func pause_2d() -> void:
-	var tween := create_tween()
-	const duration := 0.25
-	tween.tween_property(_modulate_2d, "color:a", 0.0, duration).from(modulate_2_alpha) \
-		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	#tween.parallel().tween_property(arms.mat, "albedo_color:a", 1.0, duration).from(.5)
-	tween.play()
+	_menu.play_clicked.connect(_on_play_clicked)
+	_game_2d.game_finished.connect(_on_game_finished)
 	
+	pause_2d(true)
+	show_menu()
+
+func _on_play_clicked() -> void:
+	await resume_2d()
+	# await  anim
+	hide_menu()
+	_game_2d.start_game()
+
+func _on_game_finished() -> void:
+	await pause_2d()
+	show_menu()
+	
+func show_menu() -> void:
+	# TODO anim
+	_menu.show()
+func hide_menu() -> void:
+	# TODO anim
+	_menu.hide()
+
+func pause_2d(instant: bool = false) -> void:
 	get_tree().paused = true
-	await tween.finished
+	if instant:
+		_modulate_2d.color.a = 0.0
+	else:
+		var tween := create_tween()
+		const duration := 0.25
+		tween.tween_property(_modulate_2d, "color:a", 0.0, duration).from(modulate_2_alpha) \
+			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+		#tween.parallel().tween_property(arms.mat, "albedo_color:a", 1.0, duration).from(.5)
+		tween.play()
+		await tween.finished
 	
 func resume_2d() -> void:
 	var tween := create_tween()

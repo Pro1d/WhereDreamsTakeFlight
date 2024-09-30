@@ -15,6 +15,7 @@ const waves_count := 3
 
 @export var overlay : Overlay = null
 @export var weapon_overlay : WeaponOverlay = null
+@export var score_overlay : ScoreOverlay = null
 @export var wave_resources : Array[PackedScene] = []
 @export var boss_resources : Array[PackedScene] = []
 @export var weapon_specs : Array[WeaponSpec] = []
@@ -23,6 +24,8 @@ var current_wave : AttackWave
 var _state := State.IDLE
 var completed_waves := 0
 var fighting_boss := false
+var enemy_kill_count := 0
+var boss_kill_count := 0
 
 @onready var player_plane := %PlayerPlane as PlayerPlane
 
@@ -51,13 +54,25 @@ func reset_world() -> void:
 func start_game() -> void:
 	reset_world()
 	player_plane.reset()
+	var w := WeaponPackedScene.instantiate() as Weapon
+	w.index = 1
+	w.weapon_spec = weapon_specs.pick_random()
+	add_child(w)
+	player_plane.add_weapon(w)
 	player_plane.set_firing(true)
 	completed_waves = 0
+	enemy_kill_count = 0
+	boss_kill_count = 0
 	overlay.show()
 	load_next_wave()
 	_state = State.PLAYING
 
 func _on_wave_cleared() -> void:
+	if fighting_boss:
+		boss_kill_count += current_wave.killed_enemies
+	else:
+		enemy_kill_count += current_wave.killed_enemies
+	
 	completed_waves += 1
 	if completed_waves < waves_count:
 		await drop_and_pick_weapon()
@@ -128,14 +143,24 @@ func drop_and_pick_weapon() -> void:
 	#if selected_w == null:
 		#player_plane.hitpoint = mini(player_plane.hitpoint + REPAIR_HEALTH, player_plane.max_hitpoint)
 
-func finish_game(_victory: bool) -> void:
+func finish_game(victory: bool) -> void:
 	_state = State.ENDING
 	current_wave.queue_free()
 	current_wave = null
-	# TODO await end animation
 	overlay.hide()
+	
+	score_overlay.set_victory(victory)
+	score_overlay.commit_xp_gain(
+		enemy_kill_count * Config.XP_PER_ENEMY,
+		boss_kill_count * Config.XP_PER_BOSS
+	)
+	score_overlay.show()
+	await score_overlay.continue_clicked
+	score_overlay.hide()
+	
 	_state = State.IDLE
 	player_plane.set_firing(false)
+	player_plane.reset()
 	game_finished.emit()
 
 func _clear_nodes(n: Node) -> void:

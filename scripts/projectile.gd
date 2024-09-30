@@ -51,7 +51,7 @@ func _ready() -> void:
 	_update_mask()
 	_update_shape_type()
 	
-	if not seeking or explosive:
+	if not (seeking or explosive):
 		_seek_area.monitoring = false
 		_seek_area.remove_child(_seek_area.get_child(0))
 
@@ -89,8 +89,8 @@ func _move_by(motion: Vector2, reccursive: int = 3) -> void:
 		if split_on_hit:
 			for i in range(2):
 				var p := _clone_projectile()
-				p.radius *= 0.5
-				p.damage *= 0.5
+				p.radius *= 0.7
+				p.damage *= 0.6
 				p.bounce_left = maxi(p.bounce_left - 2, 0)
 				p.current_velocity = p.current_velocity.rotated((i * 2 - 1) * PI/2)
 				#p.current_velocity = p.current_velocity.length() * N.rotated((i * 2 - 1) * PI/10)

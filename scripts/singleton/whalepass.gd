@@ -1,6 +1,11 @@
 class_name Whalepass
 extends Node
 
+signal enrolled
+signal progress_updated
+signal inventory_updated
+signal link_received
+
 class AnyResp:
 	pass
 
@@ -18,6 +23,14 @@ class RedirectLinkResp:
 	
 class PlayerInventoryResp:
 	var items: Array
+	func get_item_names() -> Array[String]:
+		var dict := {}
+		for d: Dictionary in items:
+			if d.has("name"):
+				dict[d["name"]] = d["name"]
+		var ret : Array[String]
+		ret.append_array(dict.keys())
+		return ret
 
 class PlayerBaseProgressResp:
 	var currentExp: int
@@ -30,8 +43,8 @@ const game_id := "92045a22-957c-4962-88be-36b890cac6f5"
 
 const challenge_kill_bad_teddy := "44226f7c-0de2-409d-b0a5-63831908652e"
 
-var player_id := ""
-var whalepass_pid := ""
+#var player_id := ""
+#var whalepass_pid := ""
 
 var rest_call : RESTCall
 
@@ -39,20 +52,26 @@ func _generate_player_id() -> String:
 	return "USER-" + Time.get_datetime_string_from_system().replace(":", "-") + "-" +  str(randi())
 func get_or_create_player_id() -> String:
 	var cfg := ConfigFile.new()
-	cfg.load("user://save.cfg")
-	var pid := cfg.get_value("whalepass", "playerId", "") as String
+	cfg.load(Config.SAVE_PATH)
+	var pid := Config.read_config("whalepass", "playerId", "") as String
 	if pid == "":
 		pid = _generate_player_id()
-		cfg.set_value("whalepass", "playerId", pid)
-		cfg.save("user://save.cfg")
+		Config.save_config("whalepass", "playerId", pid)
 	return pid
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	rest_call = RESTCall.new()
 	rest_call.custom_headers = [api_key_header+": "+api_key_value, "X-Battlepass-Id: "+battlepass_id]
 	add_child(rest_call)
 
-func enroll(pid: String) -> bool:
+func is_enrolled() -> bool:
+	return Config.read_config("whalepass", "enrolled", false)
+
+func enroll() -> bool:
+	if is_enrolled():
+		return true
+	var pid := get_or_create_player_id()
 	var resp := EnrollResp.new()
 	var success := rest_call.rest_call(
 		"https://api.whalepass.gg/enrollments",
@@ -62,14 +81,21 @@ func enroll(pid: String) -> bool:
 	if not success:
 		return false
 	await rest_call.done
-	player_id = pid
-	whalepass_pid = resp.id
+	#player_id = pid
+	#whalepass_pid = resp.id
+	Config.save_config("whalepass", "enrolled", true)
+	enrolled.emit()
 	return true
 
+func get_redirect_link() -> String:
+	return Config.read_config("whalepass", "redirectionLink", "") as String
 func redirect_link() -> String:
+	var link := get_redirect_link()
+	if link != "":
+		return link
 	var resp := RedirectLinkResp.new()
 	var success := rest_call.rest_call(
-		"https://api.whalepass.gg/players/%s/redirect?gameId=%s" % [player_id, game_id],
+		"https://api.whalepass.gg/players/%s/redirect?gameId=%s" % [get_or_create_player_id(), game_id],
 		resp, RESTCall.GET, [],
 		""
 	)
@@ -79,12 +105,14 @@ func redirect_link() -> String:
 	
 	if rest_call._obj == null:
 		return ""
+	Config.save_config("whalepass", "redirectionLink", resp.redirectionLink)
+	link_received.emit()
 	return resp.redirectionLink
 
 func progress_action(actionId: String) -> bool:
 	var resp := AnyResp.new()
 	var success := rest_call.rest_call(
-		"https://api.whalepass.gg/players/%s/progress/action" % [player_id],
+		"https://api.whalepass.gg/players/%s/progress/action" % [get_or_create_player_id()],
 		resp, RESTCall.POST, ["Content-Type: application/json"],
 		JSON.stringify({"actionId": actionId, "gameId": game_id})
 	)
@@ -99,7 +127,7 @@ func progress_action(actionId: String) -> bool:
 func progress_xp(xp: int) -> bool:
 	var resp := AnyResp.new()
 	var success := rest_call.rest_call(
-		"https://api.whalepass.gg/players/%s/progress/exp" % [player_id],
+		"https://api.whalepass.gg/players/%s/progress/exp" % [get_or_create_player_id()],
 		resp, RESTCall.POST, ["Content-Type: application/json"],
 		JSON.stringify({"additionalExp": xp, "gameId": game_id})
 	)
@@ -114,7 +142,7 @@ func progress_xp(xp: int) -> bool:
 func progress_challenge(challenge_id: String) -> bool:
 	var resp := AnyResp.new()
 	var success := rest_call.rest_call(
-		"https://api.whalepass.gg/players/%s/progress/challenge" % [player_id],
+		"https://api.whalepass.gg/players/%s/progress/challenge" % [get_or_create_player_id()],
 		resp, RESTCall.POST, ["Content-Type: application/json"],
 		JSON.stringify({"challengeId": challenge_id, "gameId": game_id})
 	)
@@ -129,7 +157,7 @@ func progress_challenge(challenge_id: String) -> bool:
 func player_inventory() -> bool:
 	var resp := PlayerInventoryResp.new()
 	var success := rest_call.rest_call(
-		"https://api.whalepass.gg/players/%s/inventory?gameId=%s" % [player_id, game_id],
+		"https://api.whalepass.gg/players/%s/inventory?gameId=%s" % [get_or_create_player_id(), game_id],
 		resp, RESTCall.GET, [],
 		""
 	)
@@ -139,12 +167,14 @@ func player_inventory() -> bool:
 	
 	if rest_call._obj == null:
 		return false
+	Config.update_inventory(resp.get_item_names())
+	inventory_updated.emit()
 	return true
 	
 func player_progress() -> int:
 	var resp := PlayerBaseProgressResp.new()
 	var success := rest_call.rest_call(
-		"https://api.whalepass.gg/players/%s/progress/base?gameId=%s" % [player_id, game_id],
+		"https://api.whalepass.gg/players/%s/progress/base?gameId=%s" % [get_or_create_player_id(), game_id],
 		resp, RESTCall.GET, [],
 		""
 	)
@@ -154,4 +184,25 @@ func player_progress() -> int:
 	
 	if rest_call._obj == null:
 		return -1
+	Config.xp = resp.currentExp
+	progress_updated.emit()
 	return resp.lastCompletedLevel
+
+var updating := false
+func trigger_update() -> void:
+	print("WP updating, ", updating)
+	if updating:
+		return
+	updating = true
+	if not is_enrolled():
+		print("WP enroll")
+		await enroll()
+	if is_enrolled():
+		print("WP redirect_link")
+		await redirect_link()
+		print("WP player_progress")
+		await player_progress()
+		print("WP player_inventory")
+		await player_inventory()
+	print("WP done")
+	updating = false

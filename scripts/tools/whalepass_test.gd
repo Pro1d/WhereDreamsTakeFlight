@@ -1,8 +1,8 @@
 extends Node
 
 func _ready() -> void:
-	var pid := WhalepassSingleton.get_or_create_player_id()
-	var res := await WhalepassSingleton.enroll(pid)
+	#var pid := WhalepassSingleton.get_or_create_player_id()
+	var res := await WhalepassSingleton.enroll()
 	print("==> ", res)
 	var res2 := await WhalepassSingleton.redirect_link()
 	print("==> ", res2)
@@ -19,4 +19,4 @@ func _ready() -> void:
 	print("==> ", res3)
 	var res6 := await WhalepassSingleton.player_progress()
 	print("==> ", res6)
-	
+	print(Config.available_planes)

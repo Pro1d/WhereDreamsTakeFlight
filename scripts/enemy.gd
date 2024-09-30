@@ -2,7 +2,7 @@
 class_name Enemy
 extends Node2D
 
-signal destroyed()
+signal destroyed(killed: bool)
 
 const ProjectileResource := preload("res://scenes/projectile.tscn")
 
@@ -85,7 +85,7 @@ func destroy(killed: bool) -> void:
 	if killed:
 		# TODO fx
 		pass
-	destroyed.emit()
+	destroyed.emit(killed)
 	queue_free()
 
 func _update_radius() -> void:

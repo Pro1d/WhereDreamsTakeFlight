@@ -17,11 +17,8 @@ var hitpoint := max_hitpoint
 
 @export var type : Type :
 	set(t):
-		if t != type:
-			type = t
-			_update_plane_type()
-
-@export var meshes_by_type : Array[ArrayMesh] = []
+		type = t
+		_update_plane_type()
 
 var _shielded := false :
 	set(s):
@@ -73,6 +70,9 @@ func _ready() -> void:
 
 func reset() -> void:
 	hitpoint = max_hitpoint
+	for i in range(equipped_weapons.size()):
+		if equipped_weapons[i] != null:
+			remove_weapon(i)
 	global_position = Vector2(300.0, 768.0 / 2)
 
 func set_firing(f: bool) -> void:
@@ -138,11 +138,29 @@ func merge_plane_spec(ws: WeaponSpec, weapon_index: int) -> void:
 			ws.damage_factor *= 1.05
 			ws.fire_delay_factor *= 1 / 1.05
 			# 15% flying speed
-	
+
+static func display_description(t: Type) -> String:
+	match t:
+		Type.Wood:
+			return "\"My first ever plane!\"\n-"
+		Type.FireRed:
+			return "\"Uncle's gift for my birthday.\"\n2x damage with only one weapon equiped."
+		Type.BlackAndWhite:
+			return "\"It's a strong plane.\"\n+10% damage"
+		Type.EmeraldGreen:
+			return "\"My favorite color.\"\n+25% fire rate to middle weapon."
+		Type.AboveSky:
+			return "\"Sky isn't the limit!\"\n+5% damage and fire rate.\n+15% projectile and plane speed."
+		_:
+			return "???\n-"
 func _update_plane_type() -> void:
 	speed = base_speed * (1.15 if type == Type.AboveSky else 1.0)
 	if plane_mesh == null: return
-	plane_mesh.mesh = meshes_by_type[type]
+	plane_mesh.mesh = Config.plane_model_resources[type]
+	const black_mat := preload("res://resources/materials/black_unshaded.tres") 
+	var mat := (null if Config.available_planes[type] else black_mat) as Material
+	for i in range(plane_mesh.get_surface_override_material_count()):
+		plane_mesh.set_surface_override_material(0, mat)
 
 func _update_shield() -> void:
 	shield_shape.modulate.a = 1.0
