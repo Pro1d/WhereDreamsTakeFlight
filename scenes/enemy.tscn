@@ -7,7 +7,7 @@
 resource_local_to_scene = true
 radius = 40.0
 
-[node name="Enemy" type="Node2D"]
+[node name="Enemy" type="Node2D" groups=["unique_to_game"]]
 script = ExtResource("1_culg7")
 
 [node name="3D" type="Node3D" parent="."]

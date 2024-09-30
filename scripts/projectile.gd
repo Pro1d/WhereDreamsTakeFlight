@@ -40,7 +40,7 @@ var damage := 10.0
 var lifetime := 1.0 :
 	set(l):
 		lifetime = l
-const seek_radius := 150.0
+#const seek_radius := 150.0
 const explosion_radius := 60.0
 const seek_accel := base_velocity * 5
 
@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		destroy_projectile(false)
 	else:
 		if seeking:
-			var dmin := seek_radius
+			var dmin := INF
 			var bmin : PhysicsBody2D = null
 			for b: PhysicsBody2D in _seek_area.get_overlapping_bodies():
 				var d := global_position.distance_to(b.global_position)
@@ -128,7 +128,7 @@ func _on_body_hit(body: PhysicsBody2D) -> void:
 	var enemy := Enemy.find_parent_enemy(body)
 	if enemy != null:
 		enemy.take_damage(damage)
-	var player := PlayerPlane.find_parent_plane(body)
+	var player := body as PlayerPlane
 	if player != null:
 		player.take_damage()
 

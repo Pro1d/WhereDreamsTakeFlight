@@ -76,6 +76,7 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 world_boundary=""
+unique_to_game=""
 
 [gui]
 

@@ -23,15 +23,25 @@ var hitpoint := max_hitpoint
 
 @export var meshes_by_type : Array[ArrayMesh] = []
 
+var shielded := false:
+	set(s):
+		shielded = s
+		_update_shield()
+var shield_tween : Tween
+
 @onready var _remote_transform := %RemoteTransform2DTo3D as RemoteTransform2DTo3D
 @onready var _root_3d := %"3D" as Node3D
 @onready var _default_y_pos := _root_3d.global_position.y
 @onready var weapon_slots_3d : Array[Node3D]
 @onready var plane_mesh := %Plane as MeshInstance3D
 @onready var _hit_box_area := %HitBoxArea as Area2D
+@onready var shield_shape := $ShieldShape as CollisionShape2D
+
 var equipped_weapons : Array[Weapon] = []
 
-# Called when the node enters the scene tree for the first time.
+func _enter_tree() -> void:
+	Config.player_node = self
+
 func _ready() -> void:
 	var i := 0
 	for wp: Node3D in $"3D/WeaponPositions".get_children():
@@ -45,7 +55,9 @@ func _ready() -> void:
 			add_weapon(w)
 		i += 1
 	
+	_update_shield()
 	_update_plane_type()
+	(%ShieldAnimationPlayer as AnimationPlayer).play("shielding")
 	
 	#remove_child(_root_3d)
 	##Config.root_3d.add_child(_root_3d)
@@ -61,6 +73,12 @@ func _ready() -> void:
 
 func reset() -> void:
 	hitpoint = max_hitpoint
+	global_position = Vector2(300.0, 768.0 / 2)
+
+func set_firing(f: bool) -> void:
+	for w in equipped_weapons:
+		if w != null:
+			w.firing = f
 
 func _physics_process(delta: float) -> void:
 	var command := Vector2(
@@ -124,6 +142,10 @@ func _update_plane_type() -> void:
 	if plane_mesh == null: return
 	plane_mesh.mesh = meshes_by_type[type]
 
+func _update_shield() -> void:
+	shield_shape.visible = shielded
+	shield_shape.disabled = not shielded
+
 func _on_hit_box_entered(body: PhysicsBody2D) -> void:
 	#var proj := body as Projectile
 	#if proj != null and not proj.by_player:
@@ -134,6 +156,9 @@ func _on_hit_box_entered(body: PhysicsBody2D) -> void:
 		take_damage()
 
 func take_damage() -> void:
+	if shielded:
+		return
+	
 	hitpoint -= 1
 	if hitpoint == 0:
 		destroyed.emit()
@@ -141,11 +166,3 @@ func take_damage() -> void:
 
 func get_2d_position() -> Vector2:
 	return global_position
-
-static func find_parent_plane(body: PhysicsBody2D) -> PlayerPlane:
-	# body = "Plane/2D/Body"
-	var p := body.get_parent() # "Plane/2D"
-	if p == null:
-		return null
-	var pp := p.get_parent() # "Plane"
-	return pp as PlayerPlane

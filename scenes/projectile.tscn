@@ -12,15 +12,10 @@ radius = 20.0
 resource_local_to_scene = true
 radius = 150.0
 
-[node name="Projectile" type="CharacterBody2D"]
+[node name="Projectile" type="CharacterBody2D" groups=["unique_to_game"]]
 collision_layer = 24
 motion_mode = 1
 script = ExtResource("1_flhb0")
-shape_type = null
-radius = null
-color = null
-by_player = null
-current_velocity = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2c466")

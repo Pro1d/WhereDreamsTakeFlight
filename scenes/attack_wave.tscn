@@ -104,7 +104,7 @@ _data = {
 }
 point_count = 4
 
-[node name="AttackWave" type="Node2D"]
+[node name="AttackWave" type="Node2D" groups=["unique_to_game"]]
 script = ExtResource("1_xv26w")
 
 [node name="FromBackPath" type="Path2D" parent="."]

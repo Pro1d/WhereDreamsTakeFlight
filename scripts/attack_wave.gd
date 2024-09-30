@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 			distance = maxf(-pfo.start_distance_offset, 0)
 			pfo.start_distance_offset = maxf(pfo.start_distance_offset, 0)
 		pf.progress += distance
-		if pf.progress_ratio > 1.0-1e-4 and not pf.loop:
+		if pf.progress_ratio > 1.0-1e-4 and not pf.loop and pf != _from_back:
 			e.destroy(false)
 
 func _on_enemy_destroyed(e: Enemy) -> void:
