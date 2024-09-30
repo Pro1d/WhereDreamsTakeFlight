@@ -112,6 +112,8 @@ func player_pick_weapon(w1: Weapon, w2: Weapon, free_slots: Array[bool], repair_
 		Config.player_node.add_weapon(selected_weapon)
 		
 		await grab_with_right_hand(null, 0.4)
+	else:
+		Config.player_node.hitpoint = mini(Config.player_node.hitpoint + Config.REPAIR_HEALTH, Config.player_node.max_hitpoint)
 	
 	# Close UI
 	wp_overlay.hide()

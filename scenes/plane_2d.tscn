@@ -252,7 +252,7 @@ mesh = ExtResource("2_kahex")
 skeleton = NodePath("")
 
 [node name="HandPose" type="Marker3D" parent="3D"]
-transform = Transform3D(-1, 8.74228e-08, 0, 3.82137e-15, 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, -0.0411475, 0.0228266, 0.049329)
+transform = Transform3D(-0.780244, -0.0292591, 0.624791, -0.457438, -0.654569, -0.601906, 0.42658, -0.755436, 0.497339, -0.0941502, 0.0577944, 0.0528483)
 
 [node name="WeaponPositions" type="Node3D" parent="3D"]
 

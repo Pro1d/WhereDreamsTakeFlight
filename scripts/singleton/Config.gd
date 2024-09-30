@@ -4,9 +4,7 @@ extends Node
 #const CursorIBeamIcon := preload("res://assets/images/ui/cursor_ibeam.atlastex")
 #const CursorAimIcon := preload("res://assets/images/ui/cursor_aim1.atlastex")
 
-var MAP_SIZE := Vector2(0.25 * 2 * 1377 / 768, 0.25 * 2)
-var MAP_BOUNDARIES := Rect2(-MAP_SIZE / 2, MAP_SIZE)
-var PLAYER_AREA := Rect2(-MAP_SIZE / 2, Vector2(0.5, 1.0) * MAP_SIZE)
+var REPAIR_HEALTH := 2
 
 var LAYER_PLAYER := 1 << 1
 var LAYER_ENEMY := 1 << 2

@@ -80,8 +80,11 @@ visible = false
 [node name="3D" type="Node3D" parent="."]
 process_mode = 3
 
-[node name="Camera3D" type="Camera3D" parent="3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.885, 0)
+[node name="CameraAxis" type="Node3D" parent="3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.193407, 0.214495)
+
+[node name="Camera3D" type="Camera3D" parent="3D/CameraAxis"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.07841, -0.214495)
 fov = 40.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D"]
@@ -101,6 +104,7 @@ environment = SubResource("Environment_afcjq")
 camera_attributes = SubResource("CameraAttributesPractical_u0sot")
 
 [node name="BedRoom" parent="3D" instance=ExtResource("4_03kti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0, 0)
 
 [node name="Arms" type="Node3D" parent="3D"]
 unique_name_in_owner = true
@@ -264,6 +268,9 @@ shape = SubResource("WorldBoundaryShape2D_v40am")
 [node name="PlayerPlane" parent="2D" instance=ExtResource("29_tqvap")]
 unique_name_in_owner = true
 position = Vector2(269, 382)
+
+[node name="HandPose" parent="2D/PlayerPlane/3D" index="1"]
+transform = Transform3D(-0.780244, -0.029259, 0.624791, -0.457438, -0.654569, -0.601906, 0.42658, -0.755436, 0.497339, -0.0941502, 0.0577944, 0.0528483)
 
 [node name="Weapon" parent="2D/PlayerPlane/3D/WeaponPositions/Weapon1" index="0" instance=ExtResource("2_01kl4")]
 weapon_spec = ExtResource("3_a6i1r")

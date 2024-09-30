@@ -11,7 +11,6 @@ enum State {
 	ENDING
 }
 
-const REPAIR_HEALTH := 2
 const waves_count := 3
 
 @export var overlay : Overlay = null
@@ -67,7 +66,6 @@ func _on_wave_cleared() -> void:
 		finish_game(true)
 
 func  load_next_wave() -> void:
-	completed_waves += 1
 	if completed_waves < waves_count - 1:
 		load_wave(randi_range(0, wave_resources.size() - 1), false)
 	else:
@@ -117,7 +115,7 @@ func drop_and_pick_weapon() -> void:
 		player_plane.equipped_weapons[1] == null,
 		player_plane.equipped_weapons[2] == null
 	]
-	var selected_w := await game_world.player_pick_weapon(
+	var _selected_w := await game_world.player_pick_weapon(
 		w1, w2, free_slots, true # player_plane.hitpoint < player_plane.max_hitpoint
 	)
 	# ALREADY DONE IN game_world.player_pick_weapon
@@ -127,8 +125,8 @@ func drop_and_pick_weapon() -> void:
 	#if w2 != selected_w:
 		#w2.return_root_3d()
 		#w2.queue_free()
-	if selected_w == null:
-		player_plane.hitpoint = mini(player_plane.hitpoint + REPAIR_HEALTH, player_plane.max_hitpoint)
+	#if selected_w == null:
+		#player_plane.hitpoint = mini(player_plane.hitpoint + REPAIR_HEALTH, player_plane.max_hitpoint)
 
 func finish_game(_victory: bool) -> void:
 	_state = State.ENDING
