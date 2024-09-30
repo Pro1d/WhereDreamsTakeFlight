@@ -25,9 +25,9 @@ func _ready() -> void:
 func pause_2d() -> void:
 	var tween := create_tween()
 	const duration := 0.25
-	tween.tween_property(_modulate_2d, "color:a", 0.5, duration).from(modulate_2_alpha) \
+	tween.tween_property(_modulate_2d, "color:a", 0.0, duration).from(modulate_2_alpha) \
 		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_property(arms.mat, "albedo_color:a", 1.0, duration).from(.5)
+	#tween.parallel().tween_property(arms.mat, "albedo_color:a", 1.0, duration).from(.5)
 	tween.play()
 	
 	get_tree().paused = true
@@ -38,7 +38,7 @@ func resume_2d() -> void:
 	const duration := 0.5
 	tween.tween_property(_modulate_2d, "color:a", modulate_2_alpha, duration).from(0.0) \
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_property(arms.mat, "albedo_color:a", .5, duration).from(1.0)
+	#tween.parallel().tween_property(arms.mat, "albedo_color:a", .5, duration).from(1.0)
 	tween.play()
 	
 	_menu.hide()
@@ -46,6 +46,9 @@ func resume_2d() -> void:
 	get_tree().paused = false
 
 func player_pick_weapon(w1: Weapon, w2: Weapon, free_slots: Array[bool], repair_allowed: bool) -> Weapon:
+	w1._root_3d.hide()
+	w2._root_3d.hide()
+	
 	await pause_2d()
 	var tween : Tween
 	
@@ -53,7 +56,7 @@ func player_pick_weapon(w1: Weapon, w2: Weapon, free_slots: Array[bool], repair_
 	var plane_3d := Config.player_node.get_3d_node()
 	var play_plane_transform := plane_3d.transform
 	var plane_close_transform := (%PlaneCloseUpMarker3D as Node3D).global_transform
-	var duration := 0.8 + plane_close_transform.origin.distance_to(play_plane_transform.origin) / (.4)
+	var duration := clampf(plane_close_transform.origin.distance_to(play_plane_transform.origin) / 0.4, 0.2, 5.0)
 	tween = create_tween()
 	tween.tween_property(plane_3d, "transform", plane_close_transform, duration) \
 		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
@@ -63,6 +66,8 @@ func player_pick_weapon(w1: Weapon, w2: Weapon, free_slots: Array[bool], repair_
 	# Open UI
 	var wp_overlay := %WeaponOverlay as WeaponOverlay
 	wp_overlay.show()
+	w1._root_3d.show()
+	w2._root_3d.show()
 	
 	# Pick weapon / repair
 	wp_overlay.show_weapon_options(
@@ -83,12 +88,19 @@ func player_pick_weapon(w1: Weapon, w2: Weapon, free_slots: Array[bool], repair_
 	
 	# Select slot
 	if selected_weapon != null:
+		if w1 != selected_weapon:
+			w1.return_root_3d()
+			w1.queue_free()
+		if w2 != selected_weapon:
+			w2.return_root_3d()
+			w2.queue_free()
 		wp_overlay.show_slots(free_slots)
 		await wp_overlay.slot_picked
 		selected_weapon.index = wp_overlay.last_slot_selected
 		
 		# Animate grab and place weapon
 		await grab_with_right_hand(selected_weapon._root_3d, 0.4)
+		Config.player_node.remove_weapon(selected_weapon.index)
 		
 		var slot_transform := Config.player_node.weapon_slots_3d[selected_weapon.index].global_transform
 		tween = create_tween()

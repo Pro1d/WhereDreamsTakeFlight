@@ -69,21 +69,21 @@ theme_override_constants/separation = 100
 [node name="SlotButton3" type="Button" parent="MarginContainer/CenterContainer2/SlotContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "The weapon effect is shared
+tooltip_text = "The weapon effect will be shared
 with the adjacent weapon(s)."
 text = "Replace/Put"
 
 [node name="SlotButton2" type="Button" parent="MarginContainer/CenterContainer2/SlotContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "The weapon effect is shared
+tooltip_text = "The weapon effect will be shared
 with the adjacent weapon(s)."
 text = "Replace/Put"
 
 [node name="SlotButton1" type="Button" parent="MarginContainer/CenterContainer2/SlotContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "The weapon effect is shared
+tooltip_text = "The weapon effect will be shared
 with the adjacent weapon(s)."
 text = "Replace/Put"
 

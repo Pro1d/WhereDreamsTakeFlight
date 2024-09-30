@@ -120,12 +120,13 @@ func drop_and_pick_weapon() -> void:
 	var selected_w := await game_world.player_pick_weapon(
 		w1, w2, free_slots, true # player_plane.hitpoint < player_plane.max_hitpoint
 	)
-	if w1 != selected_w:
-		w1.return_root_3d()
-		w1.queue_free()
-	if w2 != selected_w:
-		w2.return_root_3d()
-		w2.queue_free()
+	# ALREADY DONE IN game_world.player_pick_weapon
+	#if w1 != selected_w:
+		#w1.return_root_3d()
+		#w1.queue_free()
+	#if w2 != selected_w:
+		#w2.return_root_3d()
+		#w2.queue_free()
 	if selected_w == null:
 		player_plane.hitpoint = mini(player_plane.hitpoint + REPAIR_HEALTH, player_plane.max_hitpoint)
 
