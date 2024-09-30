@@ -104,9 +104,10 @@ func _move_by(motion: Vector2, reccursive: int = 3) -> void:
 				current_velocity = current_velocity.length() * N.rotated(
 					(randf() * 2 * PI)
 					if piercing else
-					clampf(randfn(0, PI/6), -PI/2, PI/2)
+					clampf(randfn(0, PI/6), -PI/2*.9, PI/2*.9)
 				)
-				add_collision_exception_with(body)
+				if piercing:
+					add_collision_exception_with(body)
 				_on_body_hit(body)
 			bounce_left -= 1
 			_move_by(rem.length() * current_velocity.normalized(), reccursive - 1)

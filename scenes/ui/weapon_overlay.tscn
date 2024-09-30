@@ -4,6 +4,8 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_orsab"]
 font_size = 60
+outline_size = 30
+outline_color = Color(0, 0, 0, 1)
 
 [node name="WeaponOverlay" type="Control"]
 layout_mode = 3
@@ -87,7 +89,7 @@ text = "Replace/Put"
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 0
 text = "Select an option"
 label_settings = SubResource("LabelSettings_orsab")
 horizontal_alignment = 1

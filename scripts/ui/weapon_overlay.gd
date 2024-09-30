@@ -16,6 +16,7 @@ var last_slot_selected := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	(%RecycleButton as Button).tooltip_text += "(+%d)" % [Game2D.REPAIR_HEALTH]
 	(%RecycleButton as Button).pressed.connect(func() -> void:
 		last_weapon_picked = -1
 		weapon_picked.emit(last_weapon_picked))

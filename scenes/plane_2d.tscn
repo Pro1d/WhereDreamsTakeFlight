@@ -37,7 +37,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 12.5664]
+"values": [0.0, -6.28319]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -49,7 +49,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 18.8496]
+"values": [0.0, 12.5664]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -169,7 +169,7 @@ shape = SubResource("CircleShape2D_6fxer")
 
 [node name="Shield" type="Line2D" parent="ShieldShape"]
 scale = Vector2(1.1, 1.1)
-points = PackedVector2Array(54.0004, 109, 87.0003, 86.9997, 114, 46.9996, 121, -1.00044, 114, -42.0004, 104, -58.0004, 94.9997, -75.0004, 50.9996, -113, 3.99955, -124, -36.0004, -114, -53.0004, -103, -80.0003, -91.9997, -112, -47.9996, -122, 0.000441551, -117, 39.0004, -90.9997, 79.0003, -65.9996, 96.0002, -53.9996, 110, 0.000438035, 121)
+points = PackedVector2Array(25.455, 117.273, 55.4549, 106.363, 87.0003, 86.9997, 103.637, 69.0905, 114, 46.9996, 121, -1.00044, 114, -42.0004, 104, -58.0004, 94.9997, -75.0004, 72.7269, -98.1821, 50.9996, -113, 34.545, -119.091, 3.99955, -124, -16.3641, -120, -36.0004, -114, -53.6367, -105.454, -77.2731, -93.6361, -90.9094, -79.9997, -109.091, -53.636, -118.182, -33.6359, -122, 0.000441551, -116.364, 33.6368, -106.577, 55.0351, -90.9997, 79.0003, -72.7269, 97.273, -53.9996, 110, -30.9087, 116.364, 0.000438035, 121)
 closed = true
 width = 6.0
 width_curve = SubResource("Curve_8gurb")
@@ -181,7 +181,7 @@ end_cap_mode = 2
 round_precision = 4
 
 [node name="Shield2" type="Line2D" parent="ShieldShape"]
-points = PackedVector2Array(66, 88, 82, 79, 95.0002, 60.9997)
+points = PackedVector2Array(22.0004, 96.9999, 46.0004, 88.9998, 56.0003, 81.9998, 76.0003, 64.9997, 89.0002, 44.9996)
 width = 6.0
 width_curve = SubResource("Curve_8gurb")
 texture = ExtResource("7_2k32o")
@@ -192,7 +192,7 @@ end_cap_mode = 2
 round_precision = 4
 
 [node name="Shield3" type="Line2D" parent="ShieldShape"]
-points = PackedVector2Array(-37.0004, -96.9999, -26.0004, -102, -17.0004, -98.9999)
+points = PackedVector2Array(-65.0002, -65.9998, -49.0003, -80.9998, -31.0003, -87.9999)
 width = 6.0
 width_curve = SubResource("Curve_8gurb")
 texture = ExtResource("7_2k32o")
@@ -203,7 +203,19 @@ end_cap_mode = 2
 round_precision = 4
 
 [node name="Shield4" type="Line2D" parent="ShieldShape"]
-points = PackedVector2Array(111, -51.0004, 104, -67.0004, 90.9997, -78.0003)
+points = PackedVector2Array(118, -16.0004, 112, -46.0004, 96.9997, -71.0004, 80.9997, -86.0003, 63.1056, -102.406, 37.897, -116.149, 9.99955, -124, -4.00045, -123, -30.0004, -119)
+width = 6.0
+width_curve = SubResource("Curve_8gurb")
+texture = ExtResource("7_2k32o")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Shield5" type="Line2D" parent="ShieldShape/Shield4"]
+rotation = 3.50811
+points = PackedVector2Array(118.122, -27.1337, 105.937, -58.8754, 85.5672, -89.6173, 63.1056, -102.406, 37.897, -116.149, 10.4172, -120.754, -4.00044, -121)
 width = 6.0
 width_curve = SubResource("Curve_8gurb")
 texture = ExtResource("7_2k32o")

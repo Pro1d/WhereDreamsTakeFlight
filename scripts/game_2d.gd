@@ -95,15 +95,20 @@ func drop_and_pick_weapon() -> void:
 	var w1_3d := w1.take_root_3d()
 	Config.root_3d.add_child(w1_3d)
 	RemoteTransform2DTo3D.to_3d((%Weapon1Marker2D as Node2D), 0.0, w1_3d, get_viewport().get_camera_3d())
+	w1_3d.rotate_y((randf() * 2 - 1) * deg_to_rad(20.0))
+	w1_3d.rotate_x(deg_to_rad(-20.0))
+	w1_3d.global_position.y += 0.02
 	# Weapon 2
 	var w2 := WeaponPackedScene.instantiate() as Weapon
-	var w2_index := (randi_range(0, weapon_specs.size() - 2) + w1_index) % weapon_specs.size()
+	var w2_index := (randi_range(0, weapon_specs.size() - 2) + w1_index + 1) % weapon_specs.size()
 	w2.weapon_spec = weapon_specs[w2_index]
 	add_child(w2)
 	var w2_3d := w2.take_root_3d()
 	Config.root_3d.add_child(w2_3d)
 	RemoteTransform2DTo3D.to_3d((%Weapon2Marker2D as Node2D), 0.0, w2_3d, get_viewport().get_camera_3d())
-	
+	w2_3d.rotate_y((randf() * 2 - 1) * deg_to_rad(20.0))
+	w2_3d.rotate_x(deg_to_rad(-20.0))
+	w2_3d.global_position.y += 0.02
 	#await get_tree().process_frame #create_timer(2.0).timeout
 	
 	var game_world := get_parent() as GameWorld3D
@@ -113,7 +118,7 @@ func drop_and_pick_weapon() -> void:
 		player_plane.equipped_weapons[2] == null
 	]
 	var selected_w := await game_world.player_pick_weapon(
-		w1, w2, free_slots, player_plane.hitpoint < player_plane.max_hitpoint
+		w1, w2, free_slots, true # player_plane.hitpoint < player_plane.max_hitpoint
 	)
 	if w1 != selected_w:
 		w1.return_root_3d()
@@ -123,8 +128,6 @@ func drop_and_pick_weapon() -> void:
 		w2.queue_free()
 	if selected_w == null:
 		player_plane.hitpoint = mini(player_plane.hitpoint + REPAIR_HEALTH, player_plane.max_hitpoint)
-	else:
-		player_plane.add_weapon(selected_w)
 
 func finish_game(_victory: bool) -> void:
 	_state = State.ENDING

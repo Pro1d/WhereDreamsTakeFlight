@@ -191,3 +191,6 @@ func disable_shield() -> void:
 
 func get_2d_position() -> Vector2:
 	return global_position
+
+func get_3d_node() -> Node3D:
+	return %"3D" as Node3D

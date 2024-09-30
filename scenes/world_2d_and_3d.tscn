@@ -112,20 +112,37 @@ transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="3D/Arms/arm_left/metarig_left" index="0"]
 bones/0/rotation = Quaternion(-0.118017, 0.866205, 0.295702, -0.385125)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/rotation = Quaternion(-0.301991, 0.000574092, -0.322386, 0.897145)
+bones/2/rotation = Quaternion(-0.0186646, -0.712813, -0.032987, 0.70033)
 bones/3/rotation = Quaternion(-0.0240494, 0.924524, -0.0100423, -0.380231)
+bones/4/rotation = Quaternion(-0.0100196, 0.00697603, 0.121816, 0.992478)
+bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.302569, -0.0360271, -0.0968248, 0.947512)
+bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.551736, -0.00379822, -0.00568449, 0.833991)
 bones/7/rotation = Quaternion(0.543057, -0.00250051, -0.0032894, 0.839686)
 bones/8/rotation = Quaternion(0.199358, 0.642682, 0.214003, 0.708109)
+bones/8/scale = Vector3(1, 1, 1)
 bones/10/rotation = Quaternion(0.600555, 0.00139097, -0.0788143, 0.795688)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(-0.0653256, 6.07272e-05, 0.0325167, 0.997334)
 bones/12/rotation = Quaternion(0.370951, -0.00590209, -0.0180153, 0.928459)
+bones/12/scale = Vector3(1, 1, 1)
 bones/13/rotation = Quaternion(0.528775, -0.0014083, -0.00208913, 0.848758)
+bones/13/scale = Vector3(1, 1, 1)
 bones/14/rotation = Quaternion(0.560562, -0.00265256, -0.00350544, 0.828101)
+bones/15/rotation = Quaternion(-0.064155, -0.00011954, -0.0387144, 0.997189)
 bones/16/rotation = Quaternion(0.348298, 0.0169442, 0.0557221, 0.935573)
+bones/16/scale = Vector3(1, 1, 1)
 bones/17/rotation = Quaternion(0.484188, -0.00510026, -0.0094181, 0.874898)
+bones/17/scale = Vector3(1, 1, 1)
 bones/18/rotation = Quaternion(0.549589, -0.00134629, -0.00166087, 0.835433)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/rotation = Quaternion(2.69841e-05, -0.00798385, -0.118374, 0.992937)
 bones/20/rotation = Quaternion(0.293489, 0.0493158, 0.127844, 0.946091)
 bones/21/rotation = Quaternion(0.541259, 0.00130234, 0.00198696, 0.840853)
+bones/21/scale = Vector3(1, 1, 1)
 bones/22/rotation = Quaternion(0.583679, -0.0066883, -0.00830789, 0.811915)
 
 [node name="ArmLeft" parent="3D/Arms/arm_left/metarig_left/Skeleton3D" index="0"]
@@ -133,45 +150,83 @@ surface_material_override/0 = ExtResource("6_d81i7")
 
 [node name="SkeletonIK3DLeft" type="SkeletonIK3D" parent="3D/Arms/arm_left/metarig_left/Skeleton3D" index="1"]
 unique_name_in_owner = true
-root_bone = &"upper_arm.L"
+root_bone = &"shoulder.L"
 tip_bone = &"hand.L"
 target_node = NodePath("../../../../../../2D/PlayerPlane/3D/HandPose")
 min_distance = 0.003
 max_iterations = 20
 
 [node name="arm_right" parent="3D/Arms" instance=ExtResource("25_y71a1")]
-transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 0, 0, 0)
+transform = Transform3D(0.669131, 0, -0.743145, 0, 1, 0, 0.743145, 0, 0.669131, -1.205, 0, 0)
 
 [node name="Skeleton3D" parent="3D/Arms/arm_right/metarig_right" index="0"]
-bones/4/rotation = Quaternion(0.413468, 0.0473233, 0.0918343, 0.904639)
-bones/5/rotation = Quaternion(0.505927, 0.00348619, 0.0058811, 0.862549)
-bones/6/rotation = Quaternion(0.37919, 0.00185229, 0.00369331, 0.92531)
-bones/7/rotation = Quaternion(0.175948, -0.249164, -0.273824, 0.912129)
-bones/8/rotation = Quaternion(0.18311, -0.10739, 0.0240896, 0.976912)
-bones/9/rotation = Quaternion(0.580308, -0.00337765, 0.0787541, 0.810573)
-bones/11/rotation = Quaternion(0.479088, 0.00800972, 0.0171826, 0.877562)
-bones/12/rotation = Quaternion(0.482203, 0.0012938, 0.00216202, 0.876056)
-bones/13/rotation = Quaternion(0.398529, 0.00196197, 0.00393364, 0.917145)
-bones/15/rotation = Quaternion(0.457446, -0.0234719, -0.0533019, 0.887328)
-bones/16/rotation = Quaternion(0.521835, 0.0055059, 0.00918694, 0.852979)
-bones/17/rotation = Quaternion(0.386393, 0.00101759, 0.00188012, 0.922332)
-bones/19/rotation = Quaternion(0.404283, -0.0642181, -0.121046, 0.904311)
-bones/20/rotation = Quaternion(0.495095, -0.00119295, -0.00205442, 0.868836)
-bones/21/rotation = Quaternion(0.42423, 0.00504461, 0.00939698, 0.905492)
+bones/0/rotation = Quaternion(0.126339, 0.869681, 0.289894, 0.379018)
+bones/1/rotation = Quaternion(-0.317118, -0.00369247, 0.30597, 0.897666)
+bones/2/rotation = Quaternion(-0.0223488, 0.712373, 0.0445363, 0.70003)
+bones/4/rotation = Quaternion(-0.0100196, -0.0069761, -0.121816, 0.992478)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.413468, 0.0473233, 0.0918344, 0.904639)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(0.505927, 0.0034862, 0.00588111, 0.862549)
+bones/7/rotation = Quaternion(0.37919, 0.00185229, 0.00369331, 0.92531)
+bones/8/rotation = Quaternion(0.175948, -0.249164, -0.273824, 0.912129)
+bones/9/rotation = Quaternion(0.18311, -0.10739, 0.0240896, 0.976912)
+bones/10/rotation = Quaternion(0.580308, -0.00337778, 0.0787541, 0.810574)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(-0.0653256, -6.07891e-05, -0.0325167, 0.997334)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(0.479088, 0.00800973, 0.0171826, 0.877562)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(0.482203, 0.0012938, 0.00216202, 0.876056)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(0.398529, 0.00196197, 0.00393364, 0.917145)
+bones/15/rotation = Quaternion(-0.064155, 0.000119484, 0.0387144, 0.997189)
+bones/16/rotation = Quaternion(0.457446, -0.023472, -0.0533019, 0.887328)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/rotation = Quaternion(0.521835, 0.0055059, 0.00918694, 0.852979)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(0.386393, 0.00101759, 0.00188012, 0.922332)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/rotation = Quaternion(2.6977e-05, 0.0079838, 0.118374, 0.992937)
+bones/19/scale = Vector3(1, 1, 1)
+bones/20/rotation = Quaternion(0.404283, -0.0642181, -0.121046, 0.904311)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/rotation = Quaternion(0.495095, -0.00119294, -0.0020544, 0.868836)
+bones/21/scale = Vector3(1, 1, 1)
+bones/22/rotation = Quaternion(0.42423, 0.00504461, 0.00939699, 0.905492)
 
 [node name="ArmRight" parent="3D/Arms/arm_right/metarig_right/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("6_d81i7")
 
 [node name="SkeletonIK3DRight" type="SkeletonIK3D" parent="3D/Arms/arm_right/metarig_right/Skeleton3D" index="1"]
 unique_name_in_owner = true
-root_bone = &"upper_arm.R"
+root_bone = &"shoulder.R"
 tip_bone = &"hand.R"
-target_node = NodePath("../../../../../../2D/PlayerPlane/3D/HandPose")
+target_node = NodePath("../../../../../Markers/RightHandMovableMarker3D/HandPoseMarker3D")
 min_distance = 0.003
 max_iterations = 20
 
+[node name="Markers" type="Node3D" parent="3D"]
+
+[node name="PlaneCloseUpMarker3D" type="Marker3D" parent="3D/Markers"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.097, 0.244802, 0)
+
+[node name="RightHandRestMarker3D" type="Marker3D" parent="3D/Markers"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.111813, 0.218022, 0.257118)
+
+[node name="RightHandMovableMarker3D" type="Marker3D" parent="3D/Markers"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103937, 0.220402, 0.25347)
+
+[node name="HandPoseMarker3D" type="Marker3D" parent="3D/Markers/RightHandMovableMarker3D"]
+unique_name_in_owner = true
+transform = Transform3D(-0.999391, -0.0321251, 0.0136363, 0, -0.390731, -0.920505, 0.0348994, -0.919944, 0.390493, 0.0316756, 0.0589729, 0.0344162)
+
 [node name="2D" type="Node2D" parent="." node_paths=PackedStringArray("overlay", "weapon_overlay")]
 unique_name_in_owner = true
+process_mode = 1
 script = ExtResource("26_ikt7f")
 overlay = NodePath("../HUD/Overlay")
 weapon_overlay = NodePath("../HUD/WeaponOverlay")
@@ -213,6 +268,8 @@ position = Vector2(269, 382)
 [node name="Weapon" parent="2D/PlayerPlane/3D/WeaponPositions/Weapon1" index="0" instance=ExtResource("2_01kl4")]
 weapon_spec = ExtResource("3_a6i1r")
 
+[node name="Weapon2" parent="2D/PlayerPlane/3D/WeaponPositions/Weapon2" index="0" instance=ExtResource("2_01kl4")]
+
 [node name="Weapon2" parent="2D/PlayerPlane/3D/WeaponPositions/Weapon3" index="0" instance=ExtResource("2_01kl4")]
 weapon_spec = ExtResource("5_08cbb")
 
@@ -220,11 +277,11 @@ weapon_spec = ExtResource("5_08cbb")
 
 [node name="Weapon1Marker2D" type="Marker2D" parent="2D/Markers"]
 unique_name_in_owner = true
-position = Vector2(962, 239)
+position = Vector2(960, 239)
 
 [node name="Weapon2Marker2D" type="Marker2D" parent="2D/Markers"]
 unique_name_in_owner = true
-position = Vector2(967, 540)
+position = Vector2(960, 540)
 
 [node name="CanvasModulate2D" type="CanvasModulate" parent="."]
 unique_name_in_owner = true
