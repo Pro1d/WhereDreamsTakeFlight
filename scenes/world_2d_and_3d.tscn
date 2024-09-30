@@ -1,11 +1,13 @@
-[gd_scene load_steps=41 format=3 uid="uid://do4q1xtyjh4u1"]
+[gd_scene load_steps=48 format=3 uid="uid://do4q1xtyjh4u1"]
 
 [ext_resource type="Script" path="res://scripts/world_2d_and_3d.gd" id="1_xm0yb"]
 [ext_resource type="PackedScene" uid="uid://cske0mslikh06" path="res://scenes/weapon.tscn" id="2_01kl4"]
 [ext_resource type="PackedScene" uid="uid://088brukj5isd" path="res://scenes/attack_waves/attack_wave_00.01.tscn" id="2_gni8t"]
 [ext_resource type="Resource" uid="uid://b4cxfnq2h8wjw" path="res://resources/weapons/rubber_duck.tres" id="3_a6i1r"]
+[ext_resource type="PackedScene" uid="uid://v2ddeufj10c2" path="res://scenes/ui/overlay.tscn" id="3_eras8"]
 [ext_resource type="PackedScene" uid="uid://cytlgmc2lwfw3" path="res://scenes/attack_waves/attack_wave_00.02.tscn" id="3_njpqx"]
 [ext_resource type="PackedScene" uid="uid://d1djw43u5ntsy" path="res://scenes/bedroom.tscn" id="4_03kti"]
+[ext_resource type="PackedScene" uid="uid://7ndbh0djb8di" path="res://scenes/ui/weapon_overlay.tscn" id="4_4dfxk"]
 [ext_resource type="Resource" uid="uid://cru4xcly1jymk" path="res://resources/weapons/magnet_stick.tres" id="5_08cbb"]
 [ext_resource type="PackedScene" uid="uid://dpwqagg3q62sb" path="res://scenes/attack_waves/attack_wave_00.04.tscn" id="5_xup8t"]
 [ext_resource type="Material" uid="uid://dv106u84yak55" path="res://resources/materials/skin.tres" id="6_d81i7"]
@@ -36,6 +38,11 @@
 [ext_resource type="PackedScene" uid="uid://dtfrlsu5ck8d4" path="res://scenes/attack_waves/attack_wave_01.05b.tscn" id="30_2qcli"]
 [ext_resource type="PackedScene" uid="uid://7f6541kcqb6e" path="res://scenes/attack_waves/attack_wave_04.02.tscn" id="31_satll"]
 [ext_resource type="PackedScene" uid="uid://d2b4qffs8ffn5" path="res://scenes/attack_waves/attack_wave_10.02.tscn" id="32_t8yjh"]
+[ext_resource type="Script" path="res://scripts/weapon_spec.gd" id="35_ubv56"]
+[ext_resource type="Resource" uid="uid://xvr65sttso2t" path="res://resources/weapons/doll_fork.tres" id="36_uls65"]
+[ext_resource type="Resource" uid="uid://p5p3rlli25ko" path="res://resources/weapons/lego.tres" id="37_x01gp"]
+[ext_resource type="Resource" uid="uid://0a6c26hv0xqb" path="res://resources/weapons/pen.tres" id="39_0aimb"]
+[ext_resource type="Resource" uid="uid://dpeghur16lt46" path="res://resources/weapons/battery_cell.tres" id="41_3y5ex"]
 
 [sub_resource type="Environment" id="Environment_afcjq"]
 ambient_light_source = 2
@@ -59,6 +66,14 @@ script = ExtResource("1_xm0yb")
 process_mode = 3
 
 [node name="Menu" parent="HUD" instance=ExtResource("7_mpqx2")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Overlay" parent="HUD" instance=ExtResource("3_eras8")]
+unique_name_in_owner = true
+visible = false
+
+[node name="WeaponOverlay" parent="HUD" instance=ExtResource("4_4dfxk")]
 unique_name_in_owner = true
 visible = false
 
@@ -155,11 +170,14 @@ target_node = NodePath("../../../../../../2D/PlayerPlane/3D/HandPose")
 min_distance = 0.003
 max_iterations = 20
 
-[node name="2D" type="Node2D" parent="."]
+[node name="2D" type="Node2D" parent="." node_paths=PackedStringArray("overlay", "weapon_overlay")]
 unique_name_in_owner = true
 script = ExtResource("26_ikt7f")
+overlay = NodePath("../HUD/Overlay")
+weapon_overlay = NodePath("../HUD/WeaponOverlay")
 wave_resources = Array[PackedScene]([ExtResource("2_gni8t"), ExtResource("3_njpqx"), ExtResource("10_jelau"), ExtResource("5_xup8t"), ExtResource("6_pkfoh"), ExtResource("27_ddiok"), ExtResource("7_8inxn"), ExtResource("28_4q66w"), ExtResource("8_nbmmi"), ExtResource("9_1nvwp"), ExtResource("10_pmghl"), ExtResource("29_d3q8d"), ExtResource("11_4w0vp"), ExtResource("30_2qcli"), ExtResource("12_5pbxc"), ExtResource("13_de0b8"), ExtResource("19_xj7dd"), ExtResource("15_sqdrm"), ExtResource("16_o3oru"), ExtResource("17_ko5cc"), ExtResource("31_satll"), ExtResource("18_st0n8"), ExtResource("32_t8yjh")])
 boss_resources = Array[PackedScene]([ExtResource("13_0yd8b")])
+weapon_specs = Array[ExtResource("35_ubv56")]([ExtResource("36_uls65"), ExtResource("37_x01gp"), ExtResource("5_08cbb"), ExtResource("39_0aimb"), ExtResource("3_a6i1r"), ExtResource("41_3y5ex")])
 
 [node name="WorldBoundary" type="StaticBody2D" parent="2D" groups=["world_boundary"]]
 position = Vector2(683, 384)
@@ -197,6 +215,16 @@ weapon_spec = ExtResource("3_a6i1r")
 
 [node name="Weapon2" parent="2D/PlayerPlane/3D/WeaponPositions/Weapon3" index="0" instance=ExtResource("2_01kl4")]
 weapon_spec = ExtResource("5_08cbb")
+
+[node name="Markers" type="Node2D" parent="2D"]
+
+[node name="Weapon1Marker2D" type="Marker2D" parent="2D/Markers"]
+unique_name_in_owner = true
+position = Vector2(962, 239)
+
+[node name="Weapon2Marker2D" type="Marker2D" parent="2D/Markers"]
+unique_name_in_owner = true
+position = Vector2(967, 540)
 
 [node name="CanvasModulate2D" type="CanvasModulate" parent="."]
 unique_name_in_owner = true

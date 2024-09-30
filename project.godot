@@ -127,6 +127,10 @@ player_shoot={
 2d_physics/layer_7="enemy_area"
 2d_physics/layer_8="player_boundary"
 
+[physics]
+
+common/enable_object_picking=false
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

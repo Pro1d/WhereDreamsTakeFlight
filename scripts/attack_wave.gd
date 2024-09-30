@@ -9,12 +9,20 @@ const expected_back_path_length := 700.0
 @onready var _from_back := %FromBackPathFollow2D as PathFollow2D
 
 var _enemies : Array[Enemy]
+var total_max_hitpoints := 0.0
 #var _path_follows : Array[PathFollow2D]
 
 func _ready() -> void:
 	_from_back.progress = 0.0
 	_find_enemies(self, false)
+	total_max_hitpoints = compute_total_hitpoints()
 	#_find_path_follows(self, false)
+
+func compute_total_hitpoints() -> float:
+	var sum := 0.0
+	for e in _enemies:
+		sum += e.hit_points
+	return sum
 
 func _physics_process(delta: float) -> void:
 	_from_back.progress += delta * from_back_speed

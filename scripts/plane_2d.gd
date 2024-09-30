@@ -23,9 +23,9 @@ var hitpoint := max_hitpoint
 
 @export var meshes_by_type : Array[ArrayMesh] = []
 
-var shielded := false:
+var _shielded := false :
 	set(s):
-		shielded = s
+		_shielded = s
 		_update_shield()
 var shield_tween : Tween
 
@@ -94,6 +94,7 @@ func add_weapon(weapon: Weapon) -> void:
 	equipped_weapons[index] = weapon
 	weapon_slots_3d[index].add_child(weapon.take_root_3d())
 	weapon.firing = true
+	weapon.player_plane = self
 
 func remove_weapon(index: int) -> void:
 	var w := equipped_weapons[index]
@@ -103,6 +104,7 @@ func remove_weapon(index: int) -> void:
 	weapon_slots_3d[index].remove_child(w._root_3d)
 	w.return_root_3d()
 	w.firing = false
+	w.player_plane = null
 	w.queue_free()
 
 func get_neighboring_weapon(weapon: Weapon) -> Array[Weapon]:
@@ -143,8 +145,9 @@ func _update_plane_type() -> void:
 	plane_mesh.mesh = meshes_by_type[type]
 
 func _update_shield() -> void:
-	shield_shape.visible = shielded
-	shield_shape.disabled = not shielded
+	shield_shape.modulate.a = 1.0
+	shield_shape.visible = _shielded
+	shield_shape.disabled = not _shielded
 
 func _on_hit_box_entered(body: PhysicsBody2D) -> void:
 	#var proj := body as Projectile
@@ -156,13 +159,35 @@ func _on_hit_box_entered(body: PhysicsBody2D) -> void:
 		take_damage()
 
 func take_damage() -> void:
-	if shielded:
+	if _shielded:
 		return
 	
 	hitpoint -= 1
 	if hitpoint == 0:
 		destroyed.emit()
+	else:
+		trigger_shield()
 	# TODO fx, shield
+
+func trigger_shield() -> void:
+	const duration := 2.5
+	const fade_duration := .2
+	
+	if shield_tween != null:
+		shield_tween.kill()
+		shield_tween = null
+	
+	_shielded = true
+	shield_tween = create_tween()
+	shield_tween.tween_interval(duration - fade_duration)
+	shield_tween.tween_property(shield_shape, "modulate:a", 0.0, fade_duration).from(1.0)
+	shield_tween.tween_callback(func() -> void: _shielded = false)
+
+func disable_shield() -> void:
+	if shield_tween != null:
+		shield_tween.kill()
+		shield_tween = null
+	_shielded = false
 
 func get_2d_position() -> Vector2:
 	return global_position

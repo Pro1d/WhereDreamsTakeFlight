@@ -168,6 +168,7 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_6fxer")
 
 [node name="Shield" type="Line2D" parent="ShieldShape"]
+scale = Vector2(1.1, 1.1)
 points = PackedVector2Array(54.0004, 109, 87.0003, 86.9997, 114, 46.9996, 121, -1.00044, 114, -42.0004, 104, -58.0004, 94.9997, -75.0004, 50.9996, -113, 3.99955, -124, -36.0004, -114, -53.0004, -103, -80.0003, -91.9997, -112, -47.9996, -122, 0.000441551, -117, 39.0004, -90.9997, 79.0003, -65.9996, 96.0002, -53.9996, 110, 0.000438035, 121)
 closed = true
 width = 6.0
@@ -202,7 +203,7 @@ end_cap_mode = 2
 round_precision = 4
 
 [node name="Shield4" type="Line2D" parent="ShieldShape"]
-points = PackedVector2Array(99.9998, -55.0004, 97.9998, -65.0004, 87.9997, -74.0003)
+points = PackedVector2Array(111, -51.0004, 104, -67.0004, 90.9997, -78.0003)
 width = 6.0
 width_curve = SubResource("Curve_8gurb")
 texture = ExtResource("7_2k32o")

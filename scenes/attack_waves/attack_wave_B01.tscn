@@ -20,4 +20,3 @@ position = Vector2(-1408, -128)
 rotates = false
 
 [node name="Train" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D" index="0" instance=ExtResource("2_q44lp")]
-aim_player = false

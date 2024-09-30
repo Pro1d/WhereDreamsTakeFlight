@@ -36,3 +36,23 @@ func merge_with(other: WeaponSpec) -> void:
 	bouncing = bouncing or other.bouncing
 	splitting = splitting or other.splitting
 	seeking = seeking or other.seeking
+
+func display_name() -> String:
+	match type:
+		Type.BatteryCell: return "baterry"
+		Type.Lego: return "brick"
+		Type.MagnetStick: return "magnets"
+		Type.Pen: return "pen"
+		Type.RubberDuck: return "duck"
+		Type.DollFork: return "fork"
+		_: return "???"
+
+func display_desc() -> String:
+	match type:
+		Type.BatteryCell: return "Explosive!"
+		Type.Lego: return "Split on hit."
+		Type.MagnetStick: return "Seek target."
+		Type.Pen: return "Pierce target."
+		Type.RubberDuck: return "Bouncing!"
+		Type.DollFork: return "Multiple shots."
+		_: return "???"

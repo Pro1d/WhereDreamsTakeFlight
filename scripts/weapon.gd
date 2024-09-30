@@ -6,10 +6,8 @@ const ProjectileResource := preload("res://scenes/projectile.tscn")
 
 @export var index := -1  # index in player plane, for caching
 @export var weapon_spec : WeaponSpec
-var player_plane : PlayerPlane :
-	get:
-		return get_parent() as PlayerPlane
-@export var firing := true :
+@export var player_plane : PlayerPlane
+@export var firing := false :
 	set(f):
 		cooldown = 0.0
 		firing = f
@@ -77,9 +75,12 @@ func take_root_3d() -> Node3D:
 	if _root_3d.get_parent() != null:
 		_root_3d.get_parent().remove_child(_root_3d)
 	_root_3d.owner = null
+	_root_3d.transform = Transform3D.IDENTITY
 	return _root_3d
 func return_root_3d() -> Node3D:
 	if _root_3d.get_parent() != null:
 		_root_3d.get_parent().remove_child(_root_3d)
+	add_child(_root_3d)
 	_root_3d.owner = self
+	_root_3d.transform = Transform3D.IDENTITY
 	return _root_3d
