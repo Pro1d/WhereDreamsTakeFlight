@@ -6,15 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://da0uv6a1fj1w8" path="res://resources/materials/line_texture.tres" id="7_2k32o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w2wh5"]
-radius = 26.0
-height = 236.0
+radius = 18.0
+height = 206.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dw86g"]
-radius = 23.0
-height = 178.0
+radius = 17.0
+height = 148.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6fxer"]
-radius = 123.102
+radius = 120.0
 
 [sub_resource type="Curve" id="Curve_8gurb"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.188192, 0.871775), 0.0, 0.0, 0, 0, Vector2(0.420664, 1), 0.0, 0.0, 0, 0, Vector2(0.697417, 0.753414), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -158,7 +158,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_dw86g")
 
 [node name="ShieldShape" type="CollisionShape2D" parent="."]
-position = Vector2(2, 1)
 rotation = 1.5708
 shape = SubResource("CircleShape2D_6fxer")
 

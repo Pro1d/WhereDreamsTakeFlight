@@ -144,17 +144,17 @@ func merge_plane_spec(ws: WeaponSpec, weapon_index: int) -> void:
 static func display_description(t: Type) -> String:
 	match t:
 		Type.Wood:
-			return "\"My first ever plane!\"\n-"
+			return "\"My first ever plane!\""
 		Type.FireRed:
-			return "\"Uncle's gift for my birthday.\"\n2x damage with only one weapon equiped."
+			return "\"Uncle's gift for my birthday.\"\n2x damage when only one weapon equiped."
 		Type.BlackAndWhite:
 			return "\"It's a strong plane.\"\n+10% damage"
 		Type.EmeraldGreen:
-			return "\"My favorite color.\"\n+25% fire rate to middle weapon."
+			return "\"I love this color.\"\n+25% fire rate to middle weapon."
 		Type.AboveSky:
 			return "\"Sky isn't the limit!\"\n+5% damage and fire rate.\n+15% projectile and plane speed."
 		_:
-			return "???\n-"
+			return "???"
 func _update_plane_type() -> void:
 	speed = base_speed * (1.15 if type == Type.AboveSky else 1.0)
 	if plane_mesh == null: return

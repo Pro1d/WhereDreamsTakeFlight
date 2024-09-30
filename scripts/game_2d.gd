@@ -57,7 +57,7 @@ func start_game() -> void:
 	player_plane.reset()
 	var w := WeaponPackedScene.instantiate() as Weapon
 	w.index = 1
-	w.weapon_spec = weapon_specs[5]#.pick_random()
+	w.weapon_spec = weapon_specs.pick_random()
 	add_child(w)
 	player_plane.add_weapon(w)
 	player_plane.set_firing(true)
