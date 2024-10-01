@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://do4q1xtyjh4u1"]
+[gd_scene load_steps=32 format=3 uid="uid://do4q1xtyjh4u1"]
 
 [ext_resource type="Script" path="res://scripts/world_2d_and_3d.gd" id="1_xm0yb"]
 [ext_resource type="Resource" uid="uid://b4cxfnq2h8wjw" path="res://resources/weapons/rubber_duck.tres" id="3_a6i1r"]
@@ -9,7 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://y1ajs3pqfl4p" path="res://scenes/ui/score_overlay.tscn" id="5_vlgnv"]
 [ext_resource type="Material" uid="uid://dv106u84yak55" path="res://resources/materials/skin.tres" id="6_d81i7"]
 [ext_resource type="PackedScene" uid="uid://chckwtnrrluej" path="res://scenes/ui/menu.tscn" id="7_mpqx2"]
+[ext_resource type="ArrayMesh" uid="uid://7gn7ut7hk08b" path="res://assets/models/all/Ball.res" id="8_g0e2s"]
+[ext_resource type="ArrayMesh" uid="uid://d31j0xjonn8xe" path="res://assets/models/all/Teddy.res" id="11_0koix"]
 [ext_resource type="Resource" uid="uid://omll8e6q2t5" path="res://resources/attack_wave_collections.tres" id="12_3j57w"]
+[ext_resource type="ArrayMesh" uid="uid://itvw88q41qwc" path="res://assets/models/all/Pen.res" id="13_5pkug"]
+[ext_resource type="ArrayMesh" uid="uid://dukq88q3a01m4" path="res://assets/models/all/Train.res" id="14_hmmik"]
 [ext_resource type="PackedScene" uid="uid://ctqhhr4rs0bx7" path="res://assets/models/arm_left.glb" id="24_ojakt"]
 [ext_resource type="Script" path="res://scripts/arm.gd" id="25_qyknq"]
 [ext_resource type="PackedScene" uid="uid://cpu38imynhxd6" path="res://assets/models/arm_right.glb" id="25_y71a1"]
@@ -122,6 +126,26 @@ camera_attributes = SubResource("CameraAttributesPractical_u0sot")
 
 [node name="BedRoom" parent="3D" instance=ExtResource("4_03kti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0, 0)
+
+[node name="Teddy" type="MeshInstance3D" parent="3D/BedRoom"]
+transform = Transform3D(0.165137, 0.766901, -0.620155, 0.888873, 0.156732, 0.430511, 0.427358, -0.622332, -0.655796, -0.695581, 0.247454, 0.492533)
+mesh = ExtResource("11_0koix")
+skeleton = NodePath("../..")
+
+[node name="Ball" type="MeshInstance3D" parent="3D/BedRoom"]
+transform = Transform3D(0.579224, 0.4881, -0.652884, 0.316808, 0.603169, 0.731998, 0.751087, -0.63083, 0.194736, 0.681175, 0.04, -0.0559653)
+mesh = ExtResource("8_g0e2s")
+skeleton = NodePath("../..")
+
+[node name="Train" type="MeshInstance3D" parent="3D/BedRoom"]
+transform = Transform3D(-0.969749, 0, -0.244106, 0, 1, 0, 0.244106, 0, -0.969749, 0.63963, 0.0110908, -0.159944)
+mesh = ExtResource("14_hmmik")
+skeleton = NodePath("../..")
+
+[node name="Pen" type="MeshInstance3D" parent="3D/BedRoom/Train"]
+transform = Transform3D(0.135575, 0.976711, 0.1663, 0.552451, 0.0648104, -0.831022, -0.822446, 0.204538, -0.530798, -0.0594163, 0.125056, -0.0320441)
+mesh = ExtResource("13_5pkug")
+skeleton = NodePath("../../..")
 
 [node name="Arms" type="Node3D" parent="3D"]
 unique_name_in_owner = true

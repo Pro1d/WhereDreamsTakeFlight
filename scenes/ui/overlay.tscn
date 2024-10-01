@@ -1,6 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://v2ddeufj10c2"]
+[gd_scene load_steps=6 format=3 uid="uid://v2ddeufj10c2"]
 
 [ext_resource type="Script" path="res://scripts/ui/overlay.gd" id="1_6m3lx"]
+[ext_resource type="StyleBox" uid="uid://dajyo5jyntuc3" path="res://resources/themes/life_full.tres" id="2_k2jth"]
+[ext_resource type="StyleBox" uid="uid://d3trss7eq2wc7" path="res://resources/themes/life_empty.tres" id="3_qpqgs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38ekx"]
+content_margin_left = 15.0
+content_margin_top = 5.0
+content_margin_right = 15.0
+content_margin_bottom = 5.0
+bg_color = Color(0.65, 0.61295, 0.5915, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spdvg"]
+bg_color = Color(0.56, 0.21, 0.14, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.137255, 0.282353, 0.556863, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [node name="Overlay" type="Control"]
 layout_mode = 3
@@ -18,10 +48,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -31,24 +61,44 @@ theme_override_constants/separation = 50
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 15
 
-[node name="PlayerProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="Panel1" type="Panel" parent="MarginContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-value = 50.0
-show_percentage = false
+theme_override_styles/panel = ExtResource("2_k2jth")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="EnemyProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/HBoxContainer2"]
+[node name="Panel2" type="Panel" parent="MarginContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
+theme_override_styles/panel = ExtResource("2_k2jth")
+
+[node name="Panel3" type="Panel" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_k2jth")
+
+[node name="Panel4" type="Panel" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_k2jth")
+
+[node name="Panel5" type="Panel" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_qpqgs")
+
+[node name="EnemyProgressBar" type="ProgressBar" parent="MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 35)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/background = SubResource("StyleBoxFlat_38ekx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_spdvg")
+value = 80.0
 show_percentage = false

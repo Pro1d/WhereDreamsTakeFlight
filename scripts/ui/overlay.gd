@@ -1,7 +1,12 @@
 class_name Overlay
 extends Control
 
-@onready var player_pb := %PlayerProgressBar as ProgressBar
+const life_full_theme = preload("res://resources/themes/life_full.tres")
+const life_empty_theme = preload("res://resources/themes/life_empty.tres")
+
+@onready var player_lifes : Array[Panel] = [
+	%Panel1, %Panel2, %Panel3, %Panel4, %Panel5
+]
 @onready var enemy_pb := %EnemyProgressBar as ProgressBar
 
 var func_player_hp : Callable
@@ -24,6 +29,5 @@ func hide_enemy_life() -> void:
 	enemy_pb.hide()
 
 func set_player_hp(hp: int, max_hp: int) -> void:
-	player_pb.max_value = max_hp
-	player_pb.value = hp
-	
+	for i in range(max_hp):
+		player_lifes[i].add_theme_stylebox_override("panel", life_full_theme if i < hp else life_empty_theme)

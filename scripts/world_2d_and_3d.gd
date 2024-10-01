@@ -62,11 +62,11 @@ func show_menu() -> void:
 func hide_menu() -> void:
 	var plane_3d := Config.player_node.get_3d_node()
 	var tween := create_tween()
-	tween.tween_property(plane_3d, "global_transform", plane_pos_before_menu, anim_duration_menu * .9) \
-		.from_current().set_delay(anim_duration_menu * .1) \
+	tween.tween_property(plane_3d, "global_transform", plane_pos_before_menu, anim_duration_menu * .7) \
+		.from_current().set_delay(anim_duration_menu * .3) \
 		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
-	tween.parallel().tween_property(arms, "global_position", Vector3.ZERO, anim_duration_menu * .9) \
-		.from_current().set_delay(anim_duration_menu * .1) \
+	tween.parallel().tween_property(arms, "global_position", Vector3.ZERO, anim_duration_menu * .7) \
+		.from_current().set_delay(anim_duration_menu * .3) \
 		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.parallel().tween_property(%CameraAxis as Node3D, "rotation:x", 0.0, anim_duration_menu) \
 		.from_current() \
