@@ -56,18 +56,21 @@ func _ready() -> void:
 	_update_shield()
 	_update_plane_type()
 	(%ShieldAnimationPlayer as AnimationPlayer).play("shielding")
-	
 	#remove_child(_root_3d)
 	##Config.root_3d.add_child(_root_3d)
 	#get_tree().root.add_child(_root_3d)
 	
 	_hit_box_area.body_entered.connect(_on_hit_box_entered)
 	# Custom remote transform
-	_remote_transform.position_updated.connect(func(t2d: Transform2D) -> void:
-		_root_3d.global_position.y = _default_y_pos
-		var half_h := 768.0 / 2
-		_root_3d.global_rotation.x = signf(t2d.origin.y - half_h) * absf((t2d.origin.y - half_h) / half_h) ** 1.5 * (-PI / 6)
-	)
+	_remote_transform.position_updated.connect(_project_position_3d)
+	
+	reset()
+	(%RemoteTransform2DTo3D as RemoteTransform2DTo3D).force_update()
+
+func _project_position_3d(t2d: Transform2D) -> void:
+	_root_3d.global_position.y = _default_y_pos
+	var half_h := 768.0 / 2
+	_root_3d.global_rotation.x = signf(t2d.origin.y - half_h) * absf((t2d.origin.y - half_h) / half_h) ** 1.5 * (-PI / 6)
 
 func reset() -> void:
 	hitpoint = max_hitpoint
@@ -76,6 +79,7 @@ func reset() -> void:
 			remove_weapon(i)
 	global_position = Vector2(300.0, 768.0 / 2)
 	invunerability = false
+	disable_shield()
 
 func set_firing(f: bool) -> void:
 	for w in equipped_weapons:

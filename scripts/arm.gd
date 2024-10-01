@@ -9,3 +9,4 @@ extends Node3D
 
 func _ready() -> void:
 	skeleton_ik_left.start()
+	skeleton_ik_right.start()

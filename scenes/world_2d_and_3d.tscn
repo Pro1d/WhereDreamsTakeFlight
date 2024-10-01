@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://do4q1xtyjh4u1"]
+[gd_scene load_steps=51 format=3 uid="uid://do4q1xtyjh4u1"]
 
 [ext_resource type="Script" path="res://scripts/world_2d_and_3d.gd" id="1_xm0yb"]
 [ext_resource type="PackedScene" uid="uid://088brukj5isd" path="res://scenes/attack_waves/attack_wave_00.01.tscn" id="2_gni8t"]
@@ -52,6 +52,42 @@ tonemap_mode = 1
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_u0sot"]
 
+[sub_resource type="Animation" id="Animation_dgxy6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraAxis:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3qtkc"]
+resource_name = "game_to_menu"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraAxis:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.757858, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.0472, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8e7wf"]
+_data = {
+"RESET": SubResource("Animation_dgxy6"),
+"game_to_menu": SubResource("Animation_3qtkc")
+}
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m5blm"]
 normal = Vector2(0, 1)
 
@@ -84,6 +120,7 @@ visible = false
 process_mode = 3
 
 [node name="CameraAxis" type="Node3D" parent="3D"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.193407, 0.214495)
 
 [node name="Camera3D" type="Camera3D" parent="3D/CameraAxis"]
@@ -111,11 +148,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0, 0)
 
 [node name="Arms" type="Node3D" parent="3D"]
 unique_name_in_owner = true
-transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, -0.185, 0.220295, 0)
 script = ExtResource("25_qyknq")
 
 [node name="arm_left" parent="3D/Arms" instance=ExtResource("24_ojakt")]
-transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 0, 0, 0)
+transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, -0.185, 0.220295, 0)
 
 [node name="Skeleton3D" parent="3D/Arms/arm_left/metarig_left" index="0"]
 bones/0/rotation = Quaternion(-0.118017, 0.866205, 0.295702, -0.385125)
@@ -164,7 +200,7 @@ min_distance = 0.003
 max_iterations = 20
 
 [node name="arm_right" parent="3D/Arms" instance=ExtResource("25_y71a1")]
-transform = Transform3D(0.669131, 0, -0.743145, 0, 1, 0, 0.743145, 0, 0.669131, -1.205, 0, 0)
+transform = Transform3D(-0.267652, 0, 0.297258, 0, 0.4, 0, -0.297258, 0, -0.267652, 0.297, 0.220295, -4.21378e-08)
 
 [node name="Skeleton3D" parent="3D/Arms/arm_right/metarig_right" index="0"]
 bones/0/rotation = Quaternion(0.126339, 0.869681, 0.289894, 0.379018)
@@ -229,6 +265,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103937, 0.220402, 0.25347)
 [node name="HandPoseMarker3D" type="Marker3D" parent="3D/Markers/RightHandMovableMarker3D"]
 unique_name_in_owner = true
 transform = Transform3D(-0.999391, -0.0321251, 0.0136363, 0, -0.390731, -0.920505, 0.0348994, -0.919944, 0.390493, 0.0316756, 0.0589729, 0.0344162)
+
+[node name="PlaneMenuMarker3D" type="Marker3D" parent="3D/Markers"]
+unique_name_in_owner = true
+transform = Transform3D(0.731674, -0.0709202, -0.677955, 0.0433081, 0.9974, -0.0575974, 0.680278, 0.0127816, 0.732843, 0, 0.265278, 0.58235)
+
+[node name="RightHandMenuMarker3D" type="Marker3D" parent="3D/Markers"]
+unique_name_in_owner = true
+transform = Transform3D(0.79214, 0.610339, 1.8887e-08, -0.49895, 0.647572, -0.575933, -0.351514, 0.45622, 0.817497, 0.205341, 0.243492, 0.693956)
+
+[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="3D"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_8e7wf")
+}
 
 [node name="2D" type="Node2D" parent="." node_paths=PackedStringArray("overlay", "weapon_overlay", "score_overlay")]
 unique_name_in_owner = true

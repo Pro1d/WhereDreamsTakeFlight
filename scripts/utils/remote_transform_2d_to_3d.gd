@@ -17,6 +17,9 @@ func _enter_tree() -> void:
 	#get_tree().root.add_child(_target_3d) # Config.root_3d.
 
 func _physics_process(_delta: float) -> void:
+	force_update()
+
+func force_update() -> void:
 	RemoteTransform2DTo3D.to_3d(self, y_offset, _target_3d, _camera_3d)
 	
 	position_updated.emit(global_transform)

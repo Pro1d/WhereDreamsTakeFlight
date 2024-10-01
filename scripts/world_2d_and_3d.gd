@@ -10,6 +10,10 @@ var right_hand_tween : Tween
 var right_hand_grabbed_obj : Node3D
 
 const modulate_2_alpha := 0.9
+const camera_rotation_menu := PI / 3
+const arms_position_menu := Vector3(0, 0, 0.700)
+const anim_duration_menu := 1.0
+var plane_pos_before_menu : Transform3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,8 +34,7 @@ func start_audio() -> void:
 
 func _on_play_clicked() -> void:
 	await resume_2d()
-	# await  anim
-	hide_menu()
+	await hide_menu()
 	_game_2d.start_game()
 
 func _on_game_finished() -> void:
@@ -39,10 +42,39 @@ func _on_game_finished() -> void:
 	show_menu()
 	
 func show_menu() -> void:
-	# TODO anim
+	var plane_3d := Config.player_node.get_3d_node()
+	plane_pos_before_menu = plane_3d.global_transform
+	var target_plane_pos := (%PlaneMenuMarker3D as Node3D).global_transform
+	var tween := create_tween()
+	tween.tween_property(plane_3d, "global_transform", target_plane_pos, anim_duration_menu * .9) \
+		.from_current().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.parallel().tween_property(arms, "global_position", arms_position_menu, anim_duration_menu * .9) \
+		.from_current().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.parallel().tween_property(%CameraAxis as Node3D, "rotation:x", camera_rotation_menu, anim_duration_menu) \
+		.from_current().set_delay(anim_duration_menu * .1) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.play()
+	grab_with_right_hand(%RightHandMenuMarker3D as Node3D, 0.4)
+	await tween.finished
+	
 	_menu.show()
+
 func hide_menu() -> void:
-	# TODO anim
+	var plane_3d := Config.player_node.get_3d_node()
+	var tween := create_tween()
+	tween.tween_property(plane_3d, "global_transform", plane_pos_before_menu, anim_duration_menu * .9) \
+		.from_current().set_delay(anim_duration_menu * .1) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.parallel().tween_property(arms, "global_position", Vector3.ZERO, anim_duration_menu * .9) \
+		.from_current().set_delay(anim_duration_menu * .1) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.parallel().tween_property(%CameraAxis as Node3D, "rotation:x", 0.0, anim_duration_menu) \
+		.from_current() \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.play()
+	grab_with_right_hand(%RightHandRestMarker3D as Node3D, 0.4)
+	await tween.finished
+	
 	_menu.hide()
 
 func pause_2d(instant: bool = false) -> void:
@@ -54,7 +86,6 @@ func pause_2d(instant: bool = false) -> void:
 		const duration := 0.25
 		tween.tween_property(_modulate_2d, "color:a", 0.0, duration).from(modulate_2_alpha) \
 			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-		#tween.parallel().tween_property(arms.mat, "albedo_color:a", 1.0, duration).from(.5)
 		tween.play()
 		await tween.finished
 	
@@ -63,7 +94,6 @@ func resume_2d() -> void:
 	const duration := 0.5
 	tween.tween_property(_modulate_2d, "color:a", modulate_2_alpha, duration).from(0.0) \
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	#tween.parallel().tween_property(arms.mat, "albedo_color:a", .5, duration).from(1.0)
 	tween.play()
 	
 	_menu.hide()
@@ -161,10 +191,8 @@ func _physics_process(_delta: float) -> void:
 		(%RightHandMovableMarker3D as Node3D).global_transform = right_hand_grabbed_obj.global_transform
 
 func grab_with_right_hand(obj: Node3D, speed: float = 0.0) -> void:
-	var ik := %SkeletonIK3DRight as SkeletonIK3D
+	#var ik := arms.skeleton_ik_left
 	var interp_target := (%RightHandMovableMarker3D as Node3D)
-	if not ik.is_running():
-		ik.start()
 	right_hand_grabbed_obj = obj if obj != null else (%RightHandRestMarker3D as Node3D)
 	
 	if right_hand_tween != null:
