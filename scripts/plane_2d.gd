@@ -187,7 +187,7 @@ func take_damage() -> void:
 	if hitpoint == 0:
 		destroyed.emit()
 	else:
-		VoiceManagerSingleton.play(VoiceManager.Type.PlayerDamage)
+		(VoiceManagerSingleton as VoiceManager).play(VoiceManager.Type.PlayerDamage)
 		trigger_shield()
 	# TODO sound fx
 
