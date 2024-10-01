@@ -42,13 +42,14 @@ func show_weapon_options(
 	slot_container.hide()
 	weapon_buttons[0].text = "Pick " + name1
 	weapon_buttons[1].text = "Pick " + name2
-	weapon_buttons[0].tooltip_text = desc1
-	weapon_buttons[1].tooltip_text = desc2
+	(weapon_buttons[0].get_child(0) as Label).text = desc1
+	(weapon_buttons[1].get_child(0) as Label).text = desc2
 	(%RecycleButton as Button).disabled = not allow_repair
 
-func show_slots(free_slots: Array[bool]) -> void:
+func show_slots(slots: Array[String]) -> void:
 	weapon_container.hide()
 	slot_container.show()
-	slot_buttons[0].text = "Put" if free_slots[0] else "Replace"
-	slot_buttons[1].text = "Put" if free_slots[1] else "Replace"
-	slot_buttons[2].text = "Put" if free_slots[2] else "Replace"
+	(%RepairLabel as Control).hide()
+	slot_buttons[0].text = "Put here" if slots[0] == "" else "Replace " + slots[0]
+	slot_buttons[1].text = "Put here" if slots[1] == "" else "Replace " + slots[1]
+	slot_buttons[2].text = "Put here" if slots[2] == "" else "Replace " + slots[2]

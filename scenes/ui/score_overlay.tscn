@@ -1,16 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://y1ajs3pqfl4p"]
 
 [ext_resource type="Script" path="res://scripts/ui/score_overlay.gd" id="1_ck6f8"]
+[ext_resource type="LabelSettings" uid="uid://cpdhvt73q0p3u" path="res://resources/themes/border_label.tres" id="2_44l1k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ogutn"]
 font_size = 60
 font_color = Color(0.82, 0.3936, 0.3936, 1)
 outline_size = 25
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_kk3bi"]
-font_size = 24
-outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_kp5rf"]
@@ -52,7 +48,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Enemies killed: 12 xp
 Boss killed: 50 xp"
-label_settings = SubResource("LabelSettings_kk3bi")
+label_settings = ExtResource("2_44l1k")
 horizontal_alignment = 1
 vertical_alignment = 2
 

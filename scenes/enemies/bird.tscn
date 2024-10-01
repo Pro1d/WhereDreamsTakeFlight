@@ -14,7 +14,6 @@ point_count = 5
 [node name="Bird" instance=ExtResource("1_eswgx")]
 move_speed = 500.0
 auto_shoot_delay = 0.0
-aim_player = false
 
 [node name="CollisionShape2D" parent="2D/Body" index="0"]
 shape = SubResource("CircleShape2D_vo1x1")
@@ -34,7 +33,7 @@ round_precision = 4
 
 [node name="Line2D4" type="Line2D" parent="2D/Body/Visual" index="1"]
 rotation = 3.14159
-points = PackedVector2Array(8, 10, 25, 5, 35, 20, 36, -19, 25, -6, 7, -9)
+points = PackedVector2Array(8, 10, 21.9999, 22.0001, 35, 20, 22, 5.5774e-05, 36, -19, 21.0001, -20.9999, 7.00002, -6.99998)
 width = 6.0
 width_curve = SubResource("Curve_npmnb")
 texture = ExtResource("2_2mo43")

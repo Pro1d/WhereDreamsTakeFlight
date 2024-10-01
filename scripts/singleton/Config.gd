@@ -82,9 +82,9 @@ class Exp:
 	var xp := 0
 	var xp_next_level := 100
 
-func get_level_from_xp() -> Exp:
+func get_level_from_xp(_xp: int = -1) -> Exp:
 	var e := Exp.new()
-	e.xp = xp
+	e.xp = xp if _xp == -1 else _xp
 	
 	while e.xp > e.xp_next_level:
 		e.level += 1

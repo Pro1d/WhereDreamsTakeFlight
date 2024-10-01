@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://7ndbh0djb8di"]
+[gd_scene load_steps=4 format=3 uid="uid://7ndbh0djb8di"]
 
 [ext_resource type="Script" path="res://scripts/ui/weapon_overlay.gd" id="1_fj7y0"]
+[ext_resource type="LabelSettings" uid="uid://cpdhvt73q0p3u" path="res://resources/themes/border_label.tres" id="2_kr4aq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_orsab"]
 font_size = 60
@@ -33,7 +34,8 @@ layout_mode = 2
 
 [node name="WeaponContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer2"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
+visible = false
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme_override_constants/separation = 100
 
@@ -44,6 +46,21 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "Pick bettery
 "
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer2/WeaponContainer/Weapon1Button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 435.0
+offset_top = -14.5
+offset_right = 366.0
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "It bounces!"
+label_settings = ExtResource("2_kr4aq")
 
 [node name="RecycleButton" type="Button" parent="MarginContainer/CenterContainer2/WeaponContainer"]
 unique_name_in_owner = true
@@ -60,18 +77,33 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "Pick weapon"
 
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer2/WeaponContainer/Weapon2Button"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 435.0
+offset_top = -14.5
+offset_right = 366.0
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "It bounces!"
+label_settings = ExtResource("2_kr4aq")
+
 [node name="SlotContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer2"]
 unique_name_in_owner = true
-visible = false
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 90
 
 [node name="SlotButton3" type="Button" parent="MarginContainer/CenterContainer2/SlotContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "The weapon effect will be shared
 with the adjacent weapon(s)."
-text = "Replace/Put"
+text = "Replace/put here"
 
 [node name="SlotButton2" type="Button" parent="MarginContainer/CenterContainer2/SlotContainer"]
 unique_name_in_owner = true
@@ -87,9 +119,17 @@ tooltip_text = "The weapon effect will be shared
 with the adjacent weapon(s)."
 text = "Replace/Put"
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="Label2" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "Select an option"
+text = "Get a new weapon..."
+label_settings = SubResource("LabelSettings_orsab")
+horizontal_alignment = 1
+
+[node name="RepairLabel" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "or repair your plane."
 label_settings = SubResource("LabelSettings_orsab")
 horizontal_alignment = 1

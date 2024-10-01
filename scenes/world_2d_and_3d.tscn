@@ -229,7 +229,7 @@ max_iterations = 20
 
 [node name="PlaneCloseUpMarker3D" type="Marker3D" parent="3D/Markers"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.097, 0.244802, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.137601, 0.268021, 0)
 
 [node name="RightHandRestMarker3D" type="Marker3D" parent="3D/Markers"]
 unique_name_in_owner = true

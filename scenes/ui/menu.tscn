@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://chckwtnrrluej"]
+[gd_scene load_steps=3 format=3 uid="uid://chckwtnrrluej"]
 
 [ext_resource type="Script" path="res://scripts/ui/menu.gd" id="1_qn871"]
+[ext_resource type="LabelSettings" uid="uid://cpdhvt73q0p3u" path="res://resources/themes/border_label.tres" id="2_5nk5s"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -52,7 +53,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Exp. 15 / 250"
+text = "Next lvel: 15 / 250 exp. "
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -61,6 +62,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Level 5 (max)"
+label_settings = ExtResource("2_5nk5s")
 horizontal_alignment = 1
 
 [node name="VisitButton" type="Button" parent="VBoxContainer/WhalepassTopBar"]
@@ -125,6 +127,7 @@ text = "Wooden Plane - \"My very first plane!\"
 +20% damage with only one weapon equipped
 +15% projectiles and plane speed
 +5% fire rate and damage"
+label_settings = ExtResource("2_5nk5s")
 horizontal_alignment = 1
 vertical_alignment = 2
 

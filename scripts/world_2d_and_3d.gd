@@ -100,7 +100,7 @@ func resume_2d() -> void:
 	await tween.finished
 	get_tree().paused = false
 
-func player_pick_weapon(w1: Weapon, w2: Weapon, free_slots: Array[bool], repair_allowed: bool) -> Weapon:
+func player_pick_weapon(w1: Weapon, w2: Weapon, occupied_slots: Array[String], repair_allowed: bool) -> Weapon:
 	w1._root_3d.hide()
 	w2._root_3d.hide()
 	
@@ -149,7 +149,7 @@ func player_pick_weapon(w1: Weapon, w2: Weapon, free_slots: Array[bool], repair_
 	
 	# Select slot
 	if selected_weapon != null:
-		wp_overlay.show_slots(free_slots)
+		wp_overlay.show_slots(occupied_slots)
 		await wp_overlay.slot_picked
 		selected_weapon.index = wp_overlay.last_slot_selected
 		

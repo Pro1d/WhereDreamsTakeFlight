@@ -39,8 +39,8 @@ func merge_with(other: WeaponSpec) -> void:
 
 func display_name() -> String:
 	match type:
-		Type.BatteryCell: return "baterry"
-		Type.Lego: return "brick"
+		Type.BatteryCell: return "battery"
+		Type.Lego: return "lego"
 		Type.MagnetStick: return "magnets"
 		Type.Pen: return "pen"
 		Type.RubberDuck: return "duck"
@@ -54,5 +54,5 @@ func display_desc() -> String:
 		Type.MagnetStick: return "Seek target."
 		Type.Pen: return "Pierce target."
 		Type.RubberDuck: return "Bouncing!"
-		Type.DollFork: return "Multiple shots."
+		Type.DollFork: return "More shots."
 		_: return "???"

@@ -12,7 +12,8 @@ enum State {
 	ENDING
 }
 enum Difficulty { Easy=0, Medium, Hard, Boss }
-const waves_count := 7
+const waves_per_difficulty := 2
+const waves_count := waves_per_difficulty * 3 + 1
 
 @export var overlay : Overlay = null
 @export var weapon_overlay : WeaponOverlay = null
@@ -79,12 +80,12 @@ func _on_wave_cleared() -> void:
 	
 	completed_waves += 1
 	if completed_waves < waves_count:
-		if completed_waves % 2 == 0 and completed_waves > 0:
+		if completed_waves % waves_per_difficulty == 0 and completed_waves > 0:
 			reset_world()
 			_state = State.WEAPON_SELECTION
 			await drop_and_pick_weapon()
 			_state = State.PLAYING
-		var difficulty := (completed_waves / 2) as Difficulty
+		var difficulty := (completed_waves / waves_per_difficulty) as Difficulty
 		load_next_wave(difficulty)
 	else:
 		finish_game(true)
@@ -142,13 +143,13 @@ func drop_and_pick_weapon() -> void:
 	#await get_tree().process_frame #create_timer(2.0).timeout
 	
 	var game_world := get_parent() as GameWorld3D
-	var free_slots : Array[bool] = [
-		player_plane.equipped_weapons[0] == null,
-		player_plane.equipped_weapons[1] == null,
-		player_plane.equipped_weapons[2] == null
+	var occupied_slots : Array[String] = [
+		"" if player_plane.equipped_weapons[0] == null else player_plane.equipped_weapons[0].weapon_spec.display_name(),
+		"" if player_plane.equipped_weapons[1] == null else player_plane.equipped_weapons[1].weapon_spec.display_name(),
+		"" if player_plane.equipped_weapons[2] == null else player_plane.equipped_weapons[2].weapon_spec.display_name()
 	]
 	var _selected_w := await game_world.player_pick_weapon(
-		w1, w2, free_slots, true # player_plane.hitpoint < player_plane.max_hitpoint
+		w1, w2, occupied_slots, true # player_plane.hitpoint < player_plane.max_hitpoint
 	)
 	# ALREADY DONE IN game_world.player_pick_weapon
 	#if w1 != selected_w:
