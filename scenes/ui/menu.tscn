@@ -119,14 +119,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(700, 500)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Wooden Plane - \"My very first plane!\"
-\"Uncle's gift for my birthday.\"
-\"It's a strong plane.\"
-\"My favorite color.\"
-\"Sky isn't the limit.\"
-+20% damage with only one weapon equipped
-+15% projectiles and plane speed
-+5% fire rate and damage"
+text = "Wooden Plane
+\"My very first plane!\""
 label_settings = ExtResource("2_5nk5s")
 horizontal_alignment = 1
 vertical_alignment = 2

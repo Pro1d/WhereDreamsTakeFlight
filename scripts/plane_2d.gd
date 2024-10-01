@@ -153,7 +153,7 @@ func merge_plane_spec(ws: WeaponSpec, weapon_index: int) -> void:
 static func display_description(t: Type) -> String:
 	match t:
 		Type.Wood:
-			return "Wooden Plane\n\"My first ever plane!\""
+			return "Wooden Plane\n\"My first plane ever!\""
 		Type.FireRed:
 			return "Fire Red\n2x damage when only one weapon equipped."
 		Type.BlackAndWhite:
