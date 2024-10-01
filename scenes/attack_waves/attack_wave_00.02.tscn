@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cytlgmc2lwfw3"]
+[gd_scene load_steps=5 format=3 uid="uid://cytlgmc2lwfw3"]
 
 [ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_exkb3"]
 [ext_resource type="PackedScene" uid="uid://dkg7gcrs3s7jc" path="res://scenes/enemies/bird.tscn" id="2_pjdnt"]
+[ext_resource type="PackedScene" uid="uid://bkr5nqrgfbf2w" path="res://scenes/enemies/copter.tscn" id="3_x8xit"]
 
 [sub_resource type="Curve2D" id="Curve2D_qsey3"]
 _data = {
@@ -10,6 +11,9 @@ _data = {
 point_count = 5
 
 [node name="AttackWave" instance=ExtResource("1_exkb3")]
+
+[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
+position = Vector2(6.10352e-05, 0)
 
 [node name="EightLoop" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
 curve = SubResource("Curve2D_qsey3")
@@ -61,3 +65,15 @@ rotation = -2.45558
 progress = 1686.92
 
 [node name="Bird" parent="FromBackPath/FromBackPathFollow2D/EightLoop/PathFollow2D7" index="0" instance=ExtResource("2_pjdnt")]
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D" index="1" instance=ExtResource("3_x8xit")]
+position = Vector2(1028, 201)
+rotation = -3.14159
+first_shoot_delay = 4.0
+auto_shoot_delay = 2.0
+
+[node name="Copter2" parent="FromBackPath/FromBackPathFollow2D" index="2" instance=ExtResource("3_x8xit")]
+position = Vector2(1029, 563)
+rotation = -3.14159
+first_shoot_delay = 3.0
+auto_shoot_delay = 2.0

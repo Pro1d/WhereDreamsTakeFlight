@@ -6,26 +6,29 @@
 
 [sub_resource type="Curve2D" id="Curve2D_ocglt"]
 _data = {
-"points": PackedVector2Array(10.0756, -251.722, -10.0756, 251.722, 1300, -167, 146.25, -2.89739, -146.25, 2.89739, 1194, 708, 167.762, 0.282854, -167.762, -0.282854, 1011, 93, 140.635, -4.16521, -140.635, 4.16521, 825, 702, 318.707, 7.13524, -318.707, -7.13524, -220, 704)
+"points": PackedVector2Array(-1.69695, -559.49, 1.69695, 559.49, 1312, -160, 131.114, -2.89739, -131.114, 2.89739, 1216, 704, 134.427, -1.30455, -134.427, 1.30455, 1024, 64, 100.668, -83.393, -100.668, 83.393, 736, 608, 256.145, 1.3255, -256.145, -1.3255, 320, 704, -2.36129, 313.667, 2.36129, -313.667, 32, 384, -257.094, 2.82843, 257.094, -2.82843, 320, 64, -141.271, 0, 141.271, 0, 832, 64, -135.865, 1.96497, 135.865, -1.96497, 1024, 704, -162.001, 3.38085, 162.001, -3.38085, 1216, 64, 0, 0, 0, 0, 1536, 64)
 }
-point_count = 5
+point_count = 11
 
 [node name="AttackWave" instance=ExtResource("1_t8k2k")]
+
+[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
+position = Vector2(6.10352e-05, 0)
 
 [node name="Wave2AndPick" type="Path2D" parent="." index="1"]
 curve = SubResource("Curve2D_ocglt")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Wave2AndPick" index="0"]
-position = Vector2(1300, -167)
-rotation = 1.6108
+position = Vector2(1312, -160)
+rotation = 1.56776
 loop = false
 script = ExtResource("2_5q14k")
 
 [node name="Bird" parent="Wave2AndPick/PathFollow2D" index="0" instance=ExtResource("3_uosii")]
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Wave2AndPick" index="1"]
-position = Vector2(1300, -167)
-rotation = 1.6108
+position = Vector2(1312, -160)
+rotation = 1.56776
 loop = false
 script = ExtResource("2_5q14k")
 start_distance_offset = 140.0
@@ -33,28 +36,37 @@ start_distance_offset = 140.0
 [node name="Bird" parent="Wave2AndPick/PathFollow2D2" index="0" instance=ExtResource("3_uosii")]
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="Wave2AndPick" index="2"]
-position = Vector2(1300, -167)
-rotation = 1.6108
+position = Vector2(1312, -160)
+rotation = 1.56776
 loop = false
 script = ExtResource("2_5q14k")
 start_distance_offset = 280.0
 
 [node name="Bird" parent="Wave2AndPick/PathFollow2D3" index="0" instance=ExtResource("3_uosii")]
 
-[node name="PathFollow2D4" type="PathFollow2D" parent="Wave2AndPick" index="3"]
-position = Vector2(1300, -167)
-rotation = 1.6108
+[node name="PathFollow2D5" type="PathFollow2D" parent="Wave2AndPick" index="3"]
+position = Vector2(1312, -160)
+rotation = 1.56776
 loop = false
 script = ExtResource("2_5q14k")
-start_distance_offset = 420.0
-
-[node name="Bird" parent="Wave2AndPick/PathFollow2D4" index="0" instance=ExtResource("3_uosii")]
-
-[node name="PathFollow2D5" type="PathFollow2D" parent="Wave2AndPick" index="4"]
-position = Vector2(1300, -167)
-rotation = 1.6108
-loop = false
-script = ExtResource("2_5q14k")
-start_distance_offset = 560.0
+start_distance_offset = 840.0
 
 [node name="Bird" parent="Wave2AndPick/PathFollow2D5" index="0" instance=ExtResource("3_uosii")]
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="Wave2AndPick" index="4"]
+position = Vector2(1312, -160)
+rotation = 1.56776
+loop = false
+script = ExtResource("2_5q14k")
+start_distance_offset = 980.0
+
+[node name="Bird" parent="Wave2AndPick/PathFollow2D6" index="0" instance=ExtResource("3_uosii")]
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="Wave2AndPick" index="5"]
+position = Vector2(1312, -160)
+rotation = 1.56776
+loop = false
+script = ExtResource("2_5q14k")
+start_distance_offset = 1120.0
+
+[node name="Bird" parent="Wave2AndPick/PathFollow2D7" index="0" instance=ExtResource("3_uosii")]

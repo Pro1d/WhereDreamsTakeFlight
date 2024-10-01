@@ -5,17 +5,20 @@
 
 [sub_resource type="Curve2D" id="Curve2D_k5wei"]
 _data = {
-"points": PackedVector2Array(154.682, 50.8542, -154.682, -50.8542, 1664, 128, 108.065, -82.6381, -108.065, 82.6381, 1152, 160, 127.136, -122.898, -127.136, 122.898, 864, 576, 125.017, 137.73, -125.017, -137.73, 160, 544, 199.179, -1.52588e-05, -199.179, 1.52588e-05, -96, 64)
+"points": PackedVector2Array(154.682, 50.8542, -154.682, -50.8542, 1629, 159, 127.665, -107.583, -127.665, 107.583, 1133, 157, 127.136, -122.898, -127.136, 122.898, 765, 615, 125.017, 137.73, -125.017, -137.73, 235, 622, 159.979, 162.144, -159.979, -162.144, -125, 148)
 }
 point_count = 5
 
 [node name="AttackWave" instance=ExtResource("1_6lm1l")]
 
+[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
+position = Vector2(6.10352e-05, 0)
+
 [node name="Wave" type="Path2D" parent="." index="1"]
 curve = SubResource("Curve2D_k5wei")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Wave" index="0"]
-position = Vector2(1664, 128)
+position = Vector2(1629, 159)
 rotation = -2.82396
 loop = false
 

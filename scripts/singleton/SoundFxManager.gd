@@ -41,6 +41,7 @@ func _ready() -> void:
 	_players[Type.ProjectileExplode] = do.call(preload("res://assets/sounds/fx/DefiniteShot5.ogg"))
 	_players[Type.Shielding] = do.call(preload("res://assets/sounds/fx/meld.ogg"))
 	_players[Type.ProjectileHit] = do.call(preload("res://assets/sounds/fx/tuck.ogg"), -8)
+	_players[Type.Repair] = do.call(preload("res://assets/sounds/fx/tliiing.ogg"))
 
 
 func play(type: Type) -> void:
