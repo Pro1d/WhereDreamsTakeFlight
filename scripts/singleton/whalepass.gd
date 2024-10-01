@@ -37,11 +37,9 @@ class PlayerBaseProgressResp:
 	var lastCompletedLevel: int
 
 const api_key_header := "X-Api-Key"
-const api_key_value := "dc2abf737024ae762b8fd50a540e5efa" # "407b186e6b73ba3b2314bc7a569357a9"
-const battlepass_id := "bcce814a-6661-4bb4-850f-5cc2e4c5f937"
-const game_id := "92045a22-957c-4962-88be-36b890cac6f5"
-
-const challenge_kill_bad_teddy := "44226f7c-0de2-409d-b0a5-63831908652e"
+const api_key_value := "dc2abf737024ae762b8fd50a540e5efa"
+const battlepass_id := "7d7c8434-3a28-4ef6-ba4e-0d66ccc1eae0"
+const game_id := "8a39a5d5-ee51-4c31-bdd6-b50b6ec8f117"
 
 #var player_id := ""
 #var whalepass_pid := ""

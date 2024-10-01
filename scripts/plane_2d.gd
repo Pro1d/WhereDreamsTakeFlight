@@ -152,7 +152,7 @@ static func display_description(t: Type) -> String:
 		Type.FireRed:
 			return "Fire Red\n2x damage when only one weapon equipped."
 		Type.BlackAndWhite:
-			return "Light And Shadow\n+20% damage"
+			return "White Shadow\n+20% damage"
 		Type.EmeraldGreen:
 			return "Emerald Green\n+50% fire rate to middle weapon."
 		Type.AboveSky:

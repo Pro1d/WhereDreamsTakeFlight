@@ -33,7 +33,7 @@ const plane_type_by_reward_name := {
 	"wood": PlayerPlane.Type.Wood,
 	"red": PlayerPlane.Type.FireRed,
 	"green": PlayerPlane.Type.EmeraldGreen,
-	"black": PlayerPlane.Type.BlackAndWhite,
+	"white": PlayerPlane.Type.BlackAndWhite,
 	"sky": PlayerPlane.Type.AboveSky
 }
 var available_planes : Array[bool] = [true, false, false, false, false]
