@@ -53,6 +53,7 @@ layout_mode = 2
 text = "Enemies killed: 12 xp
 Boss killed: 50 xp"
 label_settings = SubResource("LabelSettings_kk3bi")
+horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="TotalLabel" type="Label" parent="CenterContainer/VBoxContainer"]
@@ -61,6 +62,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Total: 62 xp"
 label_settings = SubResource("LabelSettings_kp5rf")
+horizontal_alignment = 1
 
 [node name="MenuButton" type="Button" parent="CenterContainer/VBoxContainer"]
 unique_name_in_owner = true

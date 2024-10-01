@@ -12,8 +12,17 @@ func set_victory(v: bool) -> void:
 
 func commit_xp_gain(enemy: int, boss: int) -> void:
 	var total := enemy + boss
-	(%SummaryLabel as Label).text = "Enemies killed: %d xp\nBoss killed: %d xp" % [enemy, boss]
-	(%TotalLabel as Label).text = "Total: %d xp" % [total]
+	_display_xp(enemy, boss, total)
+	var t := create_tween()
+	t.tween_method(_display_total_xp, 0, total, 2.0) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	t.play()
 	(%MenuButton as Button).disabled = true
 	await WhalepassSingleton.progress_xp(total)
 	(%MenuButton as Button).disabled = false
+
+func _display_xp(e: int, b: int, t: int) -> void:
+	(%SummaryLabel as Label).text = "Enemies killed: %d exp\nBoss killed: %d exp" % [e, b]
+	_display_total_xp(t)
+func _display_total_xp(t: int) -> void:
+	(%TotalLabel as Label).text = "Total: %d exp" % [t]
