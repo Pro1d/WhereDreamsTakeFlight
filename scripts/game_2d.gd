@@ -72,8 +72,6 @@ func _on_wave_cleared() -> void:
 	if _state != State.PLAYING:
 		return
 	
-	reset_world()
-	
 	if fighting_boss:
 		boss_kill_count += current_wave.killed_enemies
 	else:
@@ -82,6 +80,7 @@ func _on_wave_cleared() -> void:
 	completed_waves += 1
 	if completed_waves < waves_count:
 		if completed_waves % 2 == 0 and completed_waves > 0:
+			reset_world()
 			_state = State.WEAPON_SELECTION
 			await drop_and_pick_weapon()
 			_state = State.PLAYING

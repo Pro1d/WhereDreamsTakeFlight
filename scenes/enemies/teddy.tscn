@@ -1,0 +1,378 @@
+[gd_scene load_steps=9 format=3 uid="uid://der0u2ed6eu8j"]
+
+[ext_resource type="PackedScene" uid="uid://bkgmgjhdcppcw" path="res://scenes/enemy.tscn" id="1_0kl6d"]
+[ext_resource type="ArrayMesh" uid="uid://d31j0xjonn8xe" path="res://assets/models/all/Teddy.res" id="2_e10qk"]
+[ext_resource type="Script" path="res://scripts/enemies/teddy.gd" id="2_pdljp"]
+[ext_resource type="Texture2D" uid="uid://da0uv6a1fj1w8" path="res://resources/materials/line_texture.tres" id="4_2go6x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vmucy"]
+resource_local_to_scene = true
+radius = 150.0
+
+[sub_resource type="Curve" id="Curve_855fm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.188192, 0.871775), 0.0, 0.0, 0, 0, Vector2(0.420664, 1), 0.0, 0.0, 0, 0, Vector2(0.697417, 0.753414), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_n3j2b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.188192, 0.871775), 0.0, 0.0, 0, 0, Vector2(0.420664, 1), 0.0, 0.0, 0, 0, Vector2(0.697417, 0.753414), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_rllac"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.188192, 0.871775), 0.0, 0.0, 0, 0, Vector2(0.420664, 1), 0.0, 0.0, 0, 0, Vector2(0.697417, 0.753414), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="Teddy" instance=ExtResource("1_0kl6d")]
+script = ExtResource("2_pdljp")
+radius = 150.0
+auto_shoot_delay = 0.8
+hit_points = 3000.0
+metadata/_edit_horizontal_guides_ = [-81.0, 80.0]
+
+[node name="Teddy" type="MeshInstance3D" parent="3D/Visual" index="0"]
+mesh = ExtResource("2_e10qk")
+skeleton = NodePath("../../..")
+
+[node name="2D" parent="." index="1"]
+position = Vector2(0, 0.1)
+y_offset = 0.1
+
+[node name="CollisionShape2D" parent="2D/Body" index="0"]
+shape = SubResource("CircleShape2D_vmucy")
+
+[node name="Line2D10" type="Line2D" parent="2D/Body/Visual" index="0"]
+position = Vector2(4, 173.9)
+points = PackedVector2Array(-51.5683, -34.1937, -63.5683, -6.1937, -39.5683, -30.1937)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_855fm")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D11" type="Line2D" parent="2D/Body/Visual" index="1"]
+position = Vector2(74, -99.1)
+rotation = -3.12044
+points = PackedVector2Array(-19.6571, 16.4194, -39.2296, 36.838, -8.55381, 21.1857)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_855fm")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D12" type="Line2D" parent="2D/Body/Visual" index="2"]
+position = Vector2(28, -145.1)
+points = PackedVector2Array(-58, -1, -65, -22, -45, -5)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_855fm")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D13" type="Line2D" parent="2D/Body/Visual" index="3"]
+position = Vector2(91, -149.1)
+rotation = -3.12044
+points = PackedVector2Array(-31.347, -63.3512, -40.5621, -26.1479, -21.1377, -53.5649)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_855fm")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D14" type="Line2D" parent="2D/Body/Visual" index="4"]
+position = Vector2(100, 58.9)
+rotation = -3.12044
+points = PackedVector2Array(-20.4164, -19.4725, -18.6305, -29.6126, -44.6437, -29.9624)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_855fm")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D15" type="Line2D" parent="2D/Body/Visual" index="5"]
+position = Vector2(76, 112.9)
+rotation = -3.12044
+points = PackedVector2Array(-33.272, 7.89921, -37.948, -24.009, -22.3379, 4.66722)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_855fm")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D6" type="Line2D" parent="2D/Body/Visual" index="6"]
+position = Vector2(42, -2.1)
+points = PackedVector2Array(24, 31, 38, 32, 48, 17, 70, -1.1, 49, -16, 41, -32, 25, -34, 18, -8, 29, 0, 18, 10)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_n3j2b")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D5" type="Line2D" parent="2D/Body/Visual" index="7"]
+position = Vector2(21, -3)
+points = PackedVector2Array(-83, 136.9, -66, 133.9, -52, 141.9, -51, 153.9, -19, 151.9, 19, 145.9, 44, 135.9, 62, 123.9, 72, 107.9, 95, 98.9, 98, 76.9, 116, 69.9, 116, 53.9, 108, 43.9, 109, -38.1, 118, -46.1, 104, -74.1, 84, -87.1, 81, -100.1, 73, -104.1, 60, -108.1, 54, -123.1, 37, -133.1, 5, -145.1, -30, -146.1, -51, -136.1, -62, -140.1)
+width = 6.0
+width_curve = SubResource("Curve_n3j2b")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Canon1" type="Node2D" parent="2D/Body/Visual" index="8"]
+unique_name_in_owner = true
+position = Vector2(69, 172.9)
+
+[node name="Line2D12" type="Line2D" parent="2D/Body/Visual/Canon1" index="0"]
+position = Vector2(184, 49)
+points = PackedVector2Array(-193, -19, -182, 2, -170, -8, -170, -59, -182, -69, -193, -49, -187, -49, -187, -19)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D13" type="Line2D" parent="2D/Body/Visual/Canon1" index="1"]
+position = Vector2(184, 34)
+points = PackedVector2Array(-174, 13, -154, 12, -155, -50, -174, -49)
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D14" type="Line2D" parent="2D/Body/Visual/Canon1" index="2"]
+position = Vector2(185, 35)
+points = PackedVector2Array(-154, -27, -99, -30, -99, -38, -154, -42)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D16" type="Line2D" parent="2D/Body/Visual/Canon1" index="3"]
+position = Vector2(185, 62)
+points = PackedVector2Array(-154, -27, -99, -31, -99, -38, -154, -42)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D15" type="Line2D" parent="2D/Body/Visual/Canon1" index="4"]
+position = Vector2(158, 49)
+points = PackedVector2Array(-202, -31, -190, -27, -184, -17, -174, -18, -174, -27.189, -169, -26, -169, -41, -174, -41.4756, -174, -50, -183, -52, -190, -42, -202, -40)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="SpawnA1Marker2D" type="Marker2D" parent="2D/Body/Visual/Canon1" index="5"]
+unique_name_in_owner = true
+position = Vector2(72, 0)
+
+[node name="SpawnA2Marker2D" type="Marker2D" parent="2D/Body/Visual/Canon1" index="6"]
+unique_name_in_owner = true
+position = Vector2(71, 28)
+
+[node name="Canon2" type="Node2D" parent="2D/Body/Visual" index="9"]
+unique_name_in_owner = true
+position = Vector2(67, -204.1)
+
+[node name="Line2D12" type="Line2D" parent="2D/Body/Visual/Canon2" index="0"]
+position = Vector2(184, 49)
+points = PackedVector2Array(-193, -19, -182, 2, -170, -8, -170, -59, -182, -69, -193, -49, -187, -49, -187, -19)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D13" type="Line2D" parent="2D/Body/Visual/Canon2" index="1"]
+position = Vector2(184, 34)
+points = PackedVector2Array(-174, 13, -154, 12, -155, -50, -174, -49)
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D14" type="Line2D" parent="2D/Body/Visual/Canon2" index="2"]
+position = Vector2(185, 35)
+points = PackedVector2Array(-154, -27, -99, -30, -99, -38, -154, -42)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D16" type="Line2D" parent="2D/Body/Visual/Canon2" index="3"]
+position = Vector2(185, 62)
+points = PackedVector2Array(-154, -27, -99, -31, -99, -38, -154, -42)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D15" type="Line2D" parent="2D/Body/Visual/Canon2" index="4"]
+position = Vector2(158, 49)
+points = PackedVector2Array(-202, -31, -190, -27, -184, -17, -174, -18, -174, -27.189, -169, -26, -169, -41, -174, -41.4756, -174, -50, -183, -52, -190, -42, -202, -40)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="SpawnA3Marker2D" type="Marker2D" parent="2D/Body/Visual/Canon2" index="5"]
+unique_name_in_owner = true
+position = Vector2(72, 0)
+
+[node name="SpawnA4Marker2D" type="Marker2D" parent="2D/Body/Visual/Canon2" index="6"]
+unique_name_in_owner = true
+position = Vector2(71, 28)
+
+[node name="Canon3" type="Node2D" parent="2D/Body/Visual" index="10"]
+unique_name_in_owner = true
+position = Vector2(50, 0)
+
+[node name="Line2D12" type="Line2D" parent="2D/Body/Visual/Canon3" index="0"]
+position = Vector2(317, 35)
+points = PackedVector2Array(-194, -23, -194, 14, -174, 8, -174, -10.3352, -167, -10, -167, -60, -174, -60.8765, -174, -78, -193, -84, -194, -48, -186, -47, -186, -23)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D13" type="Line2D" parent="2D/Body/Visual/Canon3" index="1"]
+position = Vector2(293, 20)
+points = PackedVector2Array(-160, -72, -177, -77, -186, -99, -204, -100, -204.253, -59.7355, -198, -57, -198, 18, -204.764, 21.5341, -205, 59, -184, 58, -179, 39, -161, 33)
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D14" type="Line2D" parent="2D/Body/Visual/Canon3" index="2"]
+position = Vector2(295, 34)
+points = PackedVector2Array(-144, -27, -96, -25, -96, -44, -145, -43)
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D15" type="Line2D" parent="2D/Body/Visual/Canon3" index="3"]
+position = Vector2(297, 1)
+points = PackedVector2Array(-152, -28, -100, -47, -108, -62, -153, -39)
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Line2D16" type="Line2D" parent="2D/Body/Visual/Canon3" index="4"]
+position = Vector2(295, 62)
+points = PackedVector2Array(-150, -24, -105, 1, -96, -19, -147, -37)
+width = 6.0
+width_curve = SubResource("Curve_rllac")
+texture = ExtResource("4_2go6x")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="SpawnB1Marker2D" type="Marker2D" parent="2D/Body/Visual/Canon3" index="5"]
+unique_name_in_owner = true
+position = Vector2(194, 0)
+
+[node name="SpawnB2Marker2D" type="Marker2D" parent="2D/Body/Visual/Canon3" index="6"]
+unique_name_in_owner = true
+position = Vector2(187.018, 50)
+rotation = 0.436332
+
+[node name="SpawnB3Marker2D" type="Marker2D" parent="2D/Body/Visual/Canon3" index="7"]
+unique_name_in_owner = true
+position = Vector2(187.018, -50)
+rotation = -0.436332

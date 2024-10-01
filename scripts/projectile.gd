@@ -194,7 +194,7 @@ func _update_shape_type() -> void:
 		c.visible = (shape_type == i)
 		if c.visible:
 			(c as Line2D).width_curve = Config.curve_width_resources.pick_random()
-			if i == Shape.Circle:
+			if i == Shape.Circle or i == Shape.Cross:
 				c.rotation = randf() * 2 * PI
 		i += 1
 

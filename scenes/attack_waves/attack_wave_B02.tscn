@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqc704316fgog"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_hvh5a"]
+[ext_resource type="PackedScene" uid="uid://der0u2ed6eu8j" path="res://scenes/enemies/teddy.tscn" id="2_6j06i"]
+
+[node name="AttackWave" instance=ExtResource("1_hvh5a")]
+
+[node name="Teddy" parent="FromBackPath/FromBackPathFollow2D" index="0" instance=ExtResource("2_6j06i")]
+position = Vector2(1250, 384)
+rotation = 3.14159
+first_shoot_delay = 3.5
+hit_points = 2500.0

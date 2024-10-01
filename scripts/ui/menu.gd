@@ -35,7 +35,7 @@ func _on_inventory_updated() -> void:
 func _display_level_progression() -> void:
 	var e := Config.get_level_from_xp()
 	(%PlayerLevelLabel as Label).text = "Level %d" % [e.level] + (" (max)" if e.level == Config.Exp.max_level else "")
-	(%XpLabel as Label).text = "XP: %d/%d" % [e.xp, e.xp_next_level]
+	(%XpLabel as Label).text = "Next Level: %d/%d Exp." % [e.xp, e.xp_next_level]
 	(%XpProgressBar as ProgressBar).value = e.xp
 	(%XpProgressBar as ProgressBar).max_value = e.xp_next_level
 
