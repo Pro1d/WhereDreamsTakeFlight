@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfoaaqydn6rhb"]
+[gd_scene load_steps=15 format=3 uid="uid://dfoaaqydn6rhb"]
 
 [ext_resource type="Script" path="res://scripts/plane_2d.gd" id="1_mrkph"]
 [ext_resource type="ArrayMesh" uid="uid://dry3um5mv3hvb" path="res://assets/models/all/Plane.res" id="2_kahex"]
 [ext_resource type="Script" path="res://scripts/utils/remote_transform_2d_to_3d.gd" id="2_obrjo"]
+[ext_resource type="Texture2D" uid="uid://d3tfswasqdd0p" path="res://assets/textures/particle_cloud.png" id="3_44k8h"]
 [ext_resource type="Texture2D" uid="uid://da0uv6a1fj1w8" path="res://resources/materials/line_texture.tres" id="7_2k32o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w2wh5"]
@@ -129,6 +130,14 @@ _data = {
 "shielding": SubResource("Animation_6fpnw")
 }
 
+[sub_resource type="Curve" id="Curve_khnac"]
+_data = [Vector2(0, 0.428571), 0.0, 0.0, 0, 0, Vector2(0.740741, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_armfv"]
+offsets = PackedFloat32Array(0, 0.179104, 0.604478, 1)
+colors = PackedColorArray(1, 0.266667, 0, 1, 0, 0, 0, 1, 0.59, 0.59, 0.59, 1, 1, 1, 1, 0)
+
 [node name="PlayerPlane" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 129
@@ -185,6 +194,19 @@ begin_cap_mode = 2
 end_cap_mode = 2
 round_precision = 4
 
+[node name="Shield5" type="Line2D" parent="ShieldShape"]
+position = Vector2(67.999, -288)
+points = PackedVector2Array(28.0003, 72.9999, 36.0003, 79.9999, 46.0003, 83.9998, 57.0003, 78.9998, 63.0003, 76.9998, 69.0002, 64.9997, 69.0002, 50.9997, 62.0001, 37.9998, 48.0001, 34.9998, 33.0001, 38.9999, 28.0002, 42.9999, 23.0002, 55.9999)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gurb")
+texture = ExtResource("7_2k32o")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
 [node name="Shield3" type="Line2D" parent="ShieldShape"]
 points = PackedVector2Array(-65.0002, -65.9998, -49.0003, -80.9998, -31.0003, -87.9999)
 width = 6.0
@@ -225,6 +247,24 @@ libraries = {
 "": SubResource("AnimationLibrary_m7d3t")
 }
 speed_scale = 0.2
+
+[node name="DamagedCPUParticles2D" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-15, 0)
+texture = ExtResource("3_44k8h")
+emission_shape = 3
+emission_rect_extents = Vector2(5, 5)
+direction = Vector2(-1, 0)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 220.0
+angular_velocity_min = -47.48
+angular_velocity_max = 47.47
+angle_max = 360.0
+scale_amount_min = 0.9
+scale_amount_curve = SubResource("Curve_khnac")
+color_ramp = SubResource("Gradient_armfv")
 
 [node name="RemoteTransform2DTo3D" type="Node2D" parent="." node_paths=PackedStringArray("_target_3d")]
 unique_name_in_owner = true

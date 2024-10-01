@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://do4q1xtyjh4u1"]
+[gd_scene load_steps=35 format=3 uid="uid://do4q1xtyjh4u1"]
 
 [ext_resource type="Script" path="res://scripts/world_2d_and_3d.gd" id="1_xm0yb"]
 [ext_resource type="Resource" uid="uid://b4cxfnq2h8wjw" path="res://resources/weapons/rubber_duck.tres" id="3_a6i1r"]
@@ -74,6 +74,21 @@ normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v40am"]
 normal = Vector2(0, 1)
+
+[sub_resource type="Curve" id="Curve_ciloy"]
+bake_resolution = 1
+_data = [Vector2(0, 0.142857), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_p7jbe"]
+bake_resolution = 1
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_7pakk"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.335821, 0.604478, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="World" type="Node3D"]
 process_mode = 3
@@ -334,6 +349,26 @@ position = Vector2(960, 239)
 [node name="Weapon2Marker2D" type="Marker2D" parent="2D/Markers"]
 unique_name_in_owner = true
 position = Vector2(960, 540)
+
+[node name="WindCPUParticles2D" type="CPUParticles2D" parent="2D"]
+position = Vector2(784, 384)
+amount = 4
+randomness = 0.7
+emission_shape = 3
+emission_rect_extents = Vector2(684, 384)
+particle_flag_align_y = true
+direction = Vector2(-1, 0)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 500.0
+scale_amount_min = 20.0
+scale_amount_max = 25.0
+split_scale = true
+scale_curve_x = SubResource("Curve_ciloy")
+scale_curve_y = SubResource("Curve_p7jbe")
+color = Color(1, 1, 1, 0.439216)
+color_ramp = SubResource("Gradient_7pakk")
 
 [node name="CanvasModulate2D" type="CanvasModulate" parent="."]
 unique_name_in_owner = true

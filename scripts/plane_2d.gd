@@ -13,7 +13,10 @@ enum Type {
 const base_speed := 500.0
 var speed := base_speed
 var max_hitpoint := 5
-var hitpoint := max_hitpoint
+var hitpoint := max_hitpoint :
+	set(h):
+		hitpoint = h
+		_update_damaged_fx()
 
 @export var type : Type :
 	set(t):
@@ -55,6 +58,7 @@ func _ready() -> void:
 	
 	_update_shield()
 	_update_plane_type()
+	_update_damaged_fx()
 	(%ShieldAnimationPlayer as AnimationPlayer).play("shielding")
 	#remove_child(_root_3d)
 	##Config.root_3d.add_child(_root_3d)
@@ -73,6 +77,7 @@ func _project_position_3d(t2d: Transform2D) -> void:
 	_root_3d.global_rotation.x = signf(t2d.origin.y - half_h) * absf((t2d.origin.y - half_h) / half_h) ** 1.5 * (-PI / 6)
 
 func reset() -> void:
+	(%DamagedCPUParticles2D as CPUParticles2D).restart()
 	hitpoint = max_hitpoint
 	for i in range(equipped_weapons.size()):
 		if equipped_weapons[i] != null:
@@ -174,6 +179,10 @@ func _update_shield() -> void:
 	shield_shape.visible = _shielded
 	shield_shape.disabled = not _shielded
 
+func _update_damaged_fx() -> void:
+	var p := %DamagedCPUParticles2D as CPUParticles2D
+	p.emitting = (hitpoint <= 1)
+	
 func _on_hit_box_entered(body: PhysicsBody2D) -> void:
 	#var proj := body as Projectile
 	#if proj != null and not proj.by_player:
