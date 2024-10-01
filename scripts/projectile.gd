@@ -122,17 +122,17 @@ func _move_by(motion: Vector2, reccursive: int = 3) -> void:
 			_move_by(rem, reccursive - 1)
 		# EXPLOSIVE
 		elif explosive:
-			_on_body_hit(body)
+			#_on_body_hit(body)
 			destroy_projectile(true)
 		# NORMAL
 		else:
 			_on_body_hit(body)
 			destroy_projectile(true)
 
-func _on_body_hit(body: PhysicsBody2D) -> void:
+func _on_body_hit(body: PhysicsBody2D, damage_factor: float = 1.0) -> void:
 	var enemy := Enemy.find_parent_enemy(body)
 	if enemy != null:
-		enemy.take_damage(damage)
+		enemy.take_damage(damage * damage_factor)
 	var player := body as PlayerPlane
 	if player != null:
 		player.take_damage()
@@ -149,7 +149,7 @@ func destroy_projectile(_hit: bool = false) -> void:
 			#if e != null:
 				#d -= e.radius
 			#if d < explosion_radius:
-			_on_body_hit(b)
+			_on_body_hit(b, 2.0)
 		# Explode fx
 		_explode_fx_root.show()
 		_explode_fx_animation.play("explode")

@@ -9,7 +9,7 @@ var save_file := ConfigFile.new()
 
 const REPAIR_HEALTH := 2
 const XP_PER_BOSS := 50
-const XP_PER_ENEMY := 2
+const XP_PER_ENEMY := 1
 
 var LAYER_PLAYER := 1 << 1
 var LAYER_ENEMY := 1 << 2

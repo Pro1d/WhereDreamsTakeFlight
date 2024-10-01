@@ -11,8 +11,8 @@ enum State {
 	WEAPON_SELECTION,
 	ENDING
 }
-
-const waves_count := 3
+enum Difficulty { Easy=0, Medium, Hard, Boss }
+const waves_count := 7
 
 @export var overlay : Overlay = null
 @export var weapon_overlay : WeaponOverlay = null
@@ -65,7 +65,7 @@ func start_game() -> void:
 	boss_kill_count = 0
 	overlay.show()
 	VoiceManagerSingleton.play(VoiceManager.Type.StartGame)
-	load_next_wave()
+	load_next_wave(Difficulty.Easy)
 	_state = State.PLAYING
 
 func _on_wave_cleared() -> void:
@@ -81,26 +81,27 @@ func _on_wave_cleared() -> void:
 	
 	completed_waves += 1
 	if completed_waves < waves_count:
-		_state = State.WEAPON_SELECTION
-		await drop_and_pick_weapon()
-		_state = State.PLAYING
-		load_next_wave()
+		if completed_waves % 2 == 0 and completed_waves > 0:
+			_state = State.WEAPON_SELECTION
+			await drop_and_pick_weapon()
+			_state = State.PLAYING
+		var difficulty := (completed_waves / 2) as Difficulty
+		load_next_wave(difficulty)
 	else:
 		finish_game(true)
 
-func  load_next_wave() -> void:
-	if completed_waves < waves_count - 1:
-		var col : Array[PackedScene]
-		if completed_waves < 1:
+func  load_next_wave(difficulty: Difficulty) -> void:
+	var col : Array[PackedScene]
+	match difficulty:
+		Difficulty.Easy:
 			col = waves_collection.easy_waves
-		elif completed_waves < 2:
+		Difficulty.Medium:
 			col = waves_collection.medium_waves
-		else: #if completed_waves < 3:
+		Difficulty.Hard:
 			col = waves_collection.hard_waves
-		load_wave(col.pick_random() as PackedScene, false)
-	else:
-		load_wave(waves_collection.boss_waves.pick_random() as PackedScene, true)
-		VoiceManagerSingleton.play(VoiceManager.Type.BossStarting)
+		Difficulty.Boss, _:
+			col = waves_collection.boss_waves
+	load_wave(col.pick_random() as PackedScene, difficulty == Difficulty.Boss)
 
 func load_wave(scene: PackedScene, boss: bool) -> void:
 	if current_wave != null:
@@ -108,6 +109,7 @@ func load_wave(scene: PackedScene, boss: bool) -> void:
 	if boss:
 		current_wave = scene.instantiate() as AttackWave
 		overlay.show_enemy_life(current_wave.total_max_hitpoints, current_wave.total_max_hitpoints)
+		VoiceManagerSingleton.play(VoiceManager.Type.BossStarting)
 	else:
 		current_wave = scene.instantiate() as AttackWave
 		overlay.hide_enemy_life()
