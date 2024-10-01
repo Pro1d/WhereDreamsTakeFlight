@@ -10,7 +10,7 @@ func _ready() -> void:
 	_display_level_progression()
 	_display_plane()
 	
-	(%VisitButton as Button).pressed.connect(func() -> void: OS.shell_open(_link))
+	(%VisitButton as Button).pressed.connect(_on_link_pressed)
 	(%PrevPlaneButton as Button).pressed.connect(_on_change_plane_pressed.bind(-1))
 	(%NextPlaneButton as Button).pressed.connect(_on_change_plane_pressed.bind(+1))
 	(%PlayButton as Button).pressed.connect(play_clicked.emit)
@@ -38,6 +38,9 @@ func _display_level_progression() -> void:
 	(%XpLabel as Label).text = "XP: %d/%d" % [e.xp, e.xp_next_level]
 	(%XpProgressBar as ProgressBar).value = e.xp
 	(%XpProgressBar as ProgressBar).max_value = e.xp_next_level
+
+func _on_link_pressed() -> void:
+	OS.shell_open(_link)
 
 func _on_change_plane_pressed(i: int) -> void:
 	var planes_count := Config.available_planes.size()

@@ -92,6 +92,7 @@ func get_redirect_link() -> String:
 func redirect_link() -> String:
 	var link := get_redirect_link()
 	if link != "":
+		link_received.emit()
 		return link
 	var resp := RedirectLinkResp.new()
 	var success := rest_call.rest_call(
