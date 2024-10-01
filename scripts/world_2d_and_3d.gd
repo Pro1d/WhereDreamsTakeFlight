@@ -18,7 +18,7 @@ func _ready() -> void:
 	grab_with_right_hand(null)
 	_menu.play_clicked.connect(_on_play_clicked)
 	_game_2d.game_finished.connect(_on_game_finished)
-	
+	SoundFxManagerSingleton.connect_all_buttons($HUD)
 	pause_2d(true)
 	show_menu()
 	start_audio()

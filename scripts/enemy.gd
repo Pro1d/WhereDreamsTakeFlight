@@ -58,11 +58,15 @@ func _physics_process(delta: float) -> void:
 		shot_cooldown -= delta
 		if shot_cooldown <= 0:
 			shot_cooldown += auto_shoot_delay
-			for sp: Node2D in _spawn_positions.get_children():
-				var dir := sp.global_transform.x
-				if aim_player and  Config.player_node != null:
-					dir = sp.global_position.direction_to(Config.player_node.get_2d_position())
-				shoot(sp.global_position, dir)
+			trigger_all_shots()
+
+func trigger_all_shots() -> void:
+	SoundFxManagerSingleton.play(SoundFxManager.Type.EnemyShoot)
+	for sp: Node2D in _spawn_positions.get_children():
+		var dir := sp.global_transform.x
+		if aim_player and  Config.player_node != null:
+			dir = sp.global_position.direction_to(Config.player_node.get_2d_position())
+		shoot(sp.global_position, dir)
 
 func shoot(origin: Vector2, dir: Vector2) -> Projectile:
 	var projectile := ProjectileResource.instantiate() as Projectile
@@ -77,6 +81,7 @@ func shoot(origin: Vector2, dir: Vector2) -> Projectile:
 	return projectile
 
 func take_damage(dmg: float) ->  void:
+	SoundFxManagerSingleton.play(SoundFxManager.Type.EnemyHit)
 	hit_points -= dmg
 	if hit_points <= 0:
 		destroy(true)

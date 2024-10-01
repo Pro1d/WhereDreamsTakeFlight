@@ -137,6 +137,7 @@ func _on_body_hit(body: PhysicsBody2D) -> void:
 	if player != null:
 		player.take_damage()
 	_particles.emitting = true
+	SoundFxManagerSingleton.play(SoundFxManager.Type.ProjectileHit)
 
 func destroy_projectile(_hit: bool = false) -> void:
 	queue_free()

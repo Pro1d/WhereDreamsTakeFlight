@@ -26,6 +26,7 @@ Config="*res://scripts/singleton/Config.gd"
 WhalepassSingleton="*res://scripts/singleton/whalepass.gd"
 MusicManager="*res://scripts/singleton/MusicManager.gd"
 VoiceManagerSingleton="*res://scenes/singleton/VoiceManager.tscn"
+SoundFxManagerSingleton="*res://scripts/singleton/SoundFxManager.gd"
 
 [debug]
 

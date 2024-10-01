@@ -66,7 +66,7 @@ func _fire() -> void:
 		
 		angle += step_angle
 	
-	# TODO SoundFx
+	SoundFxManagerSingleton.play(SoundFxManager.Type.PlayerShoot)
 
 func _update_mesh() -> void:
 	(%Mesh as MeshInstance3D).mesh = weapon_spec.mesh

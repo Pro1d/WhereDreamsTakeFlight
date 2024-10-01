@@ -1,12 +1,50 @@
+class_name SoundFxManager
 extends Node
 
+enum Type {
+	EnemyShoot,
+	PlayerShoot,
+	PlayerHit, # ?
+	PlayerShieldHit,
+	EnemyHit,
+	ProjectileExplode, # ?
+	Shielding,
+	ProjectileHit,
+	Repair,
+}
+
 @onready var ui_sound := AudioStreamPlayer.new()
+var _players : Array[AudioStreamPlayer]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	ui_sound.bus = &"UI"
-	#ui_sound.stream = preload("res://assets/sounds/tuck.ogg")
+	ui_sound.stream = preload("res://assets/sounds/fx/touck.ogg")
 	add_child(ui_sound)
+	
+	var do := func(r: Resource, db: float = 0.0) -> AudioStreamPlayer:
+		var asp := AudioStreamPlayer.new()
+		asp.bus = &"SoundFx"
+		asp.stream = r
+		asp.volume_db = db
+		asp.max_polyphony = 3
+		add_child(asp)
+		return asp
+	
+	_players.resize(Type.size())
+	_players[Type.EnemyShoot] = do.call(preload("res://assets/sounds/fx/shoot2.ogg"))
+	_players[Type.PlayerShoot] = do.call(preload("res://assets/sounds/fx/shoot1.ogg"), -8)
+	_players[Type.PlayerHit] = do.call(preload("res://assets/sounds/fx/DefiniteShot5.ogg"))
+	_players[Type.PlayerShieldHit] = do.call(preload("res://assets/sounds/fx/ImpactOnSteelSmooth.ogg"), -8)
+	_players[Type.EnemyHit] = do.call(preload("res://assets/sounds/fx/hit1.ogg"), -10)
+	_players[Type.ProjectileExplode] = do.call(preload("res://assets/sounds/fx/DefiniteShot5.ogg"))
+	_players[Type.Shielding] = do.call(preload("res://assets/sounds/fx/meld.ogg"))
+	_players[Type.ProjectileHit] = do.call(preload("res://assets/sounds/fx/tuck.ogg"), -8)
+
+
+func play(type: Type) -> void:
+	_players[type].play()
 
 func keep_until_finished(audio: Node) -> void: # AudioStreamPlayer[2D]
 	audio.get_parent().remove_child(audio)

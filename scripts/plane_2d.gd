@@ -180,7 +180,10 @@ func _on_hit_box_entered(body: PhysicsBody2D) -> void:
 		take_damage()
 
 func take_damage() -> void:
-	if _shielded or invunerability:
+	if _shielded:
+		SoundFxManagerSingleton.play(SoundFxManager.Type.PlayerShieldHit)
+		return
+	elif invunerability:
 		return
 	
 	hitpoint -= 1
@@ -200,6 +203,8 @@ func trigger_shield() -> void:
 		shield_tween = null
 	
 	_shielded = true
+	SoundFxManagerSingleton.play(SoundFxManager.Type.Shielding)
+	
 	shield_tween = create_tween()
 	shield_tween.tween_interval(duration - fade_duration)
 	shield_tween.tween_property(shield_shape, "modulate:a", 0.0, fade_duration).from(1.0)
