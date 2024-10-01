@@ -6,9 +6,9 @@
 [resource]
 script = ExtResource("1_bcthl")
 type = 3
-fire_delay_factor = 0.75
+fire_delay_factor = 0.7
 damage_factor = 1.0
-speed_factor = 1.2
+speed_factor = 1.3
 lifetime_factor = 1.0
 bonus_projectile = 0
 explosive = false
