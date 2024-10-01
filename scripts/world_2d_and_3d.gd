@@ -33,8 +33,8 @@ func start_audio() -> void:
 	MusicManager.start_music()
 
 func _on_play_clicked() -> void:
-	await resume_2d()
 	await hide_menu()
+	await resume_2d()
 	_game_2d.start_game()
 
 func _on_game_finished() -> void:
