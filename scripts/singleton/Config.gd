@@ -45,7 +45,9 @@ var player_node : PlayerPlane
 var root_2d : Node2D
 var root_3d : Node3D
 var camera_3d : Camera3D
+
 func _enter_tree() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	camera_3d = get_viewport().get_camera_3d()
 #	Input.set_custom_mouse_cursor(
 #		CursorArrowIcon, Input.CURSOR_ARROW, Vector2(2, 2)
@@ -75,7 +77,7 @@ func save_config(section: String, key: String, value: Variant) -> void:
 	save_file.save(SAVE_PATH)
 
 class Exp:
-	const max_level := 5
+	const max_level := 10
 	var level := 0
 	var xp := 0
 	var xp_next_level := 100
