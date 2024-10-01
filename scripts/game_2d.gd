@@ -17,8 +17,7 @@ const waves_count := 3
 @export var overlay : Overlay = null
 @export var weapon_overlay : WeaponOverlay = null
 @export var score_overlay : ScoreOverlay = null
-@export var wave_resources : Array[PackedScene] = []
-@export var boss_resources : Array[PackedScene] = []
+@export var waves_collection : AttackWaveCollection
 @export var weapon_specs : Array[WeaponSpec] = []
 @export var current_wave_index := 0
 var current_wave : AttackWave
@@ -91,19 +90,26 @@ func _on_wave_cleared() -> void:
 
 func  load_next_wave() -> void:
 	if completed_waves < waves_count - 1:
-		load_wave(randi_range(0, wave_resources.size() - 1), false)
+		var col : Array[PackedScene]
+		if completed_waves < 1:
+			col = waves_collection.easy_waves
+		elif completed_waves < 2:
+			col = waves_collection.medium_waves
+		else: #if completed_waves < 3:
+			col = waves_collection.hard_waves
+		load_wave(col.pick_random() as PackedScene, false)
 	else:
-		load_wave(randi_range(0, boss_resources.size() - 1), true)
+		load_wave(waves_collection.boss_waves.pick_random() as PackedScene, true)
 		VoiceManagerSingleton.play(VoiceManager.Type.BossStarting)
 
-func load_wave(index: int, boss: bool) -> void:
+func load_wave(scene: PackedScene, boss: bool) -> void:
 	if current_wave != null:
 		current_wave.queue_free()
 	if boss:
-		current_wave = boss_resources[index].instantiate() as AttackWave
+		current_wave = scene.instantiate() as AttackWave
 		overlay.show_enemy_life(current_wave.total_max_hitpoints, current_wave.total_max_hitpoints)
 	else:
-		current_wave = wave_resources[index].instantiate() as AttackWave
+		current_wave = scene.instantiate() as AttackWave
 		overlay.hide_enemy_life()
 	fighting_boss = boss
 	Config.root_2d.add_child(current_wave)

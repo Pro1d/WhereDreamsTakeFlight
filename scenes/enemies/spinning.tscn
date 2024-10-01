@@ -139,7 +139,7 @@ _data = {
 move_speed = 150.0
 radius = 50.0
 auto_shoot_delay = 2.5
-hit_points = 280.0
+hit_points = 200.0
 
 [node name="Axis" type="Node3D" parent="3D/Visual" index="0"]
 

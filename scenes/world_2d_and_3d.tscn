@@ -1,43 +1,20 @@
-[gd_scene load_steps=51 format=3 uid="uid://do4q1xtyjh4u1"]
+[gd_scene load_steps=28 format=3 uid="uid://do4q1xtyjh4u1"]
 
 [ext_resource type="Script" path="res://scripts/world_2d_and_3d.gd" id="1_xm0yb"]
-[ext_resource type="PackedScene" uid="uid://088brukj5isd" path="res://scenes/attack_waves/attack_wave_00.01.tscn" id="2_gni8t"]
 [ext_resource type="Resource" uid="uid://b4cxfnq2h8wjw" path="res://resources/weapons/rubber_duck.tres" id="3_a6i1r"]
 [ext_resource type="PackedScene" uid="uid://v2ddeufj10c2" path="res://scenes/ui/overlay.tscn" id="3_eras8"]
-[ext_resource type="PackedScene" uid="uid://cytlgmc2lwfw3" path="res://scenes/attack_waves/attack_wave_00.02.tscn" id="3_njpqx"]
 [ext_resource type="PackedScene" uid="uid://d1djw43u5ntsy" path="res://scenes/bedroom.tscn" id="4_03kti"]
 [ext_resource type="PackedScene" uid="uid://7ndbh0djb8di" path="res://scenes/ui/weapon_overlay.tscn" id="4_4dfxk"]
 [ext_resource type="Resource" uid="uid://cru4xcly1jymk" path="res://resources/weapons/magnet_stick.tres" id="5_08cbb"]
 [ext_resource type="PackedScene" uid="uid://y1ajs3pqfl4p" path="res://scenes/ui/score_overlay.tscn" id="5_vlgnv"]
-[ext_resource type="PackedScene" uid="uid://dpwqagg3q62sb" path="res://scenes/attack_waves/attack_wave_00.04.tscn" id="5_xup8t"]
 [ext_resource type="Material" uid="uid://dv106u84yak55" path="res://resources/materials/skin.tres" id="6_d81i7"]
-[ext_resource type="PackedScene" uid="uid://b1hfgblyxoyaa" path="res://scenes/attack_waves/attack_wave_01.00.tscn" id="6_pkfoh"]
-[ext_resource type="PackedScene" uid="uid://bf47cwgy3epgw" path="res://scenes/attack_waves/attack_wave_01.01.tscn" id="7_8inxn"]
 [ext_resource type="PackedScene" uid="uid://chckwtnrrluej" path="res://scenes/ui/menu.tscn" id="7_mpqx2"]
-[ext_resource type="PackedScene" uid="uid://cvfbmawame7tk" path="res://scenes/attack_waves/attack_wave_01.02.tscn" id="8_nbmmi"]
-[ext_resource type="PackedScene" uid="uid://cin51xy4vc3le" path="res://scenes/attack_waves/attack_wave_01.03.tscn" id="9_1nvwp"]
-[ext_resource type="PackedScene" uid="uid://c7gwwlspus7te" path="res://scenes/attack_waves/attack_wave_00.03.tscn" id="10_jelau"]
-[ext_resource type="PackedScene" uid="uid://dqssatqko3wba" path="res://scenes/attack_waves/attack_wave_01.04.tscn" id="10_pmghl"]
-[ext_resource type="PackedScene" uid="uid://dru08qgla30af" path="res://scenes/attack_waves/attack_wave_01.05.tscn" id="11_4w0vp"]
-[ext_resource type="PackedScene" uid="uid://cyt7q77mk5gki" path="res://scenes/attack_waves/attack_wave_02.01.tscn" id="12_5pbxc"]
-[ext_resource type="PackedScene" uid="uid://du62rpn1bsdkv" path="res://scenes/attack_waves/attack_wave_B01.tscn" id="13_0yd8b"]
-[ext_resource type="PackedScene" uid="uid://bf4df2xuc5yhy" path="res://scenes/attack_waves/attack_wave_02.02.tscn" id="13_de0b8"]
-[ext_resource type="PackedScene" uid="uid://ctd3wpumtftk6" path="res://scenes/attack_waves/attack_wave_03.01.tscn" id="15_sqdrm"]
-[ext_resource type="PackedScene" uid="uid://drp6vfe2y5lkc" path="res://scenes/attack_waves/attack_wave_03.02.tscn" id="16_o3oru"]
-[ext_resource type="PackedScene" uid="uid://cs2fsr3v23v85" path="res://scenes/attack_waves/attack_wave_04.01.tscn" id="17_ko5cc"]
-[ext_resource type="PackedScene" uid="uid://cxkjdpg6wjw31" path="res://scenes/attack_waves/attack_wave_10.01.tscn" id="18_st0n8"]
-[ext_resource type="PackedScene" uid="uid://bhd8httx1rh0w" path="res://scenes/attack_waves/attack_wave_02.03.tscn" id="19_xj7dd"]
+[ext_resource type="Resource" uid="uid://omll8e6q2t5" path="res://resources/attack_wave_collections.tres" id="12_3j57w"]
 [ext_resource type="PackedScene" uid="uid://ctqhhr4rs0bx7" path="res://assets/models/arm_left.glb" id="24_ojakt"]
 [ext_resource type="Script" path="res://scripts/arm.gd" id="25_qyknq"]
 [ext_resource type="PackedScene" uid="uid://cpu38imynhxd6" path="res://assets/models/arm_right.glb" id="25_y71a1"]
 [ext_resource type="Script" path="res://scripts/game_2d.gd" id="26_ikt7f"]
-[ext_resource type="PackedScene" uid="uid://chk3qi30tdyue" path="res://scenes/attack_waves/attack_wave_01.00b.tscn" id="27_ddiok"]
-[ext_resource type="PackedScene" uid="uid://c8ikvxarjxwr2" path="res://scenes/attack_waves/attack_wave_01.01b.tscn" id="28_4q66w"]
-[ext_resource type="PackedScene" uid="uid://bbucsb0776pdq" path="res://scenes/attack_waves/attack_wave_01.04b.tscn" id="29_d3q8d"]
 [ext_resource type="PackedScene" uid="uid://dfoaaqydn6rhb" path="res://scenes/plane_2d.tscn" id="29_tqvap"]
-[ext_resource type="PackedScene" uid="uid://dtfrlsu5ck8d4" path="res://scenes/attack_waves/attack_wave_01.05b.tscn" id="30_2qcli"]
-[ext_resource type="PackedScene" uid="uid://7f6541kcqb6e" path="res://scenes/attack_waves/attack_wave_04.02.tscn" id="31_satll"]
-[ext_resource type="PackedScene" uid="uid://d2b4qffs8ffn5" path="res://scenes/attack_waves/attack_wave_10.02.tscn" id="32_t8yjh"]
 [ext_resource type="Script" path="res://scripts/weapon_spec.gd" id="35_ubv56"]
 [ext_resource type="Resource" uid="uid://xvr65sttso2t" path="res://resources/weapons/doll_fork.tres" id="36_uls65"]
 [ext_resource type="Resource" uid="uid://p5p3rlli25ko" path="res://resources/weapons/lego.tres" id="37_x01gp"]
@@ -287,8 +264,7 @@ script = ExtResource("26_ikt7f")
 overlay = NodePath("../HUD/Overlay")
 weapon_overlay = NodePath("../HUD/WeaponOverlay")
 score_overlay = NodePath("../HUD/ScoreOverlay")
-wave_resources = Array[PackedScene]([ExtResource("2_gni8t"), ExtResource("3_njpqx"), ExtResource("10_jelau"), ExtResource("5_xup8t"), ExtResource("6_pkfoh"), ExtResource("27_ddiok"), ExtResource("7_8inxn"), ExtResource("28_4q66w"), ExtResource("8_nbmmi"), ExtResource("9_1nvwp"), ExtResource("10_pmghl"), ExtResource("29_d3q8d"), ExtResource("11_4w0vp"), ExtResource("30_2qcli"), ExtResource("12_5pbxc"), ExtResource("13_de0b8"), ExtResource("19_xj7dd"), ExtResource("15_sqdrm"), ExtResource("16_o3oru"), ExtResource("17_ko5cc"), ExtResource("31_satll"), ExtResource("18_st0n8"), ExtResource("32_t8yjh")])
-boss_resources = Array[PackedScene]([ExtResource("13_0yd8b")])
+waves_collection = ExtResource("12_3j57w")
 weapon_specs = Array[ExtResource("35_ubv56")]([ExtResource("36_uls65"), ExtResource("37_x01gp"), ExtResource("5_08cbb"), ExtResource("39_0aimb"), ExtResource("3_a6i1r"), ExtResource("41_3y5ex")])
 
 [node name="WorldBoundary" type="StaticBody2D" parent="2D" groups=["world_boundary"]]
