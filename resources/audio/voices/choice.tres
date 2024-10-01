@@ -1,9 +1,13 @@
-[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://dnrelwx3u7mir"]
+[gd_resource type="AudioStreamRandomizer" load_steps=5 format=3 uid="uid://dnrelwx3u7mir"]
 
-[ext_resource type="AudioStream" uid="uid://dfxxafy5u6337" path="res://assets/sounds/child/victory/victory.wav" id="1_7srdo"]
-[ext_resource type="AudioStream" uid="uid://75aae0qr14yw" path="res://assets/sounds/child/boss/boss-win.wav" id="2_jap1g"]
+[ext_resource type="AudioStream" uid="uid://cfr2tdwfkfgx5" path="res://assets/sounds/child/new-weapon/loot-oh-yeah.wav" id="1_o272k"]
+[ext_resource type="AudioStream" uid="uid://c6m266kqnqjjb" path="res://assets/sounds/child/new-weapon/loot-yeah.wav" id="2_6kvi0"]
+[ext_resource type="AudioStream" uid="uid://i52nuvpnl5ps" path="res://assets/sounds/child/plane-selection/favorite.wav" id="3_vpajh"]
+[ext_resource type="AudioStream" uid="uid://cla522olx8wwk" path="res://assets/sounds/child/plane-selection/letstakethisone.wav" id="4_ume6h"]
 
 [resource]
-streams_count = 2
-stream_0/stream = ExtResource("1_7srdo")
-stream_1/stream = ExtResource("2_jap1g")
+streams_count = 4
+stream_0/stream = ExtResource("1_o272k")
+stream_1/stream = ExtResource("2_6kvi0")
+stream_2/stream = ExtResource("3_vpajh")
+stream_3/stream = ExtResource("4_ume6h")
