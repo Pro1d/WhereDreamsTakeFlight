@@ -1,0 +1,9 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://bdampgu1j31ni"]
+
+[ext_resource type="AudioStream" uid="uid://bj1k2d4b4iohh" path="res://assets/sounds/child/random/keepfighting.wav" id="1_lh0qe"]
+[ext_resource type="AudioStream" uid="uid://dg8f7luv0t35x" path="res://assets/sounds/child/music/music.wav" id="2_8be36"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_lh0qe")
+stream_1/stream = ExtResource("2_8be36")

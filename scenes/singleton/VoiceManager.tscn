@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgyerctl1ayny"]
+
+[ext_resource type="Script" path="res://scripts/singleton/voice_manager.gd" id="1_cxvrp"]
+[ext_resource type="AudioStream" uid="uid://brb1xlwi3b3du" path="res://resources/audio/voices/damage.tres" id="2_88a15"]
+[ext_resource type="AudioStream" uid="uid://c3tlwhejn47j7" path="res://assets/musics/the_child.ogg" id="3_dclic"]
+
+[node name="VoiceManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_cxvrp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_88a15")
+bus = &"Voice"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dclic")
+bus = &"Music"

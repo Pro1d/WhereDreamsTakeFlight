@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamSynchronized" load_steps=3 format=3 uid="uid://dypkvv2o0su26"]
+
+[ext_resource type="AudioStream" uid="uid://d2ywb46yevdth" path="res://assets/sounds/child-dialog.ogg" id="1_ouew4"]
+[ext_resource type="AudioStream" uid="uid://bb1mge0mlsk1k" path="res://assets/sounds/mom-dialog.ogg" id="2_rg7j7"]
+
+[resource]
+stream_count = 2
+stream_0/stream = ExtResource("1_ouew4")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("2_rg7j7")
+stream_1/volume = -3.48

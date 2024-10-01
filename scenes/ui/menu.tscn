@@ -29,15 +29,22 @@ theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/WhalepassTopBar"]
 layout_mode = 2
+alignment = 1
 
-[node name="XpProgressBar" type="ProgressBar" parent="VBoxContainer/WhalepassTopBar/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 44)
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/WhalepassTopBar/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="XpProgressBar" type="ProgressBar" parent="VBoxContainer/WhalepassTopBar/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 44)
+layout_mode = 2
+size_flags_vertical = 1
+tooltip_text = "Level up to unlock new planes!"
 value = 50.0
 show_percentage = false
 
-[node name="XpLabel" type="Label" parent="VBoxContainer/WhalepassTopBar/HBoxContainer/XpProgressBar"]
+[node name="XpLabel" type="Label" parent="VBoxContainer/WhalepassTopBar/HBoxContainer/VBoxContainer/XpProgressBar"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -45,20 +52,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "XP: 15 / 250"
+text = "Exp. 15 / 250"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerLevelLabel" type="Label" parent="VBoxContainer/WhalepassTopBar/HBoxContainer"]
+[node name="PlayerLevelLabel" type="Label" parent="VBoxContainer/WhalepassTopBar/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 text = "Level 5 (max)"
 horizontal_alignment = 1
 
-[node name="VisitButton" type="Button" parent="VBoxContainer/WhalepassTopBar/HBoxContainer"]
+[node name="VisitButton" type="Button" parent="VBoxContainer/WhalepassTopBar"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 tooltip_text = "Link your account, claim your rewards."
 text = "Visit discover.games"
 
@@ -105,7 +114,7 @@ layout_mode = 2
 
 [node name="PlaneLabel" type="Label" parent="VBoxContainer/MarginContainer/CenterContainer/Main/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 500)
+custom_minimum_size = Vector2(700, 500)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Wooden Plane - \"My very first plane!\"

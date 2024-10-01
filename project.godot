@@ -24,6 +24,8 @@ buses/default_bus_layout="res://resources/audio/default_bus_layout.tres"
 
 Config="*res://scripts/singleton/Config.gd"
 WhalepassSingleton="*res://scripts/singleton/whalepass.gd"
+MusicManager="*res://scripts/singleton/MusicManager.gd"
+VoiceManagerSingleton="*res://scenes/singleton/VoiceManager.tscn"
 
 [debug]
 

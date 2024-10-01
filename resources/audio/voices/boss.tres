@@ -1,0 +1,9 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://dnohijxhfagcl"]
+
+[ext_resource type="AudioStream" uid="uid://dwnchomqnw1kt" path="res://assets/sounds/child/boss/boss-ennemies.wav" id="1_pxohc"]
+[ext_resource type="AudioStream" uid="uid://db5xlbwn3wf2r" path="res://assets/sounds/child/boss/boss-problem.wav" id="2_s2lqf"]
+
+[resource]
+streams_count = 2
+stream_0/stream = ExtResource("1_pxohc")
+stream_1/stream = ExtResource("2_s2lqf")

@@ -24,9 +24,9 @@ const curve_width_resources : Array[Resource] = [
 ]
 const plane_model_resources : Array[ArrayMesh] = [
 	preload("res://assets/models/all/Plane.res"),
+	preload("res://assets/models/all/PlaneRed.res"),
 	preload("res://assets/models/all/PlaneBlackWhite.res"),
 	preload("res://assets/models/all/PlaneGreen.res"),
-	preload("res://assets/models/all/PlaneRed.res"),
 	preload("res://assets/models/all/PlaneSky.res")
 ]
 const plane_type_by_reward_name := {

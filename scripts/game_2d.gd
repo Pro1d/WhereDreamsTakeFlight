@@ -65,6 +65,7 @@ func start_game() -> void:
 	enemy_kill_count = 0
 	boss_kill_count = 0
 	overlay.show()
+	VoiceManagerSingleton.play(VoiceManager.Type.StartGame)
 	load_next_wave()
 	_state = State.PLAYING
 
@@ -93,6 +94,7 @@ func  load_next_wave() -> void:
 		load_wave(randi_range(0, wave_resources.size() - 1), false)
 	else:
 		load_wave(randi_range(0, boss_resources.size() - 1), true)
+		VoiceManagerSingleton.play(VoiceManager.Type.BossStarting)
 
 func load_wave(index: int, boss: bool) -> void:
 	if current_wave != null:
@@ -158,6 +160,10 @@ func finish_game(victory: bool) -> void:
 	player_plane.invunerability = true
 	overlay.hide()
 	
+	if victory:
+		VoiceManagerSingleton.play(VoiceManagerSingleton.Type.Victory, 0.0, true)
+	else:
+		VoiceManagerSingleton.play(VoiceManagerSingleton.Type.Defeat, 0.0, true)
 	score_overlay.set_victory(victory)
 	score_overlay.commit_xp_gain(
 		enemy_kill_count * Config.XP_PER_ENEMY,

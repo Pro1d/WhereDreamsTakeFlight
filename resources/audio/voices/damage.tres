@@ -1,0 +1,13 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=5 format=3 uid="uid://brb1xlwi3b3du"]
+
+[ext_resource type="AudioStream" uid="uid://c5ry43y1336ln" path="res://assets/sounds/child/damage/damage-hurt-captain.wav" id="1_eseae"]
+[ext_resource type="AudioStream" uid="uid://c72vnw6gfbboa" path="res://assets/sounds/child/damage/damage-ohno.wav" id="2_8akuw"]
+[ext_resource type="AudioStream" uid="uid://c5rgcgbgefguy" path="res://assets/sounds/child/damage/damage-shield.wav" id="3_3xoyd"]
+[ext_resource type="AudioStream" uid="uid://bj1k2d4b4iohh" path="res://assets/sounds/child/random/keepfighting.wav" id="4_6m2gf"]
+
+[resource]
+streams_count = 4
+stream_0/stream = ExtResource("1_eseae")
+stream_1/stream = ExtResource("2_8akuw")
+stream_2/stream = ExtResource("3_3xoyd")
+stream_3/stream = ExtResource("4_6m2gf")

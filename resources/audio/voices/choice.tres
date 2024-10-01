@@ -1,0 +1,9 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://dnrelwx3u7mir"]
+
+[ext_resource type="AudioStream" uid="uid://dfxxafy5u6337" path="res://assets/sounds/child/victory/victory.wav" id="1_7srdo"]
+[ext_resource type="AudioStream" uid="uid://75aae0qr14yw" path="res://assets/sounds/child/boss/boss-win.wav" id="2_jap1g"]
+
+[resource]
+streams_count = 2
+stream_0/stream = ExtResource("1_7srdo")
+stream_1/stream = ExtResource("2_jap1g")

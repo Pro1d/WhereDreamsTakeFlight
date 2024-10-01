@@ -21,6 +21,12 @@ func _ready() -> void:
 	
 	pause_2d(true)
 	show_menu()
+	start_audio()
+
+func start_audio() -> void:
+	VoiceManagerSingleton.play(VoiceManager.Type.Intro)
+	await get_tree().create_timer(7.0).timeout
+	MusicManager.start_music()
 
 func _on_play_clicked() -> void:
 	await resume_2d()
@@ -102,22 +108,23 @@ func player_pick_weapon(w1: Weapon, w2: Weapon, free_slots: Array[bool], repair_
 	if wp_overlay.last_weapon_picked == WeaponOverlay.REPAIR:
 		pass
 	else:
-		# TODO anim: pick weapon
 		selected_weapon = ws[wp_overlay.last_weapon_picked]
+	
+	if w1 != selected_weapon:
+		w1.return_root_3d()
+		w1.queue_free()
+	if w2 != selected_weapon:
+		w2.return_root_3d()
+		w2.queue_free()
 	
 	# Select slot
 	if selected_weapon != null:
-		if w1 != selected_weapon:
-			w1.return_root_3d()
-			w1.queue_free()
-		if w2 != selected_weapon:
-			w2.return_root_3d()
-			w2.queue_free()
 		wp_overlay.show_slots(free_slots)
 		await wp_overlay.slot_picked
 		selected_weapon.index = wp_overlay.last_slot_selected
 		
 		# Animate grab and place weapon
+		VoiceManagerSingleton.play(VoiceManager.Type.EquipWeapon)
 		await grab_with_right_hand(selected_weapon._root_3d, 0.4)
 		Config.player_node.remove_weapon(selected_weapon.index)
 		
@@ -132,6 +139,7 @@ func player_pick_weapon(w1: Weapon, w2: Weapon, free_slots: Array[bool], repair_
 		
 		await grab_with_right_hand(null, 0.4)
 	else:
+		VoiceManagerSingleton.play(VoiceManager.Type.Repair)
 		Config.player_node.hitpoint = mini(Config.player_node.hitpoint + Config.REPAIR_HEALTH, Config.player_node.max_hitpoint)
 	
 	# Close UI

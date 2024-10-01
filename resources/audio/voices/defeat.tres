@@ -1,0 +1,35 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=10 format=3 uid="uid://c7jpobi8clo10"]
+
+[ext_resource type="AudioStream" uid="uid://ckdjk0og83gv8" path="res://assets/sounds/mom/clean-your-room.wav" id="1_5qs0c"]
+[ext_resource type="AudioStream" uid="uid://8ej3ln08m4cx" path="res://assets/sounds/child/replies/yes-mummy.wav" id="2_t236l"]
+[ext_resource type="AudioStream" uid="uid://cm5rdj1s0mfhk" path="res://assets/sounds/mom/time-to-sleep.wav" id="3_j6d0o"]
+[ext_resource type="AudioStream" uid="uid://bho60d2np2cw0" path="res://assets/sounds/child/replies/notyet.wav" id="4_jmhcd"]
+[ext_resource type="AudioStream" uid="uid://dv704guquxgr" path="res://assets/sounds/mom/school.wav" id="5_pbhhx"]
+[ext_resource type="AudioStream" uid="uid://c72vnw6gfbboa" path="res://assets/sounds/child/damage/damage-ohno.wav" id="6_0045h"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_5aui8"]
+loop = false
+fade_time = 0.0
+stream_count = 2
+stream_0 = ExtResource("1_5qs0c")
+stream_1 = ExtResource("2_t236l")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_de0gg"]
+loop = false
+fade_time = 0.0
+stream_count = 2
+stream_0 = ExtResource("3_j6d0o")
+stream_1 = ExtResource("4_jmhcd")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_fbdak"]
+loop = false
+fade_time = 0.0
+stream_count = 2
+stream_0 = ExtResource("5_pbhhx")
+stream_1 = ExtResource("6_0045h")
+
+[resource]
+streams_count = 3
+stream_0/stream = SubResource("AudioStreamPlaylist_5aui8")
+stream_1/stream = SubResource("AudioStreamPlaylist_de0gg")
+stream_2/stream = SubResource("AudioStreamPlaylist_fbdak")
