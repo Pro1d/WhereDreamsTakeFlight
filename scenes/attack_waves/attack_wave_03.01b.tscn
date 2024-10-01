@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://qivgu8283vym"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_mqnrv"]
+[ext_resource type="Script" path="res://scripts/attack_waves/path_follow_with_offset.gd" id="2_tdkby"]
+[ext_resource type="PackedScene" uid="uid://imuct0ptm7lp" path="res://scenes/enemies/WarPlane.tscn" id="3_i06g4"]
+
+[sub_resource type="Curve2D" id="Curve2D_xpcee"]
+_data = {
+"points": PackedVector2Array(1.40943, 226.14, -1.40943, -226.14, 1196, 867, 3.49963, 142.016, -3.49963, -142.016, 1194, 536, 4.94735, 163.857, -4.94735, -163.857, 840, 166, -4.66664, -176.59, 4.66664, 176.59, 1177, 163, -2.69439, -166.734, 2.69439, 166.734, 840, 522, 3.63367, 180.857, -3.63367, -180.857, 1185, 542, 9.84684, 161.038, -9.84684, -161.038, 837, 140, 2.82843, 203.647, -2.82843, -203.647, 844, -189)
+}
+point_count = 8
+
+[node name="AttackWave" instance=ExtResource("1_mqnrv")]
+
+[node name="Eight" type="Path2D" parent="." index="1"]
+position = Vector2(20, 29)
+curve = SubResource("Curve2D_xpcee")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Eight" index="0"]
+position = Vector2(1196, 867)
+rotation = -1.57703
+loop = false
+script = ExtResource("2_tdkby")
+
+[node name="WarPlane" parent="Eight/PathFollow2D" index="0" instance=ExtResource("3_i06g4")]
+auto_shoot_delay = 6.0
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Eight" index="1"]
+position = Vector2(1196, 867)
+rotation = -1.57703
+loop = false
+script = ExtResource("2_tdkby")
+start_distance_offset = 300.0
+
+[node name="WarPlane" parent="Eight/PathFollow2D2" index="0" instance=ExtResource("3_i06g4")]
+first_shoot_delay = 5.0
+auto_shoot_delay = 6.0
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Eight" index="2"]
+position = Vector2(1196, 867)
+rotation = -1.57703
+loop = false
+script = ExtResource("2_tdkby")
+start_distance_offset = 600.0
+
+[node name="WarPlane" parent="Eight/PathFollow2D3" index="0" instance=ExtResource("3_i06g4")]
+first_shoot_delay = 7.0
+auto_shoot_delay = 6.0

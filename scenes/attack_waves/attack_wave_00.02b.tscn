@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://dulkyxcu2bssm"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_s653l"]
+[ext_resource type="PackedScene" uid="uid://dkg7gcrs3s7jc" path="res://scenes/enemies/bird.tscn" id="2_gsjvy"]
+[ext_resource type="PackedScene" uid="uid://bkr5nqrgfbf2w" path="res://scenes/enemies/copter.tscn" id="3_wcnc3"]
+
+[sub_resource type="Curve2D" id="Curve2D_qsey3"]
+_data = {
+"points": PackedVector2Array(-61.3527, 118.343, 61.3527, -118.343, 864, 160, -64.363, -121.262, 64.363, 121.262, 1184, 160, -45.9633, -154.798, 45.9633, 154.798, 864, 608, -55.9492, 144.298, 55.9492, -144.298, 1184, 608, -59.6255, 133.076, 59.6255, -133.076, 864, 160)
+}
+point_count = 5
+
+[node name="AttackWave" instance=ExtResource("1_s653l")]
+
+[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
+position = Vector2(6.10352e-05, 0)
+
+[node name="EightLoop" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
+curve = SubResource("Curve2D_qsey3")
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/EightLoop" index="0"]
+position = Vector2(1108.08, 306.063)
+rotation = 2.40788
+progress = 562.306
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/EightLoop/PathFollow2D3" index="0" instance=ExtResource("2_gsjvy")]
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/EightLoop" index="1"]
+position = Vector2(1018.01, 376.019)
+rotation = -2.45558
+progress = 1686.92
+
+[node name="Bird" parent="FromBackPath/FromBackPathFollow2D/EightLoop/PathFollow2D7" index="0" instance=ExtResource("2_gsjvy")]
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D" index="1" instance=ExtResource("3_wcnc3")]
+position = Vector2(1028, 201)
+rotation = -3.14159
+first_shoot_delay = 3.0
+auto_shoot_delay = 2.5
+aim_player = false
+
+[node name="Copter2" parent="FromBackPath/FromBackPathFollow2D" index="2" instance=ExtResource("3_wcnc3")]
+position = Vector2(1029, 563)
+rotation = -3.14159
+first_shoot_delay = 3.0
+auto_shoot_delay = 2.5
+aim_player = false

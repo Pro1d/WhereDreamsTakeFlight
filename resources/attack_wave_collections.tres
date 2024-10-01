@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AttackWaveCollection" load_steps=26 format=3 uid="uid://omll8e6q2t5"]
+[gd_resource type="Resource" script_class="AttackWaveCollection" load_steps=32 format=3 uid="uid://omll8e6q2t5"]
 
 [ext_resource type="PackedScene" uid="uid://du62rpn1bsdkv" path="res://scenes/attack_waves/attack_wave_B01.tscn" id="1_8upp0"]
 [ext_resource type="PackedScene" uid="uid://088brukj5isd" path="res://scenes/attack_waves/attack_wave_00.01.tscn" id="1_q42ba"]
@@ -11,7 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://chk3qi30tdyue" path="res://scenes/attack_waves/attack_wave_01.00b.tscn" id="6_jxmbj"]
 [ext_resource type="PackedScene" uid="uid://c8ikvxarjxwr2" path="res://scenes/attack_waves/attack_wave_01.01b.tscn" id="7_4ekcn"]
 [ext_resource type="PackedScene" uid="uid://bbucsb0776pdq" path="res://scenes/attack_waves/attack_wave_01.04b.tscn" id="8_b763y"]
+[ext_resource type="PackedScene" uid="uid://b06es1o5kc2of" path="res://scenes/attack_waves/attack_wave_01.06.tscn" id="8_dlmu6"]
 [ext_resource type="PackedScene" uid="uid://dtfrlsu5ck8d4" path="res://scenes/attack_waves/attack_wave_01.05b.tscn" id="9_5ij0k"]
+[ext_resource type="PackedScene" uid="uid://dulkyxcu2bssm" path="res://scenes/attack_waves/attack_wave_00.02b.tscn" id="9_5xnli"]
+[ext_resource type="PackedScene" uid="uid://j7cy6l4l3alj" path="res://scenes/attack_waves/attack_wave_03.03.tscn" id="10_1yhyq"]
 [ext_resource type="PackedScene" uid="uid://bf4df2xuc5yhy" path="res://scenes/attack_waves/attack_wave_02.02.tscn" id="10_nqc1k"]
 [ext_resource type="PackedScene" uid="uid://bhd8httx1rh0w" path="res://scenes/attack_waves/attack_wave_02.03.tscn" id="11_606mj"]
 [ext_resource type="PackedScene" uid="uid://c7gwwlspus7te" path="res://scenes/attack_waves/attack_wave_00.03.tscn" id="12_a5tu3"]
@@ -19,16 +22,19 @@
 [ext_resource type="PackedScene" uid="uid://cxkjdpg6wjw31" path="res://scenes/attack_waves/attack_wave_10.01.tscn" id="13_gyoaf"]
 [ext_resource type="PackedScene" uid="uid://bf47cwgy3epgw" path="res://scenes/attack_waves/attack_wave_01.01.tscn" id="14_6pxrk"]
 [ext_resource type="PackedScene" uid="uid://d2b4qffs8ffn5" path="res://scenes/attack_waves/attack_wave_10.02.tscn" id="15_qg776"]
+[ext_resource type="PackedScene" uid="uid://cytlgmc2lwfw3" path="res://scenes/attack_waves/attack_wave_00.02.tscn" id="15_rfjd2"]
 [ext_resource type="PackedScene" uid="uid://dqssatqko3wba" path="res://scenes/attack_waves/attack_wave_01.04.tscn" id="15_vmcsl"]
+[ext_resource type="PackedScene" uid="uid://f1hau0f71pem" path="res://scenes/attack_waves/attack_wave_10.02b.tscn" id="16_hi2ht"]
 [ext_resource type="PackedScene" uid="uid://cin51xy4vc3le" path="res://scenes/attack_waves/attack_wave_01.03.tscn" id="16_hwg3e"]
 [ext_resource type="PackedScene" uid="uid://dru08qgla30af" path="res://scenes/attack_waves/attack_wave_01.05.tscn" id="17_g86bv"]
 [ext_resource type="PackedScene" uid="uid://ctd3wpumtftk6" path="res://scenes/attack_waves/attack_wave_03.01.tscn" id="18_bwdjy"]
 [ext_resource type="PackedScene" uid="uid://drp6vfe2y5lkc" path="res://scenes/attack_waves/attack_wave_03.02.tscn" id="19_861ti"]
 [ext_resource type="PackedScene" uid="uid://7f6541kcqb6e" path="res://scenes/attack_waves/attack_wave_04.02.tscn" id="22_hahio"]
+[ext_resource type="PackedScene" uid="uid://qivgu8283vym" path="res://scenes/attack_waves/attack_wave_03.01b.tscn" id="25_nibdg"]
 
 [resource]
 script = ExtResource("1_tl2wf")
-easy_waves = Array[PackedScene]([ExtResource("1_q42ba"), ExtResource("3_3casg"), ExtResource("4_7bcos"), ExtResource("5_sevgr"), ExtResource("6_8b1ar")])
-medium_waves = Array[PackedScene]([ExtResource("12_a5tu3"), ExtResource("13_fbhnh"), ExtResource("14_6pxrk"), ExtResource("15_vmcsl"), ExtResource("16_hwg3e"), ExtResource("17_g86bv"), ExtResource("18_bwdjy"), ExtResource("19_861ti"), ExtResource("22_hahio")])
-hard_waves = Array[PackedScene]([ExtResource("6_jxmbj"), ExtResource("7_4ekcn"), ExtResource("8_b763y"), ExtResource("9_5ij0k"), ExtResource("10_nqc1k"), ExtResource("11_606mj"), ExtResource("13_gyoaf"), ExtResource("15_qg776")])
+easy_waves = Array[PackedScene]([ExtResource("1_q42ba"), ExtResource("3_3casg"), ExtResource("4_7bcos"), ExtResource("5_sevgr"), ExtResource("6_8b1ar"), ExtResource("8_dlmu6"), ExtResource("9_5xnli"), ExtResource("10_1yhyq")])
+medium_waves = Array[PackedScene]([ExtResource("12_a5tu3"), ExtResource("13_fbhnh"), ExtResource("14_6pxrk"), ExtResource("15_vmcsl"), ExtResource("16_hwg3e"), ExtResource("17_g86bv"), ExtResource("25_nibdg"), ExtResource("19_861ti"), ExtResource("22_hahio"), ExtResource("15_qg776"), ExtResource("13_gyoaf")])
+hard_waves = Array[PackedScene]([ExtResource("6_jxmbj"), ExtResource("7_4ekcn"), ExtResource("8_b763y"), ExtResource("9_5ij0k"), ExtResource("10_nqc1k"), ExtResource("11_606mj"), ExtResource("15_rfjd2"), ExtResource("16_hi2ht"), ExtResource("18_bwdjy")])
 boss_waves = Array[PackedScene]([ExtResource("1_8upp0"), ExtResource("2_i1ybu")])

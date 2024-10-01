@@ -12,6 +12,9 @@ point_count = 3
 [node name="AttackWave" instance=ExtResource("1_uomu8")]
 from_back_speed = 150.0
 
+[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
+position = Vector2(6.10352e-05, 0)
+
 [node name="Line" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
 curve = SubResource("Curve2D_v1bc7")
 

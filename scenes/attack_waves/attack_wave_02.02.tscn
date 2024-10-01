@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bf4df2xuc5yhy"]
+[gd_scene load_steps=6 format=3 uid="uid://bf4df2xuc5yhy"]
 
 [ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_bxps3"]
 [ext_resource type="PackedScene" uid="uid://c5ry6bp7muw3l" path="res://scenes/enemies/ball.tscn" id="2_kdhx6"]
+[ext_resource type="Script" path="res://scripts/attack_waves/path_follow_with_offset.gd" id="3_fwkg5"]
 
 [sub_resource type="Curve2D" id="Curve2D_riwrd"]
 _data = {
@@ -9,14 +10,70 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="Curve2D" id="Curve2D_tfoa8"]
+_data = {
+"points": PackedVector2Array(154.682, 50.8542, -154.682, -50.8542, 1629, 159, 127.665, -107.583, -127.665, 107.583, 1133, 157, 127.136, -122.898, -127.136, 122.898, 765, 615, 125.017, 137.73, -125.017, -137.73, 235, 622, 159.979, 162.144, -159.979, -162.144, -125, 148)
+}
+point_count = 5
+
 [node name="AttackWave" instance=ExtResource("1_bxps3")]
+
+[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
+position = Vector2(6.10352e-05, 0)
 
 [node name="Straight" type="Path2D" parent="." index="1"]
 curve = SubResource("Curve2D_riwrd")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Straight" index="0"]
-position = Vector2(1536, 448)
+position = Vector2(1566.42, 396.284)
 rotation = -2.60987
+v_offset = 60.0
 loop = false
 
 [node name="Ball" parent="Straight/PathFollow2D" index="0" instance=ExtResource("2_kdhx6")]
+auto_shoot_delay = 3.0
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Straight" index="1"]
+position = Vector2(1505.58, 499.716)
+rotation = -2.60987
+v_offset = -60.0
+loop = false
+
+[node name="Ball" parent="Straight/PathFollow2D2" index="0" instance=ExtResource("2_kdhx6")]
+auto_shoot_delay = 3.0
+
+[node name="Wave" type="Path2D" parent="." index="2"]
+curve = SubResource("Curve2D_tfoa8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Wave" index="0"]
+position = Vector2(1629, 159)
+rotation = -2.82396
+loop = false
+script = ExtResource("3_fwkg5")
+start_distance_offset = 400.0
+
+[node name="Ball" parent="Wave/PathFollow2D" index="0" instance=ExtResource("2_kdhx6")]
+first_shoot_delay = 3.0
+auto_shoot_delay = 4.5
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Wave" index="1"]
+position = Vector2(1629, 159)
+rotation = -2.82396
+loop = false
+script = ExtResource("3_fwkg5")
+start_distance_offset = 500.0
+
+[node name="Ball" parent="Wave/PathFollow2D2" index="0" instance=ExtResource("2_kdhx6")]
+first_shoot_delay = 4.5
+auto_shoot_delay = 4.5
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Wave" index="2"]
+position = Vector2(1629, 159)
+rotation = -2.82396
+loop = false
+script = ExtResource("3_fwkg5")
+start_distance_offset = 600.0
+
+[node name="Ball" parent="Wave/PathFollow2D3" index="0" instance=ExtResource("2_kdhx6")]
+first_shoot_delay = 6.0
+auto_shoot_delay = 4.5

@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://b06es1o5kc2of"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_ctbpp"]
+[ext_resource type="PackedScene" uid="uid://bkr5nqrgfbf2w" path="res://scenes/enemies/copter.tscn" id="2_1ce2j"]
+
+[node name="AttackWave" instance=ExtResource("1_ctbpp")]
+from_back_speed = 150.0
+
+[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
+position = Vector2(6.10352e-05, 0)
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D" index="0" instance=ExtResource("2_1ce2j")]
+position = Vector2(939, 178)
+rotation = 3.14159
+first_shoot_delay = 3.0
+auto_shoot_delay = 3.0
+aim_player = false
+
+[node name="Copter2" parent="FromBackPath/FromBackPathFollow2D" index="1" instance=ExtResource("2_1ce2j")]
+position = Vector2(870, 384)
+rotation = 3.14159
+first_shoot_delay = 4.5
+auto_shoot_delay = 3.0
+aim_player = false
+
+[node name="Copter3" parent="FromBackPath/FromBackPathFollow2D" index="2" instance=ExtResource("2_1ce2j")]
+position = Vector2(1010, 384)
+rotation = 3.14159
+first_shoot_delay = 4.5
+auto_shoot_delay = 3.0
+aim_player = false
+
+[node name="Copter5" parent="FromBackPath/FromBackPathFollow2D" index="3" instance=ExtResource("2_1ce2j")]
+position = Vector2(941, 576)
+rotation = 3.14159
+first_shoot_delay = 3.0
+auto_shoot_delay = 3.0
+aim_player = false

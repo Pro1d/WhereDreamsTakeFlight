@@ -57,6 +57,12 @@ func _on_change_plane_pressed(i: int) -> void:
 
 func _display_plane() -> void:
 	var type := plane_index as PlayerPlane.Type
-	(%PlaneLabel as Label).text = PlayerPlane.display_description(type)
+	if Config.available_planes[plane_index]:
+		(%PlaneLabel as Label).text = PlayerPlane.display_description(type)
+	else:
+		(%PlaneLabel as Label).text = (
+			PlayerPlane.display_description(type).split("\n")[0] +
+			"\nUnlocked at level %d" % [Config.unlock_level_planes[type]]
+		)
 	Config.player_node.type = type
 	(%PlayButton as Button).disabled = not Config.available_planes[plane_index]

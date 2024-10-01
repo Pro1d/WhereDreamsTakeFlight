@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhd8httx1rh0w"]
+[gd_scene load_steps=5 format=3 uid="uid://bhd8httx1rh0w"]
 
 [ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_r7td8"]
 [ext_resource type="PackedScene" uid="uid://c5ry6bp7muw3l" path="res://scenes/enemies/ball.tscn" id="2_5p648"]
+[ext_resource type="Script" path="res://scripts/attack_waves/path_follow_with_offset.gd" id="3_tsayn"]
 
 [sub_resource type="Curve2D" id="Curve2D_rhspx"]
 _data = {
@@ -10,6 +11,9 @@ _data = {
 point_count = 7
 
 [node name="AttackWave" instance=ExtResource("1_r7td8")]
+
+[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
+position = Vector2(6.10352e-05, 0)
 
 [node name="Straight" type="Path2D" parent="." index="1"]
 curve = SubResource("Curve2D_rhspx")
@@ -20,3 +24,12 @@ rotation = -1.85885
 loop = false
 
 [node name="Ball" parent="Straight/PathFollow2D" index="0" instance=ExtResource("2_5p648")]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Straight" index="1"]
+position = Vector2(1408, 960)
+rotation = -1.85885
+loop = false
+script = ExtResource("3_tsayn")
+start_distance_offset = 300.0
+
+[node name="Ball" parent="Straight/PathFollow2D2" index="0" instance=ExtResource("2_5p648")]

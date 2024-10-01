@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cytlgmc2lwfw3"]
+[gd_scene load_steps=6 format=3 uid="uid://cytlgmc2lwfw3"]
 
 [ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_exkb3"]
 [ext_resource type="PackedScene" uid="uid://dkg7gcrs3s7jc" path="res://scenes/enemies/bird.tscn" id="2_pjdnt"]
 [ext_resource type="PackedScene" uid="uid://bkr5nqrgfbf2w" path="res://scenes/enemies/copter.tscn" id="3_x8xit"]
+[ext_resource type="PackedScene" uid="uid://ptyf7vrsn81p" path="res://scenes/enemies/spinning.tscn" id="4_lopwe"]
 
 [sub_resource type="Curve2D" id="Curve2D_qsey3"]
 _data = {
@@ -77,3 +78,6 @@ position = Vector2(1029, 563)
 rotation = -3.14159
 first_shoot_delay = 3.0
 auto_shoot_delay = 2.0
+
+[node name="Spinning" parent="FromBackPath/FromBackPathFollow2D" index="3" instance=ExtResource("4_lopwe")]
+position = Vector2(703, 378)

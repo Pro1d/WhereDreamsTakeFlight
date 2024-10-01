@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_obqil"]
 [ext_resource type="PackedScene" uid="uid://ptyf7vrsn81p" path="res://scenes/enemies/spinning.tscn" id="2_gx6jb"]
 
-[sub_resource type="Curve2D" id="Curve2D_7sm8g"]
+[sub_resource type="Curve2D" id="Curve2D_ibix8"]
 _data = {
-"points": PackedVector2Array(-1.18921, -36.037, 1.18921, 36.037, 1184, 384, 131.658, 0, -131.658, 0, 1024, 480, 1.25992, 33.5878, -1.25992, -33.5878, 864, 384, -139.319, -0.330201, 139.319, 0.330201, 1024, 288, 1.71099, -32.4014, -1.71099, 32.4014, 1184, 384)
+"points": PackedVector2Array(-1.18921, -36.037, 1.18921, 36.037, 1152, 384, 79.095, 1.7818, -79.095, -1.7818, 1056, 448, 1.25992, 33.5878, -1.25992, -33.5878, 960, 384, -81.4106, -0.330201, 81.4106, 0.330201, 1056, 320, 1.71099, -32.4014, -1.71099, 32.4014, 1152, 384)
 }
 point_count = 5
 
@@ -16,10 +16,10 @@ position = Vector2(6.10352e-05, 0)
 
 [node name="Ellipse" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
 position = Vector2(-160, 0)
-curve = SubResource("Curve2D_7sm8g")
+curve = SubResource("Curve2D_ibix8")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Ellipse" index="0"]
-position = Vector2(1184, 384)
+position = Vector2(1152, 384)
 rotation = 1.5708
 rotates = false
 

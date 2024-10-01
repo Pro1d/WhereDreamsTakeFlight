@@ -26,7 +26,7 @@ rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D" index="0" instance=ExtResource("2_irsdh")]
 rotation = -1.5708
-auto_shoot_delay = 4.0
+auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="1"]
@@ -36,8 +36,8 @@ rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D2" index="0" instance=ExtResource("2_irsdh")]
 rotation = -1.5708
-first_shoot_delay = 3.0
-auto_shoot_delay = 4.0
+first_shoot_delay = 3.5
+auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="2"]
@@ -48,7 +48,7 @@ rotates = false
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D3" index="0" instance=ExtResource("2_irsdh")]
 rotation = -1.5708
 first_shoot_delay = 4.0
-auto_shoot_delay = 4.0
+auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D4" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="3"]
@@ -58,8 +58,8 @@ rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D4" index="0" instance=ExtResource("2_irsdh")]
 rotation = -1.5708
-first_shoot_delay = 5.0
-auto_shoot_delay = 4.0
+first_shoot_delay = 3.5
+auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D5-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="4"]
@@ -69,7 +69,8 @@ rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D5-IF+1" index="0" instance=ExtResource("2_irsdh")]
 rotation = -1.5708
-auto_shoot_delay = 4.0
+first_shoot_delay = 3.5
+auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D6-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="5"]
@@ -79,8 +80,8 @@ rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D6-IF+1" index="0" instance=ExtResource("2_irsdh")]
 rotation = -1.5708
-first_shoot_delay = 3.0
-auto_shoot_delay = 4.0
+first_shoot_delay = 3.5
+auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D7-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="6"]
@@ -90,8 +91,8 @@ rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D7-IF+1" index="0" instance=ExtResource("2_irsdh")]
 rotation = -1.5708
-first_shoot_delay = 4.0
-auto_shoot_delay = 4.0
+first_shoot_delay = 5.0
+auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D8-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="7"]
@@ -102,5 +103,16 @@ rotates = false
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D8-IF+1" index="0" instance=ExtResource("2_irsdh")]
 rotation = -1.5708
 first_shoot_delay = 5.0
-auto_shoot_delay = 4.0
+auto_shoot_delay = 4.5
+aim_player = false
+
+[node name="PathFollow2D8-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="8"]
+position = Vector2(1216.65, 384)
+progress = 1344.64
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D8-IF+2" index="0" instance=ExtResource("2_irsdh")]
+rotation = -1.5708
+first_shoot_delay = 5.0
+auto_shoot_delay = 4.5
 aim_player = false

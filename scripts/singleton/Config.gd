@@ -8,7 +8,7 @@ const SAVE_PATH := "user://save.cfg"
 var save_file := ConfigFile.new()
 
 const REPAIR_HEALTH := 2
-const XP_PER_BOSS := 100
+const XP_PER_BOSS := 75
 const XP_PER_ENEMY := 1
 
 var LAYER_PLAYER := 1 << 1
@@ -37,6 +37,7 @@ const plane_type_by_reward_name := {
 	"sky": PlayerPlane.Type.AboveSky
 }
 var available_planes : Array[bool] = [true, false, false, false, false]
+const unlock_level_planes: Array[int] = [0, 1, 2, 4, 7]
 var xp : int:
 	set(x):save_config("game", "xp", x)
 	get: return read_config("game", "xp", 0)

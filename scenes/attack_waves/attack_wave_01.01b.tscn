@@ -1,13 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8ikvxarjxwr2"]
+[gd_scene load_steps=7 format=3 uid="uid://c8ikvxarjxwr2"]
 
 [ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_bnu1m"]
 [ext_resource type="PackedScene" uid="uid://bkr5nqrgfbf2w" path="res://scenes/enemies/copter.tscn" id="2_3uffu"]
+[ext_resource type="Script" path="res://scripts/attack_waves/path_follow_with_offset.gd" id="3_ey1no"]
+[ext_resource type="PackedScene" uid="uid://dkg7gcrs3s7jc" path="res://scenes/enemies/bird.tscn" id="4_3pwnp"]
 
 [sub_resource type="Curve2D" id="Curve2D_s13m3"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1216, -192, 0, 0, 0, 0, -1216, -576, 0, 0, 0, 0, -768, -576, 0, 0, 0, 0, -768, -192, 0, 0, 0, 0, -1216, -192)
 }
 point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_4ykqn"]
+_data = {
+"points": PackedVector2Array(-1.69695, -559.49, 1.69695, 559.49, 1312, -160, 131.114, -2.89739, -131.114, 2.89739, 1216, 704, 134.427, -1.30455, -134.427, 1.30455, 1024, 64, 100.668, -83.393, -100.668, 83.393, 736, 608, 256.145, 1.3255, -256.145, -1.3255, 320, 704, -2.36129, 313.667, 2.36129, -313.667, 32, 384, -257.094, 2.82843, 257.094, -2.82843, 320, 64, -141.271, 0, 141.271, 0, 832, 64, -135.865, 1.96497, 135.865, -1.96497, 1024, 704, -162.001, 3.38085, 162.001, -3.38085, 1216, 64, 0, 0, 0, 0, 1536, 64)
+}
+point_count = 11
 
 [node name="AttackWave" instance=ExtResource("1_bnu1m")]
 from_back_speed = 150.0
@@ -33,7 +41,7 @@ progress = 208.0
 rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D2" index="0" instance=ExtResource("2_3uffu")]
-first_shoot_delay = 3.0
+first_shoot_delay = 5.0
 auto_shoot_delay = 4.0
 aim_player = false
 
@@ -72,7 +80,7 @@ progress = 1040.0
 rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D6-IF+1" index="0" instance=ExtResource("2_3uffu")]
-first_shoot_delay = 3.0
+first_shoot_delay = 5.0
 auto_shoot_delay = 4.0
 aim_player = false
 
@@ -95,3 +103,32 @@ rotates = false
 first_shoot_delay = 5.0
 auto_shoot_delay = 4.0
 aim_player = false
+
+[node name="Wave2AndPick" type="Path2D" parent="." index="1"]
+curve = SubResource("Curve2D_4ykqn")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Wave2AndPick" index="0"]
+position = Vector2(1312, -160)
+rotation = 1.56776
+loop = false
+script = ExtResource("3_ey1no")
+
+[node name="Bird" parent="Wave2AndPick/PathFollow2D" index="0" instance=ExtResource("4_3pwnp")]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Wave2AndPick" index="1"]
+position = Vector2(1312, -160)
+rotation = 1.56776
+loop = false
+script = ExtResource("3_ey1no")
+start_distance_offset = 140.0
+
+[node name="Bird" parent="Wave2AndPick/PathFollow2D2" index="0" instance=ExtResource("4_3pwnp")]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Wave2AndPick" index="2"]
+position = Vector2(1312, -160)
+rotation = 1.56776
+loop = false
+script = ExtResource("3_ey1no")
+start_distance_offset = 280.0
+
+[node name="Bird" parent="Wave2AndPick/PathFollow2D3" index="0" instance=ExtResource("4_3pwnp")]
