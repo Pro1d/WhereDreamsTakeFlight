@@ -88,8 +88,7 @@ func take_damage(dmg: float) ->  void:
 
 func destroy(killed: bool) -> void:
 	if killed:
-		# TODO fx
-		pass
+		SoundFxManagerSingleton.play(SoundFxManager.Type.EnemyDeath)
 	destroyed.emit(killed)
 	queue_free()
 

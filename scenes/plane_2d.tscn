@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfoaaqydn6rhb"]
+[gd_scene load_steps=17 format=3 uid="uid://dfoaaqydn6rhb"]
 
 [ext_resource type="Script" path="res://scripts/plane_2d.gd" id="1_mrkph"]
 [ext_resource type="ArrayMesh" uid="uid://dry3um5mv3hvb" path="res://assets/models/all/Plane.res" id="2_kahex"]
@@ -130,13 +130,23 @@ _data = {
 "shielding": SubResource("Animation_6fpnw")
 }
 
-[sub_resource type="Curve" id="Curve_khnac"]
-_data = [Vector2(0, 0.428571), 0.0, 0.0, 0, 0, Vector2(0.740741, 1), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_4cbrd"]
+_data = [Vector2(0, 0.43956), 0.0, 1.74233, 0, 0, Vector2(1, 1), 0.0633183, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Gradient" id="Gradient_ibcmv"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.224299, 0.341121, 0.742991, 1)
+colors = PackedColorArray(0.910894, 0.108911, 0, 1, 0.136699, 0.0505303, 2.40654e-07, 1, 0, 0, 0, 1, 0.90404, 0.80783, 0.717281, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_khnac"]
+_data = [Vector2(0, 0.494505), 0.0, 3.29252, 0, 0, Vector2(0.301653, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.74725, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="Gradient" id="Gradient_armfv"]
-offsets = PackedFloat32Array(0, 0.179104, 0.604478, 1)
-colors = PackedColorArray(1, 0.266667, 0, 1, 0, 0, 0, 1, 0.59, 0.59, 0.59, 1, 1, 1, 1, 0)
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.179104, 0.714953, 1)
+colors = PackedColorArray(1, 0.358333, 0.23, 1, 1, 0.622833, 0.27, 1, 1, 1, 1, 0)
 
 [node name="PlayerPlane" type="CharacterBody2D"]
 collision_layer = 2
@@ -235,12 +245,14 @@ libraries = {
 }
 speed_scale = 0.2
 
-[node name="DamagedCPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="Fx" type="Node2D" parent="."]
+
+[node name="DamagedCPUParticles2D" type="CPUParticles2D" parent="Fx"]
 unique_name_in_owner = true
 position = Vector2(-15, 0)
 texture = ExtResource("3_44k8h")
 emission_shape = 3
-emission_rect_extents = Vector2(5, 5)
+emission_rect_extents = Vector2(10, 30)
 direction = Vector2(-1, 0)
 spread = 10.0
 gravity = Vector2(0, 0)
@@ -250,6 +262,22 @@ angular_velocity_min = -47.48
 angular_velocity_max = 47.47
 angle_max = 360.0
 scale_amount_min = 0.9
+scale_amount_curve = SubResource("Curve_4cbrd")
+color_ramp = SubResource("Gradient_ibcmv")
+
+[node name="DeathCPUParticles2D" type="CPUParticles2D" parent="Fx"]
+unique_name_in_owner = true
+position = Vector2(-15, 0)
+amount = 2
+lifetime = 0.35
+randomness = 0.5
+texture = ExtResource("3_44k8h")
+emission_shape = 2
+emission_sphere_radius = 100.0
+gravity = Vector2(0, 0)
+angle_max = 360.0
+scale_amount_min = 1.5
+scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_khnac")
 color_ramp = SubResource("Gradient_armfv")
 

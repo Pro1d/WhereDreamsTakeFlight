@@ -37,6 +37,7 @@ var invunerability := false
 @onready var plane_mesh := %Plane as MeshInstance3D
 @onready var _hit_box_area := %HitBoxArea as Area2D
 @onready var shield_shape := $ShieldShape as CollisionShape2D
+@onready var death_particles := %DeathCPUParticles2D as CPUParticles2D
 
 var equipped_weapons : Array[Weapon] = []
 
@@ -78,6 +79,8 @@ func _project_position_3d(t2d: Transform2D) -> void:
 
 func reset() -> void:
 	(%DamagedCPUParticles2D as CPUParticles2D).restart()
+	death_particles.restart()
+	death_particles.emitting = false
 	hitpoint = max_hitpoint
 	for i in range(equipped_weapons.size()):
 		if equipped_weapons[i] != null:
@@ -174,7 +177,7 @@ func _update_plane_type() -> void:
 func _update_shield() -> void:
 	shield_shape.modulate.a = 1.0
 	shield_shape.visible = _shielded
-	shield_shape.disabled = not _shielded
+	shield_shape.set_deferred("disabled", not _shielded)
 
 func _update_damaged_fx() -> void:
 	var p := %DamagedCPUParticles2D as CPUParticles2D
@@ -195,14 +198,18 @@ func take_damage() -> void:
 		return
 	elif invunerability:
 		return
-	
+	elif hitpoint == 0:
+		return
+
 	hitpoint -= 1
 	if hitpoint == 0:
+		SoundFxManagerSingleton.play(SoundFxManager.Type.PlayerDeath)
+		death_particles.emitting = true
 		destroyed.emit()
 	else:
+		SoundFxManagerSingleton.play(SoundFxManager.Type.PlayerHit)
 		(VoiceManagerSingleton as VoiceManager).play(VoiceManager.Type.PlayerDamage)
 		trigger_shield()
-	# TODO sound fx
 
 func trigger_shield() -> void:
 	const duration := 2.5

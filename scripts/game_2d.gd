@@ -168,6 +168,7 @@ func finish_game(victory: bool) -> void:
 	current_wave.queue_free()
 	current_wave = null
 	player_plane.invunerability = true
+	player_plane.set_firing(victory)
 	overlay.hide()
 	
 	if victory:

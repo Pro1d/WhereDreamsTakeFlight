@@ -153,6 +153,7 @@ func destroy_projectile(_hit: bool = false) -> void:
 		# Explode fx
 		_explode_fx_root.show()
 		_explode_fx_animation.play("explode")
+		SoundFxManagerSingleton.play(SoundFxManager.Type.ProjectileExplode)
 		_keep_fx_until_death(_explode_fx_root, _explode_fx_animation.animation_finished)
 	else:
 		# Hit fx

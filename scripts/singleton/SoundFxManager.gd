@@ -4,10 +4,12 @@ extends Node
 enum Type {
 	EnemyShoot,
 	PlayerShoot,
-	PlayerHit, # ?
+	PlayerHit,
 	PlayerShieldHit,
+	PlayerDeath,
 	EnemyHit,
-	ProjectileExplode, # ?
+	EnemyDeath,
+	ProjectileExplode,
 	Shielding,
 	ProjectileHit,
 	Repair,
@@ -23,10 +25,13 @@ func _ready() -> void:
 	ui_sound.stream = preload("res://assets/sounds/fx/touck.ogg")
 	add_child(ui_sound)
 	
-	var do := func(r: Resource, db: float = 0.0) -> AudioStreamPlayer:
+	var do := func(r: AudioStream, db: float = 0.0) -> AudioStreamPlayer:
 		var asp := AudioStreamPlayer.new()
+		var random := AudioStreamRandomizer.new()
+		random.add_stream(0, r)
+		random.random_pitch = 1.05
 		asp.bus = &"SoundFx"
-		asp.stream = r
+		asp.stream = random
 		asp.volume_db = db
 		asp.max_polyphony = 3
 		add_child(asp)
@@ -35,10 +40,12 @@ func _ready() -> void:
 	_players.resize(Type.size())
 	_players[Type.EnemyShoot] = do.call(preload("res://assets/sounds/fx/shoot2.ogg"))
 	_players[Type.PlayerShoot] = do.call(preload("res://assets/sounds/fx/shoot1.ogg"), -8)
-	_players[Type.PlayerHit] = do.call(preload("res://assets/sounds/fx/DefiniteShot5.ogg"))
-	_players[Type.PlayerShieldHit] = do.call(preload("res://assets/sounds/fx/ImpactOnSteelSmooth.ogg"), -8)
+	_players[Type.PlayerHit] = do.call(preload("res://assets/sounds/fx/hit2.ogg"))
+	_players[Type.PlayerShieldHit] = do.call(preload("res://assets/sounds/fx/ImpactOnSteelSmooth.ogg"), -6)
+	_players[Type.PlayerDeath] = do.call(preload("res://assets/sounds/fx/retro_destroy_explode.ogg"))
 	_players[Type.EnemyHit] = do.call(preload("res://assets/sounds/fx/hit1.ogg"), -10)
-	_players[Type.ProjectileExplode] = do.call(preload("res://assets/sounds/fx/DefiniteShot5.ogg"))
+	_players[Type.EnemyDeath] = do.call(preload("res://assets/sounds/fx/MissileLaunchMini2.ogg"), -5)
+	_players[Type.ProjectileExplode] = do.call(preload("res://assets/sounds/fx/MiniShot.ogg"), -12)
 	_players[Type.Shielding] = do.call(preload("res://assets/sounds/fx/meld.ogg"))
 	_players[Type.ProjectileHit] = do.call(preload("res://assets/sounds/fx/tuck.ogg"), -8)
 	_players[Type.Repair] = do.call(preload("res://assets/sounds/fx/tliiing.ogg"))
