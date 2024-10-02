@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_ngfcq")
 type = 0
-fire_delay_factor = 1.0
+fire_delay_factor = 1.25
 damage_factor = 1.0
 speed_factor = 1.0
 lifetime_factor = 0.8
