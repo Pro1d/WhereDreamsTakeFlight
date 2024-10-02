@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_g1a40"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1408, -128, 0, 0, 0, 0, -896, -416, 0, 0, 0, 0, -896, -640, 0, 0, 0, 0, -1408, -640, 0, 0, 0, 0, -896, -352, 0, 0, 0, 0, -896, -128, 0, 0, 0, 0, -1408, -128)
+"points": PackedVector2Array(0, 0, 0, 0, -1408, -160.004, 0, 0, 0, 0, -896, -416, 0, 0, 0, 0, -895.998, -608.002, 0, 0, 0, 0, -1408, -608.004, 0, 0, 0, 0, -896, -352, 0, 0, 0, 0, -896, -160.002, 0, 0, 0, 0, -1408, -160.004)
 }
 point_count = 7
 
@@ -16,7 +16,8 @@ rotation = 3.14159
 curve = SubResource("Curve2D_g1a40")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="0"]
-position = Vector2(-1408, -128)
+position = Vector2(-1408, -160.004)
 rotates = false
 
 [node name="Train" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D" index="0" instance=ExtResource("2_q44lp")]
+first_shoot_delay = 4.0

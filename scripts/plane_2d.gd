@@ -11,7 +11,9 @@ enum Type {
 	AboveSky
 }
 const base_speed := 500.0
+const _acceleration := base_speed / 0.11
 var speed := base_speed
+var _current_velocity := Vector2.ZERO
 var max_hitpoint := 5
 var hitpoint := max_hitpoint :
 	set(h):
@@ -36,8 +38,9 @@ var invunerability := false
 @onready var weapon_slots_3d : Array[Node3D]
 @onready var plane_mesh := %Plane as MeshInstance3D
 @onready var _hit_box_area := %HitBoxArea as Area2D
-@onready var shield_shape := $ShieldShape as CollisionShape2D
+@onready var shield_shape := %ShieldShape as CollisionShape2D
 @onready var death_particles := %DeathCPUParticles2D as CPUParticles2D
+var _destroy_tween : Tween
 
 var equipped_weapons : Array[Weapon] = []
 
@@ -75,17 +78,17 @@ func _ready() -> void:
 func _project_position_3d(t2d: Transform2D) -> void:
 	_root_3d.global_position.y = _default_y_pos
 	var half_h := 768.0 / 2
-	_root_3d.global_rotation.x = signf(t2d.origin.y - half_h) * absf((t2d.origin.y - half_h) / half_h) ** 1.5 * (-PI / 6)
+	_root_3d.global_rotation.x = signf(t2d.origin.y - half_h) * absf((t2d.origin.y - half_h) / half_h) ** 1.5 * deg_to_rad(-40.0)
 
 func reset() -> void:
 	(%DamagedCPUParticles2D as CPUParticles2D).restart()
-	death_particles.restart()
-	death_particles.emitting = false
+	_stop_destroy_fx()
 	hitpoint = max_hitpoint
 	for i in range(equipped_weapons.size()):
 		if equipped_weapons[i] != null:
 			remove_weapon(i)
 	global_position = Vector2(300.0, 768.0 / 2)
+	_current_velocity = Vector2.ZERO
 	invunerability = false
 	disable_shield()
 
@@ -99,7 +102,10 @@ func _physics_process(delta: float) -> void:
 		Input.get_axis("player_left", "player_right"),
 		Input.get_axis("player_up", "player_down"),
 	)
-	move_and_collide(command * speed * delta)
+	_current_velocity = _current_velocity.move_toward(command * speed, delta * _acceleration)
+	var collision := move_and_collide(_current_velocity * delta)
+	if collision != null:
+		_current_velocity = _current_velocity.slide(collision.get_normal())
 
 func add_weapon(weapon: Weapon) -> void:
 	var index := weapon.index
@@ -204,12 +210,27 @@ func take_damage() -> void:
 	hitpoint -= 1
 	if hitpoint == 0:
 		SoundFxManagerSingleton.play(SoundFxManager.Type.PlayerDeath)
-		death_particles.emitting = true
+		_play_destroy_fx()
 		destroyed.emit()
 	else:
 		SoundFxManagerSingleton.play(SoundFxManager.Type.PlayerHit)
 		(VoiceManagerSingleton as VoiceManager).play(VoiceManager.Type.PlayerDamage)
 		trigger_shield()
+
+func _stop_destroy_fx() -> void:
+	if _destroy_tween != null:
+		_destroy_tween.kill()
+		_destroy_tween = null
+	death_particles.restart()
+	death_particles.emitting = false
+
+func _play_destroy_fx() -> void:
+	_stop_destroy_fx()
+	death_particles.emitting = true
+	_destroy_tween = create_tween()
+	_destroy_tween.tween_interval(1.75)
+	_destroy_tween.tween_callback(death_particles.set_emitting.bind(false))
+	_destroy_tween.play()
 
 func trigger_shield() -> void:
 	const duration := 2.5

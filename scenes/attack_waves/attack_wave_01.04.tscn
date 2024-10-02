@@ -19,48 +19,53 @@ position = Vector2(6.10352e-05, 0)
 curve = SubResource("Curve2D_fopem")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="0"]
-position = Vector2(1318, 230)
+position = Vector2(773.984, 230)
+progress = 544.0
 h_offset = 70.0
 v_offset = 70.0
 rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D" index="0" instance=ExtResource("2_kreds")]
 rotation = 3.14159
-auto_shoot_delay = 4.0
+first_shoot_delay = 1.5
+auto_shoot_delay = 3.0
 aim_player = false
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="1"]
-position = Vector2(1318, 90)
+position = Vector2(773.984, 90)
+progress = 544.0
 h_offset = 70.0
 v_offset = -70.0
 rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D2" index="0" instance=ExtResource("2_kreds")]
 rotation = 3.14159
-first_shoot_delay = 3.0
-auto_shoot_delay = 4.0
+first_shoot_delay = 1.5
+auto_shoot_delay = 3.0
 aim_player = false
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="2"]
-position = Vector2(1178, 90)
+position = Vector2(633.984, 90)
+progress = 544.0
 h_offset = -70.0
 v_offset = -70.0
 rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D3" index="0" instance=ExtResource("2_kreds")]
 rotation = 3.14159
-first_shoot_delay = 4.0
-auto_shoot_delay = 4.0
+first_shoot_delay = 1.7
+auto_shoot_delay = 3.0
 aim_player = false
 
 [node name="PathFollow2D4" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="3"]
-position = Vector2(1178, 230)
+position = Vector2(633.984, 230)
+progress = 544.0
 h_offset = -70.0
 v_offset = 70.0
 rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D4" index="0" instance=ExtResource("2_kreds")]
 rotation = 3.14159
-first_shoot_delay = 5.0
-auto_shoot_delay = 4.0
+first_shoot_delay = 1.7
+auto_shoot_delay = 3.0
 aim_player = false

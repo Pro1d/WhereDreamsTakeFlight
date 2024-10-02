@@ -78,9 +78,9 @@ label_settings = ExtResource("2_kr4aq")
 [node name="TextureRect3" type="TextureRect" parent="MarginContainer/CenterContainer2/WeaponContainer/Weapon1Button"]
 show_behind_parent = true
 layout_mode = 0
-offset_left = 160.0
+offset_left = 174.0
 offset_top = 37.0
-offset_right = 290.0
+offset_right = 304.0
 offset_bottom = 77.0
 texture = SubResource("AtlasTexture_unbx0")
 
@@ -104,6 +104,7 @@ flip_h = true
 
 [node name="TextureRect3" type="TextureRect" parent="MarginContainer/CenterContainer2/WeaponContainer/RecycleButton"]
 show_behind_parent = true
+layout_mode = 0
 offset_left = -102.0
 offset_top = -1.0
 offset_right = 28.0
@@ -136,10 +137,10 @@ label_settings = ExtResource("2_kr4aq")
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer2/WeaponContainer/Weapon2Button"]
 show_behind_parent = true
 layout_mode = 0
-offset_left = 158.0
-offset_top = -38.0
-offset_right = 288.0
-offset_bottom = 2.0
+offset_left = 178.0
+offset_top = -37.0
+offset_right = 308.0
+offset_bottom = 3.0
 texture = SubResource("AtlasTexture_n3q3r")
 
 [node name="SlotContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer2"]
@@ -200,10 +201,20 @@ offset_bottom = 76.0
 texture = SubResource("AtlasTexture_unbx0")
 flip_h = true
 
-[node name="Label2" type="Label" parent="MarginContainer"]
+[node name="GetLabel" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 text = "Get a new weapon..."
+label_settings = SubResource("LabelSettings_orsab")
+horizontal_alignment = 1
+
+[node name="PutLabel2" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "Place the new weapon
+"
 label_settings = SubResource("LabelSettings_orsab")
 horizontal_alignment = 1
 

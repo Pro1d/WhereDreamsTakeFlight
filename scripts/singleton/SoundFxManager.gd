@@ -13,6 +13,7 @@ enum Type {
 	Shielding,
 	ProjectileHit,
 	Repair,
+	Pop,
 }
 
 @onready var ui_sound := AudioStreamPlayer.new()
@@ -49,7 +50,7 @@ func _ready() -> void:
 	_players[Type.Shielding] = do.call(preload("res://assets/sounds/fx/meld.ogg"))
 	_players[Type.ProjectileHit] = do.call(preload("res://assets/sounds/fx/tuck.ogg"), -8)
 	_players[Type.Repair] = do.call(preload("res://assets/sounds/fx/tliiing.ogg"))
-
+	_players[Type.Pop] = do.call(preload("res://assets/sounds/fx/pop.ogg"))
 
 func play(type: Type) -> void:
 	_players[type].play()

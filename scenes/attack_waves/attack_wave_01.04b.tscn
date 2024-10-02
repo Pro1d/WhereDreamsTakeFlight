@@ -12,9 +12,6 @@ point_count = 9
 [node name="AttackWave" instance=ExtResource("1_7ow5c")]
 from_back_speed = 150.0
 
-[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
-position = Vector2(6.10352e-05, 0)
-
 [node name="DoubleSquare" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
 curve = SubResource("Curve2D_fopem")
 
@@ -89,7 +86,7 @@ auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D7-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="6"]
-position = Vector2(868.559, 314)
+position = Vector2(868.56, 314)
 progress = 1066.56
 h_offset = -70.0
 v_offset = -70.0
@@ -102,7 +99,7 @@ auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D8-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="7"]
-position = Vector2(868.559, 454)
+position = Vector2(868.56, 454)
 progress = 1066.56
 h_offset = -70.0
 v_offset = 70.0
@@ -115,7 +112,7 @@ auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D5-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="8"]
-position = Vector2(786.794, 678)
+position = Vector2(786.793, 678)
 progress = 2131.2
 h_offset = 70.0
 v_offset = 70.0
@@ -128,7 +125,7 @@ auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D6-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="9"]
-position = Vector2(786.794, 538)
+position = Vector2(786.793, 538)
 progress = 2131.2
 h_offset = 70.0
 v_offset = -70.0
@@ -141,7 +138,7 @@ auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D7-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="10"]
-position = Vector2(646.794, 538)
+position = Vector2(646.793, 538)
 progress = 2131.2
 h_offset = -70.0
 v_offset = -70.0
@@ -154,7 +151,7 @@ auto_shoot_delay = 4.5
 aim_player = false
 
 [node name="PathFollow2D8-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="11"]
-position = Vector2(646.794, 678)
+position = Vector2(646.793, 678)
 progress = 2131.2
 h_offset = -70.0
 v_offset = 70.0

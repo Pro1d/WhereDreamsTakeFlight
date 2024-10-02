@@ -215,9 +215,11 @@ func _update_mask() -> void:
 		collision_layer |= Config.LAYER_PLAYER_PROJECTILE
 		collision_layer &= ~Config.LAYER_ENEMY_PROJECTILE
 		collision_mask &= ~Config.LAYER_PLAYER
+		collision_mask &= ~Config.LAYER_PLAYER_SHIELD
 		collision_mask |= Config.LAYER_ENEMY
 	else:
 		collision_layer &= ~Config.LAYER_PLAYER_PROJECTILE
 		collision_layer |= Config.LAYER_ENEMY_PROJECTILE
 		collision_mask |= Config.LAYER_PLAYER
+		collision_mask |= Config.LAYER_PLAYER_SHIELD
 		collision_mask &= ~Config.LAYER_ENEMY

@@ -24,9 +24,12 @@ const audio_resources_by_type := {
 
 @onready var _audio_player := %AudioStreamPlayer as AudioStreamPlayer
 
-func play(type: Type, proba_quiet: float = 0.0, queue: bool = false) -> void:
+func play(type: Type, proba_quiet: float = 0.0, queue: bool = false, delay: float = 0.0) -> void:
 	if randf() < proba_quiet:
 		return
+	
+	if delay > 1e-4:
+		await get_tree().create_timer(delay).timeout
 	
 	if _audio_player.playing:
 		if queue:
@@ -37,7 +40,14 @@ func play(type: Type, proba_quiet: float = 0.0, queue: bool = false) -> void:
 	var res := audio_resources_by_type.get(type, null) as AudioStream
 	if res == null:
 		return
-	
-	_audio_player.stream = res
+		
+	await play_stream(res)
+
+func play_stream(stream: AudioStream) -> void:
+	_audio_player.stream = stream
 	_audio_player.play()
 	await _audio_player.finished
+
+func finished() -> void:
+	if _audio_player.playing:
+		await _audio_player.finished

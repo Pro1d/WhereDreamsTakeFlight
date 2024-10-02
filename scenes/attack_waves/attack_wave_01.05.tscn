@@ -36,7 +36,7 @@ rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D2" index="0" instance=ExtResource("2_5t8b6")]
 rotation = -1.5708
-first_shoot_delay = 3.0
+first_shoot_delay = 4.0
 auto_shoot_delay = 4.0
 aim_player = false
 
@@ -47,7 +47,6 @@ rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D3" index="0" instance=ExtResource("2_5t8b6")]
 rotation = -1.5708
-first_shoot_delay = 4.0
 auto_shoot_delay = 4.0
 aim_player = false
 
@@ -58,6 +57,6 @@ rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D4" index="0" instance=ExtResource("2_5t8b6")]
 rotation = -1.5708
-first_shoot_delay = 5.0
+first_shoot_delay = 4.0
 auto_shoot_delay = 4.0
 aim_player = false

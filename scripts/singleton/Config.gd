@@ -15,6 +15,7 @@ var LAYER_PLAYER := 1 << 1
 var LAYER_ENEMY := 1 << 2
 var LAYER_PLAYER_PROJECTILE := 1 << 3 #(ProjectSettings.get_setting("layer_names/2d_physics/player_projectile") as String)
 var LAYER_ENEMY_PROJECTILE := 1 << 4 #(ProjectSettings.get_setting("layer_names/2d_physics/enemy_projectile") as String)
+var LAYER_PLAYER_SHIELD := 1 << 8
 
 const curve_width_resources : Array[Resource] = [
 	preload("res://resources/materials/curve_width_1.tres"),

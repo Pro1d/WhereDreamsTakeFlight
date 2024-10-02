@@ -25,6 +25,7 @@ const waves_count := waves_per_difficulty * 3 + 1
 var current_wave : AttackWave
 var _state := State.IDLE
 var completed_waves := 0
+var _prev_wave_index := -1 # avoid randomly picking the same wave in a row
 var fighting_boss := false
 var enemy_kill_count := 0
 var boss_kill_count := 0
@@ -50,11 +51,11 @@ func _process(_delta: float) -> void:
 			if fighting_boss and current_wave != null:
 				overlay.show_enemy_life(current_wave.compute_total_hitpoints(), current_wave.total_max_hitpoints)
 
-func reset_world() -> void:
+func clear_world() -> void:
 	_clear_nodes(self)
 
 func start_game() -> void:
-	reset_world()
+	clear_world()
 	player_plane.reset()
 	for i in [0, 2] as Array[int]:
 		var w := WeaponPackedScene.instantiate() as Weapon
@@ -82,15 +83,19 @@ func _on_wave_cleared() -> void:
 	
 	completed_waves += 1
 	if completed_waves < waves_count:
+		# Offer a weapon at start of a new difficulty
 		if completed_waves % waves_per_difficulty == 0 and completed_waves > 0:
-			reset_world()
+			_prev_wave_index = -1
+			clear_world()
 			_state = State.WEAPON_SELECTION
 			await drop_and_pick_weapon()
 			_state = State.PLAYING
 		var difficulty := (completed_waves / waves_per_difficulty) as Difficulty
 		load_next_wave(difficulty)
 	else:
-		finish_game(true)
+		await get_tree().create_timer(1.0).timeout
+		if _state == State.PLAYING:
+			finish_game(true)
 
 func  load_next_wave(difficulty: Difficulty) -> void:
 	var col : Array[PackedScene]
@@ -103,7 +108,14 @@ func  load_next_wave(difficulty: Difficulty) -> void:
 			col = waves_collection.hard_waves
 		Difficulty.Boss, _:
 			col = waves_collection.boss_waves
-	load_wave(col.pick_random() as PackedScene, difficulty == Difficulty.Boss)
+	# avoid picking the same wave twice in a row
+	var pick_index := (
+		(_prev_wave_index + 1 + randi_range(0, col.size() - 2)) % col.size()
+		if _prev_wave_index >= 0 else
+		randi_range(0, col.size() - 1)
+	)
+	load_wave(col[pick_index] as PackedScene, difficulty == Difficulty.Boss)
+	_prev_wave_index = pick_index
 
 func load_wave(scene: PackedScene, boss: bool) -> void:
 	if current_wave != null:
@@ -172,9 +184,12 @@ func finish_game(victory: bool) -> void:
 	overlay.hide()
 	
 	if victory:
-		VoiceManagerSingleton.play(VoiceManagerSingleton.Type.Victory, 0.0, true)
+		VoiceManagerSingleton.play(VoiceManagerSingleton.Type.Victory, 0.0, true, 0.7)
 	else:
-		VoiceManagerSingleton.play(VoiceManagerSingleton.Type.Defeat, 0.0, true)
+		await get_tree().create_timer(2.5).timeout
+		VoiceManagerSingleton.play(VoiceManagerSingleton.Type.Defeat, 0.0, true, 0.7)
+	
+	SoundFxManagerSingleton.play(SoundFxManager.Type.Pop)
 	score_overlay.set_victory(victory)
 	score_overlay.commit_xp_gain(
 		enemy_kill_count * Config.XP_PER_ENEMY,
@@ -187,7 +202,7 @@ func finish_game(victory: bool) -> void:
 	_state = State.IDLE
 	player_plane.set_firing(false)
 	player_plane.reset()
-	reset_world()
+	clear_world()
 	game_finished.emit()
 
 func _clear_nodes(n: Node) -> void:

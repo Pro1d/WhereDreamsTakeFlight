@@ -58,15 +58,17 @@ func _physics_process(delta: float) -> void:
 		shot_cooldown -= delta
 		if shot_cooldown <= 0:
 			shot_cooldown += auto_shoot_delay
-			SoundFxManagerSingleton.play(SoundFxManager.Type.EnemyShoot)
-			trigger_all_shots()
+			var has_fired := trigger_all_shots()
+			if has_fired:
+				SoundFxManagerSingleton.play(SoundFxManager.Type.EnemyShoot)
 
-func trigger_all_shots() -> void:
+func trigger_all_shots() -> bool:
 	for sp: Node2D in _spawn_positions.get_children():
 		var dir := sp.global_transform.x
 		if aim_player and  Config.player_node != null:
 			dir = sp.global_position.direction_to(Config.player_node.get_2d_position())
 		shoot(sp.global_position, dir)
+	return _spawn_positions.get_child_count() > 0
 
 func shoot(origin: Vector2, dir: Vector2) -> Projectile:
 	var projectile := ProjectileResource.instantiate() as Projectile
@@ -81,6 +83,9 @@ func shoot(origin: Vector2, dir: Vector2) -> Projectile:
 	return projectile
 
 func take_damage(dmg: float) ->  void:
+	# do not take damage when not inside play area
+	if not (%VisibleOnScreenNotifier2D as VisibleOnScreenNotifier2D).is_on_screen():
+		return
 	SoundFxManagerSingleton.play(SoundFxManager.Type.EnemyHit)
 	hit_points -= dmg
 	if hit_points <= 0:
@@ -98,6 +103,9 @@ func _update_radius() -> void:
 	var circle_shape := (_body.get_child(0) as CollisionShape2D).shape as CircleShape2D
 	if circle_shape != null:
 		circle_shape.radius = radius
+	
+	var side := radius * cos(PI / 4)
+	(%VisibleOnScreenNotifier2D as VisibleOnScreenNotifier2D).rect = Rect2(-side, -side, side * 2, side * 2)
 
 static func find_parent_enemy(body: PhysicsBody2D) -> Enemy:
 	# body = "Enemy/2D/Body"

@@ -3,19 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_6lm1l"]
 [ext_resource type="PackedScene" uid="uid://c5ry6bp7muw3l" path="res://scenes/enemies/ball.tscn" id="2_8c3qa"]
 
-[sub_resource type="Curve2D" id="Curve2D_k5wei"]
+[sub_resource type="Curve2D" id="Curve2D_m1llk"]
 _data = {
-"points": PackedVector2Array(154.682, 50.8542, -154.682, -50.8542, 1629, 159, 127.665, -107.583, -127.665, 107.583, 1133, 157, 127.136, -122.898, -127.136, 122.898, 765, 615, 125.017, 137.73, -125.017, -137.73, 235, 622, 159.979, 162.144, -159.979, -162.144, -125, 148)
+"points": PackedVector2Array(154.682, 50.8542, -154.682, -50.8542, 1629, 159, 127.665, -107.583, -127.665, 107.583, 1133, 157, 127.136, -122.898, -127.136, 122.898, 768, 544, 125.017, 137.73, -125.017, -137.73, 160, 544, 159.979, 162.144, -159.979, -162.144, -125, 148)
 }
 point_count = 5
 
 [node name="AttackWave" instance=ExtResource("1_6lm1l")]
 
-[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
-position = Vector2(6.10352e-05, 0)
-
 [node name="Wave" type="Path2D" parent="." index="1"]
-curve = SubResource("Curve2D_k5wei")
+curve = SubResource("Curve2D_m1llk")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Wave" index="0"]
 position = Vector2(1629, 159)

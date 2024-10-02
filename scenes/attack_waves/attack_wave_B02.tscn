@@ -5,6 +5,9 @@
 
 [node name="AttackWave" instance=ExtResource("1_hvh5a")]
 
+[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
+position = Vector2(6.10352e-05, 0)
+
 [node name="Teddy" parent="FromBackPath/FromBackPathFollow2D" index="0" instance=ExtResource("2_6j06i")]
 position = Vector2(1250, 384)
 rotation = 3.14159

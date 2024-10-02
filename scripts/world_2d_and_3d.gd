@@ -24,10 +24,29 @@ func _ready() -> void:
 	_game_2d.game_finished.connect(_on_game_finished)
 	SoundFxManagerSingleton.connect_all_buttons($HUD)
 	pause_2d(true)
-	show_menu()
-	start_audio()
+	if false:
+		(%BlackScreen as CanvasLayer).hide()
+		show_menu()
+	else:
+		_play_intro()
+	
+func _play_intro() -> void:
+	var anim := %IntroAnimationPlayer as AnimationPlayer
+	anim.play(&"intro")
+	await anim.animation_finished
+	child_seat_up_animation()
+	await VoiceManagerSingleton.finished()
+	await get_tree().create_timer(0.8).timeout
+	show_menu(false)
 
 func start_audio() -> void:
+	await VoiceManagerSingleton.play_stream(
+		preload("res://assets/sounds/child/intro/pewpewpew.ogg")
+	)
+	await get_tree().create_timer(0.8).timeout
+	await VoiceManagerSingleton.play_stream(
+		preload("res://assets/sounds/child/intro/ratatata.wav")
+	)
 	VoiceManagerSingleton.play(VoiceManager.Type.Intro)
 	await get_tree().create_timer(7.0).timeout
 	MusicManager.start_music()
@@ -41,7 +60,7 @@ func _on_game_finished() -> void:
 	await pause_2d()
 	show_menu()
 	
-func show_menu() -> void:
+func child_seat_up_animation() -> void:
 	var plane_3d := Config.player_node.get_3d_node()
 	plane_pos_before_menu = plane_3d.global_transform
 	var target_plane_pos := (%PlaneMenuMarker3D as Node3D).global_transform
@@ -56,7 +75,11 @@ func show_menu() -> void:
 	tween.play()
 	grab_with_right_hand(%RightHandMenuMarker3D as Node3D, 0.4)
 	await tween.finished
-	
+
+func show_menu(play_anim: bool = true) -> void:
+	if play_anim:
+		await child_seat_up_animation()
+	SoundFxManagerSingleton.play(SoundFxManager.Type.Pop)
 	_menu.show()
 
 func hide_menu() -> void:
@@ -125,6 +148,7 @@ func player_pick_weapon(w1: Weapon, w2: Weapon, occupied_slots: Array[String], r
 	w2._root_3d.show()
 	
 	# Pick weapon / repair
+	SoundFxManagerSingleton.play(SoundFxManager.Type.Pop)
 	wp_overlay.show_weapon_options(
 		w1.weapon_spec.display_name(),
 		w2.weapon_spec.display_name(),
@@ -149,8 +173,10 @@ func player_pick_weapon(w1: Weapon, w2: Weapon, occupied_slots: Array[String], r
 	
 	# Select slot
 	if selected_weapon != null:
+		SoundFxManagerSingleton.play(SoundFxManager.Type.Pop)
 		wp_overlay.show_slots(occupied_slots)
 		await wp_overlay.slot_picked
+		wp_overlay.hide()
 		selected_weapon.index = wp_overlay.last_slot_selected
 		
 		# Animate grab and place weapon

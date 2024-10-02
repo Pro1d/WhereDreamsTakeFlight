@@ -23,7 +23,7 @@ var seq_index := 0
 #func _physics_process(delta: float) -> void:
 	#super(delta)
 
-func trigger_all_shots() -> void:
+func trigger_all_shots() -> bool:
 	if (seq[seq_index] & 1) != 0:
 		for sp in side1_canons:
 			var dir := sp.global_transform.x
@@ -38,4 +38,6 @@ func trigger_all_shots() -> void:
 			var proj := shoot(sp.global_position, dir)
 			proj.bounce_left = 1
 			proj.color = Color(0.86, 0.507, 0.129)
+	var fired := (seq[seq_index] != 0)
 	seq_index = (seq_index + 1) % seq.size()
+	return fired

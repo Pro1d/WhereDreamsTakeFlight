@@ -162,6 +162,80 @@ position = Vector2(-20, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_dw86g")
 
+[node name="CharacterBody2D" type="StaticBody2D" parent="."]
+collision_layer = 256
+collision_mask = 16
+
+[node name="ShieldShape" type="CollisionShape2D" parent="CharacterBody2D"]
+unique_name_in_owner = true
+rotation = 1.5708
+shape = SubResource("CircleShape2D_6fxer")
+
+[node name="Shield" type="Line2D" parent="CharacterBody2D/ShieldShape"]
+scale = Vector2(1.1, 1.1)
+points = PackedVector2Array(25.455, 117.273, 55.4549, 106.363, 87.0003, 86.9997, 103.637, 69.0905, 114, 46.9996, 121, -1.00044, 114, -42.0004, 104, -58.0004, 94.9997, -75.0004, 72.7269, -98.1821, 50.9996, -113, 34.545, -119.091, 3.99955, -124, -16.3641, -120, -36.0004, -114, -53.6367, -105.454, -77.2731, -93.6361, -90.9094, -79.9997, -109.091, -53.636, -118.182, -33.6359, -122, 0.000441551, -116.364, 33.6368, -106.577, 55.0351, -90.9997, 79.0003, -72.7269, 97.273, -53.9996, 110, -30.9087, 116.364, 0.000438035, 121)
+closed = true
+width = 6.0
+width_curve = SubResource("Curve_8gurb")
+texture = ExtResource("7_2k32o")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Shield2" type="Line2D" parent="CharacterBody2D/ShieldShape"]
+points = PackedVector2Array(22.0004, 96.9999, 46.0004, 88.9998, 56.0003, 81.9998, 76.0003, 64.9997, 89.0002, 44.9996)
+width = 6.0
+width_curve = SubResource("Curve_8gurb")
+texture = ExtResource("7_2k32o")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Shield3" type="Line2D" parent="CharacterBody2D/ShieldShape"]
+points = PackedVector2Array(-65.0002, -65.9998, -49.0003, -80.9998, -31.0003, -87.9999)
+width = 6.0
+width_curve = SubResource("Curve_8gurb")
+texture = ExtResource("7_2k32o")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Shield4" type="Line2D" parent="CharacterBody2D/ShieldShape"]
+points = PackedVector2Array(118, -16.0004, 112, -46.0004, 96.9997, -71.0004, 80.9997, -86.0003, 63.1056, -102.406, 37.897, -116.149, 9.99955, -124, -4.00045, -123, -30.0004, -119)
+width = 6.0
+width_curve = SubResource("Curve_8gurb")
+texture = ExtResource("7_2k32o")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="Shield5" type="Line2D" parent="CharacterBody2D/ShieldShape/Shield4"]
+rotation = 3.50811
+points = PackedVector2Array(118.122, -27.1337, 105.937, -58.8754, 85.5672, -89.6173, 63.1056, -102.406, 37.897, -116.149, 10.4172, -120.754, -4.00044, -121)
+width = 6.0
+width_curve = SubResource("Curve_8gurb")
+texture = ExtResource("7_2k32o")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 4
+
+[node name="ShieldAnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D/ShieldShape"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_m7d3t")
+}
+speed_scale = 0.2
+
 [node name="HitBoxArea" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 32
@@ -175,75 +249,6 @@ shape = SubResource("CapsuleShape2D_w2wh5")
 position = Vector2(-20, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_dw86g")
-
-[node name="ShieldShape" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-shape = SubResource("CircleShape2D_6fxer")
-
-[node name="Shield" type="Line2D" parent="ShieldShape"]
-scale = Vector2(1.1, 1.1)
-points = PackedVector2Array(25.455, 117.273, 55.4549, 106.363, 87.0003, 86.9997, 103.637, 69.0905, 114, 46.9996, 121, -1.00044, 114, -42.0004, 104, -58.0004, 94.9997, -75.0004, 72.7269, -98.1821, 50.9996, -113, 34.545, -119.091, 3.99955, -124, -16.3641, -120, -36.0004, -114, -53.6367, -105.454, -77.2731, -93.6361, -90.9094, -79.9997, -109.091, -53.636, -118.182, -33.6359, -122, 0.000441551, -116.364, 33.6368, -106.577, 55.0351, -90.9997, 79.0003, -72.7269, 97.273, -53.9996, 110, -30.9087, 116.364, 0.000438035, 121)
-closed = true
-width = 6.0
-width_curve = SubResource("Curve_8gurb")
-texture = ExtResource("7_2k32o")
-texture_mode = 2
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-round_precision = 4
-
-[node name="Shield2" type="Line2D" parent="ShieldShape"]
-points = PackedVector2Array(22.0004, 96.9999, 46.0004, 88.9998, 56.0003, 81.9998, 76.0003, 64.9997, 89.0002, 44.9996)
-width = 6.0
-width_curve = SubResource("Curve_8gurb")
-texture = ExtResource("7_2k32o")
-texture_mode = 2
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-round_precision = 4
-
-[node name="Shield3" type="Line2D" parent="ShieldShape"]
-points = PackedVector2Array(-65.0002, -65.9998, -49.0003, -80.9998, -31.0003, -87.9999)
-width = 6.0
-width_curve = SubResource("Curve_8gurb")
-texture = ExtResource("7_2k32o")
-texture_mode = 2
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-round_precision = 4
-
-[node name="Shield4" type="Line2D" parent="ShieldShape"]
-points = PackedVector2Array(118, -16.0004, 112, -46.0004, 96.9997, -71.0004, 80.9997, -86.0003, 63.1056, -102.406, 37.897, -116.149, 9.99955, -124, -4.00045, -123, -30.0004, -119)
-width = 6.0
-width_curve = SubResource("Curve_8gurb")
-texture = ExtResource("7_2k32o")
-texture_mode = 2
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-round_precision = 4
-
-[node name="Shield5" type="Line2D" parent="ShieldShape/Shield4"]
-rotation = 3.50811
-points = PackedVector2Array(118.122, -27.1337, 105.937, -58.8754, 85.5672, -89.6173, 63.1056, -102.406, 37.897, -116.149, 10.4172, -120.754, -4.00044, -121)
-width = 6.0
-width_curve = SubResource("Curve_8gurb")
-texture = ExtResource("7_2k32o")
-texture_mode = 2
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-round_precision = 4
-
-[node name="ShieldAnimationPlayer" type="AnimationPlayer" parent="ShieldShape"]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_m7d3t")
-}
-speed_scale = 0.2
 
 [node name="Fx" type="Node2D" parent="."]
 
