@@ -1,7 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://7ndbh0djb8di"]
+[gd_scene load_steps=8 format=3 uid="uid://7ndbh0djb8di"]
 
 [ext_resource type="Script" path="res://scripts/ui/weapon_overlay.gd" id="1_fj7y0"]
 [ext_resource type="LabelSettings" uid="uid://cpdhvt73q0p3u" path="res://resources/themes/border_label.tres" id="2_kr4aq"]
+[ext_resource type="Texture2D" uid="uid://cjdyi8gh5fv0p" path="res://assets/textures/border_handdrawn_arrows.png" id="3_akamo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unbx0"]
+atlas = ExtResource("3_akamo")
+region = Rect2(0, 80, 130, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vr86"]
+atlas = ExtResource("3_akamo")
+region = Rect2(0, 40, 130, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3q3r"]
+atlas = ExtResource("3_akamo")
+region = Rect2(0, 0, 130, 40)
 
 [sub_resource type="LabelSettings" id="LabelSettings_orsab"]
 font_size = 60
@@ -16,6 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fj7y0")
+metadata/_edit_horizontal_guides_ = [244.0, 522.0]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -34,8 +48,7 @@ layout_mode = 2
 
 [node name="WeaponContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer2"]
 unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(210, 0)
 layout_mode = 2
 theme_override_constants/separation = 100
 
@@ -53,22 +66,50 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 435.0
+offset_left = 434.0
 offset_top = -14.5
-offset_right = 366.0
+offset_right = 365.0
 offset_bottom = 14.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "It bounces!"
 label_settings = ExtResource("2_kr4aq")
 
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/CenterContainer2/WeaponContainer/Weapon1Button"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 160.0
+offset_top = 37.0
+offset_right = 290.0
+offset_bottom = 77.0
+texture = SubResource("AtlasTexture_unbx0")
+
 [node name="RecycleButton" type="Button" parent="MarginContainer/CenterContainer2/WeaponContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-tooltip_text = "Restore your life"
-text = "Repair plane"
+text = "Repair +2HP"
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/CenterContainer2/WeaponContainer/RecycleButton"]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_left = -80.0
+offset_top = 49.0
+offset_right = 50.0
+offset_bottom = 89.0
+texture = SubResource("AtlasTexture_unbx0")
+flip_h = true
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/CenterContainer2/WeaponContainer/RecycleButton"]
+show_behind_parent = true
+offset_left = -102.0
+offset_top = -1.0
+offset_right = 28.0
+offset_bottom = 39.0
+texture = SubResource("AtlasTexture_5vr86")
+flip_h = true
 
 [node name="Weapon2Button" type="Button" parent="MarginContainer/CenterContainer2/WeaponContainer"]
 unique_name_in_owner = true
@@ -83,41 +124,81 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 435.0
-offset_top = -14.5
-offset_right = 366.0
-offset_bottom = 14.5
+offset_left = 434.0
+offset_top = -15.5
+offset_right = 365.0
+offset_bottom = 13.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "It bounces!"
 label_settings = ExtResource("2_kr4aq")
 
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer2/WeaponContainer/Weapon2Button"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 158.0
+offset_top = -38.0
+offset_right = 288.0
+offset_bottom = 2.0
+texture = SubResource("AtlasTexture_n3q3r")
+
 [node name="SlotContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer2"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(220, 0)
+visible = false
+custom_minimum_size = Vector2(194, 0)
 layout_mode = 2
 theme_override_constants/separation = 90
 
 [node name="SlotButton3" type="Button" parent="MarginContainer/CenterContainer2/SlotContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "The weapon effect will be shared
-with the adjacent weapon(s)."
-text = "Replace/put here"
+tooltip_text = "
+"
+text = "Replace weapon"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/CenterContainer2/SlotContainer/SlotButton3"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -115.0
+offset_top = -35.0
+offset_right = 15.0
+offset_bottom = 5.0
+texture = SubResource("AtlasTexture_n3q3r")
+flip_h = true
 
 [node name="SlotButton2" type="Button" parent="MarginContainer/CenterContainer2/SlotContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "The weapon effect will be shared
-with the adjacent weapon(s)."
-text = "Replace/Put"
+tooltip_text = "
+"
+text = "Replace weapon"
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/CenterContainer2/SlotContainer/SlotButton2"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -101.0
+offset_top = -1.0
+offset_right = 29.0
+offset_bottom = 39.0
+texture = SubResource("AtlasTexture_5vr86")
+flip_h = true
 
 [node name="SlotButton1" type="Button" parent="MarginContainer/CenterContainer2/SlotContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "The weapon effect will be shared
-with the adjacent weapon(s)."
-text = "Replace/Put"
+tooltip_text = "
+"
+text = "Replace weapon"
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/CenterContainer2/SlotContainer/SlotButton1"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -111.0
+offset_top = 36.0
+offset_right = 19.0
+offset_bottom = 76.0
+texture = SubResource("AtlasTexture_unbx0")
+flip_h = true
 
 [node name="Label2" type="Label" parent="MarginContainer"]
 layout_mode = 2
@@ -132,4 +213,14 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "or repair your plane."
 label_settings = SubResource("LabelSettings_orsab")
+horizontal_alignment = 1
+
+[node name="PutLabel" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "Tips:
+The weapons share their effects with neighboring weapons.
+Experiment to find the best synergy!"
+label_settings = ExtResource("2_kr4aq")
 horizontal_alignment = 1

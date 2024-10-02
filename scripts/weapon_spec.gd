@@ -8,6 +8,7 @@ enum Type {
 	Pen,             # piercing
 	RubberDuck,      # bouncing
 	DollFork,        # bonus proj
+	Basic,           # base stat
 }
 
 @export var type : Type
@@ -26,6 +27,8 @@ enum Type {
 @export var mesh : ArrayMesh
 
 func merge_with(other: WeaponSpec) -> void:
+	if other.type == Type.Basic:
+		return
 	fire_delay_factor *= other.fire_delay_factor ** .5
 	damage_factor *= other.damage_factor ** .5
 	speed_factor *= other.speed_factor ** .5
@@ -45,6 +48,7 @@ func display_name() -> String:
 		Type.Pen: return "pen"
 		Type.RubberDuck: return "duck"
 		Type.DollFork: return "fork"
+		Type.Basic: return "canon"
 		_: return "???"
 
 func display_desc() -> String:
@@ -55,4 +59,5 @@ func display_desc() -> String:
 		Type.Pen: return "Pierce target."
 		Type.RubberDuck: return "Bouncing!"
 		Type.DollFork: return "More shots."
+		Type.Basic: return "No effect."
 		_: return "???"

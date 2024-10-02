@@ -194,19 +194,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 round_precision = 4
 
-[node name="Shield5" type="Line2D" parent="ShieldShape"]
-position = Vector2(67.999, -288)
-points = PackedVector2Array(28.0003, 72.9999, 36.0003, 79.9999, 46.0003, 83.9998, 57.0003, 78.9998, 63.0003, 76.9998, 69.0002, 64.9997, 69.0002, 50.9997, 62.0001, 37.9998, 48.0001, 34.9998, 33.0001, 38.9999, 28.0002, 42.9999, 23.0002, 55.9999)
-closed = true
-width = 6.0
-width_curve = SubResource("Curve_8gurb")
-texture = ExtResource("7_2k32o")
-texture_mode = 2
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-round_precision = 4
-
 [node name="Shield3" type="Line2D" parent="ShieldShape"]
 points = PackedVector2Array(-65.0002, -65.9998, -49.0003, -80.9998, -31.0003, -87.9999)
 width = 6.0

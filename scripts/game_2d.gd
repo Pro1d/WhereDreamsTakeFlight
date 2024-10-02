@@ -4,6 +4,7 @@ extends Node2D
 signal game_finished
 
 const WeaponPackedScene := preload("res://scenes/weapon.tscn")
+const basic_weapon_spec := preload("res://resources/weapons/basic.tres")
 
 enum State {
 	IDLE,
@@ -55,11 +56,12 @@ func reset_world() -> void:
 func start_game() -> void:
 	reset_world()
 	player_plane.reset()
-	var w := WeaponPackedScene.instantiate() as Weapon
-	w.index = 1
-	w.weapon_spec = weapon_specs.pick_random()
-	add_child(w)
-	player_plane.add_weapon(w)
+	for i in [0, 2] as Array[int]:
+		var w := WeaponPackedScene.instantiate() as Weapon
+		w.index = i
+		w.weapon_spec = basic_weapon_spec
+		add_child(w)
+		player_plane.add_weapon(w)
 	player_plane.set_firing(true)
 	completed_waves = 0
 	enemy_kill_count = 0

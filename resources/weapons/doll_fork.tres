@@ -7,7 +7,7 @@
 script = ExtResource("2_8kig7")
 type = 5
 fire_delay_factor = 1.0
-damage_factor = 0.95
+damage_factor = 0.8
 speed_factor = 1.0
 lifetime_factor = 1.0
 bonus_projectile = 2

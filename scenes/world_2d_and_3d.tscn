@@ -344,11 +344,11 @@ transform = Transform3D(-0.780244, -0.029259, 0.624791, -0.457438, -0.654569, -0
 
 [node name="Weapon1Marker2D" type="Marker2D" parent="2D/Markers"]
 unique_name_in_owner = true
-position = Vector2(960, 239)
+position = Vector2(947, 245)
 
 [node name="Weapon2Marker2D" type="Marker2D" parent="2D/Markers"]
 unique_name_in_owner = true
-position = Vector2(960, 540)
+position = Vector2(947, 525)
 
 [node name="WindCPUParticles2D" type="CPUParticles2D" parent="2D"]
 position = Vector2(784, 384)

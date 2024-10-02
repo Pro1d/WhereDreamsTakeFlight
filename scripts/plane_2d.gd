@@ -134,11 +134,8 @@ func merge_plane_spec(ws: WeaponSpec, weapon_index: int) -> void:
 		Type.Wood:
 			pass
 		Type.FireRed:
-			var c := equipped_weapons.size() - equipped_weapons.count(null)
-			if c == 1:
-				ws.damage_factor *= 2.0
-			elif c == 2:
-				ws.damage_factor *= 1.0
+			if ws.type == WeaponSpec.Type.Basic:
+				ws.damage_factor *= 1.5
 		Type.BlackAndWhite:
 			ws.damage_factor *= 1.2
 		Type.EmeraldGreen:
@@ -155,7 +152,7 @@ static func display_description(t: Type) -> String:
 		Type.Wood:
 			return "Wooden Plane\n\"My first plane ever!\""
 		Type.FireRed:
-			return "Fire Red\n2x damage when only one weapon equipped."
+			return "Fire Red\n+50% damage to canons (starting weapons)."
 		Type.BlackAndWhite:
 			return "White Shadow\n+20% damage"
 		Type.EmeraldGreen:

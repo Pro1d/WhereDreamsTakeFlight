@@ -51,6 +51,7 @@ func _fire() -> void:
 		var dir := base_dir.rotated(angle)
 		var projectile := ProjectileResource.instantiate() as Projectile
 		projectile.global_position = origin
+		projectile.radius *= ws.damage_factor
 		projectile.color = ws.proj_color
 		projectile.shape_type = ws.proj_shape
 		projectile.by_player = true

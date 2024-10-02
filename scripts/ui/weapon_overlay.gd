@@ -16,7 +16,7 @@ var last_slot_selected := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	(%RecycleButton as Button).tooltip_text += "(+%d)" % [Config.REPAIR_HEALTH]
+	(%RecycleButton as Button).text += "Repair +%dHP" % [Config.REPAIR_HEALTH]
 	(%RecycleButton as Button).pressed.connect(func() -> void:
 		last_weapon_picked = -1
 		weapon_picked.emit(last_weapon_picked))
@@ -40,6 +40,8 @@ func show_weapon_options(
 ) -> void:
 	weapon_container.show()
 	slot_container.hide()
+	(%RepairLabel as Control).show()
+	(%PutLabel as Control).hide()
 	weapon_buttons[0].text = "Pick " + name1
 	weapon_buttons[1].text = "Pick " + name2
 	(weapon_buttons[0].get_child(0) as Label).text = desc1
@@ -50,6 +52,7 @@ func show_slots(slots: Array[String]) -> void:
 	weapon_container.hide()
 	slot_container.show()
 	(%RepairLabel as Control).hide()
+	(%PutLabel as Control).show()
 	slot_buttons[0].text = "Put here" if slots[0] == "" else "Replace " + slots[0]
 	slot_buttons[1].text = "Put here" if slots[1] == "" else "Replace " + slots[1]
 	slot_buttons[2].text = "Put here" if slots[2] == "" else "Replace " + slots[2]
