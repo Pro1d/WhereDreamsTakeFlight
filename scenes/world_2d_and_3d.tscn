@@ -247,8 +247,6 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 [node name="World" type="Node3D"]
 process_mode = 3
 script = ExtResource("1_xm0yb")
-metadata/_edit_horizontal_guides_ = [384.0]
-metadata/_edit_vertical_guides_ = [683.0]
 
 [node name="BlackScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -267,7 +265,7 @@ color = Color(0, 0, 0, 1)
 [node name="title" type="Node2D" parent="BlackScreen/Black"]
 
 [node name="where" type="Node2D" parent="BlackScreen/Black/title"]
-position = Vector2(252, 110)
+position = Vector2(234, 118)
 
 [node name="Shield2" type="Line2D" parent="BlackScreen/Black/title/where"]
 points = PackedVector2Array(9, 99, 33, 220, 62, 137, 87, 226, 109, 108)
@@ -327,7 +325,7 @@ end_cap_mode = 2
 round_precision = 4
 
 [node name="dreams" type="Node2D" parent="BlackScreen/Black/title"]
-position = Vector2(228, 117)
+position = Vector2(200, 122)
 
 [node name="Shield9" type="Line2D" parent="BlackScreen/Black/title/dreams"]
 position = Vector2(203, -5)
@@ -402,7 +400,7 @@ end_cap_mode = 2
 round_precision = 4
 
 [node name="take" type="Node2D" parent="BlackScreen/Black/title"]
-position = Vector2(-42, 162)
+position = Vector2(-53, 159)
 
 [node name="Shield15" type="Line2D" parent="BlackScreen/Black/title/take"]
 position = Vector2(442, 132)
@@ -453,7 +451,7 @@ end_cap_mode = 2
 round_precision = 4
 
 [node name="filght_" type="Node2D" parent="BlackScreen/Black/title"]
-position = Vector2(-38, 171)
+position = Vector2(-60, 168)
 
 [node name="Shield21" type="Line2D" parent="BlackScreen/Black/title/filght_"]
 position = Vector2(837, 122)
@@ -508,19 +506,6 @@ position = Vector2(656, 124)
 points = PackedVector2Array(210, 159, 210, 163)
 width = 6.0
 width_curve = SubResource("Curve_xobmk")
-texture = ExtResource("2_2l4cb")
-texture_mode = 2
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-round_precision = 4
-
-[node name="Shield24" type="Line2D" parent="BlackScreen/Black/title/filght_"]
-position = Vector2(664, 116)
-points = PackedVector2Array(404, 226, 405, 232, 409, 228)
-closed = true
-width = 6.0
-width_curve = ExtResource("4_tctqx")
 texture = ExtResource("2_2l4cb")
 texture_mode = 2
 joint_mode = 2
