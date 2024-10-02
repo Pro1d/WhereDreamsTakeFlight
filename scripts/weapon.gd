@@ -56,7 +56,7 @@ func _fire() -> void:
 		projectile.shape_type = ws.proj_shape
 		projectile.by_player = true
 		projectile.current_velocity = projectile.current_velocity.length() * dir * ws.speed_factor
-		projectile.bounce_left = 3 if ws.bouncing else 0
+		projectile.bounce_left = (3 if ws.bouncing else 0) + ws.bonus_bouncing
 		projectile.piercing = ws.piercing
 		projectile.seeking = ws.seeking
 		projectile.explosive = ws.explosive

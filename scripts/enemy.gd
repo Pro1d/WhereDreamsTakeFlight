@@ -51,6 +51,19 @@ func _ready() -> void:
 			a.has_animation("flying")
 			a.play("flying")
 
+func make_stronger() -> void:
+	var rnd := randf()
+	if rnd < 0.3:
+		hit_points *= 1
+		_body.modulate = Color.WHITE
+	elif rnd < 0.8:
+		hit_points *= 2
+		_body.modulate = Color(1, 0.702, 0.49)
+	else:
+		hit_points *= 4
+		_body.modulate = Color(1, 0.42, 0.42)
+	
+
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return

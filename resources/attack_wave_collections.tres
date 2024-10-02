@@ -39,4 +39,4 @@ easy_waves = Array[PackedScene]([ExtResource("1_q42ba"), ExtResource("3_3casg"),
 medium_waves = Array[PackedScene]([ExtResource("12_a5tu3"), ExtResource("13_fbhnh"), ExtResource("14_6pxrk"), ExtResource("15_vmcsl"), ExtResource("16_hwg3e"), ExtResource("17_g86bv"), ExtResource("25_nibdg"), ExtResource("19_861ti"), ExtResource("22_hahio"), ExtResource("15_qg776"), ExtResource("13_gyoaf")])
 hard_waves = Array[PackedScene]([ExtResource("6_jxmbj"), ExtResource("7_4ekcn"), ExtResource("8_b763y"), ExtResource("9_5ij0k"), ExtResource("10_nqc1k"), ExtResource("11_606mj"), ExtResource("15_rfjd2"), ExtResource("16_hi2ht"), ExtResource("18_bwdjy"), ExtResource("20_s8vxc")])
 hardest_waves = Array[PackedScene]([ExtResource("16_hi2ht"), ExtResource("15_rfjd2"), ExtResource("7_4ekcn"), ExtResource("6_jxmbj"), ExtResource("20_s8vxc"), ExtResource("13_fbhnh"), ExtResource("19_861ti")])
-boss_waves = Array[PackedScene]([ExtResource("2_i1ybu"), ExtResource("1_8upp0")])
+boss_waves = Array[PackedScene]([ExtResource("1_8upp0"), ExtResource("2_i1ybu")])

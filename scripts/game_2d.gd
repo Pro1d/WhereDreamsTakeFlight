@@ -13,9 +13,7 @@ enum State {
 	ENDING
 }
 enum Difficulty { Easy=0, Medium, Hard, Boss, Hardest }
-const waves_per_difficulty := 2
-const waves_count := waves_per_difficulty * 3 + 1
-const waves_seq : Array[int] = [
+const waves_seq : Array[Difficulty] = [
 	Difficulty.Easy, Difficulty.Easy,
 	Difficulty.Medium, Difficulty.Medium,
 	Difficulty.Hard, Difficulty.Hard,
@@ -34,6 +32,7 @@ var current_wave : AttackWave
 var _state := State.IDLE
 var completed_waves := 0
 var _prev_wave_index := -1 # avoid randomly picking the same wave in a row
+var _prev_wave_difficulty := Difficulty.Easy
 var fighting_boss := false
 var enemy_kill_count := 0
 var boss_kill_count := 0
@@ -75,6 +74,8 @@ func start_game() -> void:
 	completed_waves = 0
 	enemy_kill_count = 0
 	boss_kill_count = 0
+	_prev_wave_index = -1
+	_prev_wave_difficulty = waves_seq[0] as Difficulty
 	overlay.show()
 	VoiceManagerSingleton.play(VoiceManager.Type.StartGame)
 	load_next_wave(Difficulty.Easy)
@@ -92,17 +93,17 @@ func _on_wave_cleared() -> void:
 	stop_and_clear_wave()
 	
 	completed_waves += 1
-	if completed_waves < waves_count:
+	if completed_waves < waves_seq.size():
 		# Offer a weapon at start of a new difficulty
-		#var difficulty := waves_seq[completed_waves]
-		if completed_waves % waves_per_difficulty == 0 and completed_waves > 0:
+		var difficulty := waves_seq[completed_waves]
+		if difficulty != _prev_wave_difficulty:
 			_prev_wave_index = -1
 			clear_world()
 			_state = State.WEAPON_SELECTION
 			await drop_and_pick_weapon()
 			_state = State.PLAYING
-		var difficulty := (completed_waves / waves_per_difficulty) as Difficulty
 		load_next_wave(difficulty)
+		_prev_wave_difficulty = difficulty
 	else:
 		await get_tree().create_timer(1.0).timeout
 		if _state == State.PLAYING:
@@ -110,6 +111,8 @@ func _on_wave_cleared() -> void:
 
 func  load_next_wave(difficulty: Difficulty) -> void:
 	var col : Array[PackedScene]
+	var forced_index := -1
+	var stronger_enemies := false
 	match difficulty:
 		Difficulty.Easy:
 			col = waves_collection.easy_waves
@@ -117,18 +120,25 @@ func  load_next_wave(difficulty: Difficulty) -> void:
 			col = waves_collection.medium_waves
 		Difficulty.Hard:
 			col = waves_collection.hard_waves
+		Difficulty.Hardest:
+			col = waves_collection.hardest_waves
+			stronger_enemies = true
 		Difficulty.Boss, _:
 			col = waves_collection.boss_waves
+			if boss_kill_count < col.size():
+				forced_index = boss_kill_count 
 	# avoid picking the same wave twice in a row
 	var pick_index := (
 		(_prev_wave_index + 1 + randi_range(0, col.size() - 2)) % col.size()
 		if _prev_wave_index >= 0 else
 		randi_range(0, col.size() - 1)
 	)
-	load_wave(col[pick_index] as PackedScene, difficulty == Difficulty.Boss)
+	if forced_index >= 0:
+		pick_index = forced_index
+	load_wave(col[pick_index] as PackedScene, difficulty == Difficulty.Boss, stronger_enemies)
 	_prev_wave_index = pick_index
 
-func load_wave(scene: PackedScene, boss: bool) -> void:
+func load_wave(scene: PackedScene, boss: bool, stronger_enemies: bool = false) -> void:
 	if boss:
 		current_wave = scene.instantiate() as AttackWave
 		overlay.show_enemy_life(current_wave.total_max_hitpoints, current_wave.total_max_hitpoints)
@@ -136,6 +146,7 @@ func load_wave(scene: PackedScene, boss: bool) -> void:
 		MusicManager.switch_to_boss_music()
 	else:
 		current_wave = scene.instantiate() as AttackWave
+		current_wave.make_stronger_enemies = stronger_enemies # must be set before add_child
 		overlay.hide_enemy_life()
 	fighting_boss = boss
 	Config.root_2d.add_child(current_wave)
@@ -208,7 +219,7 @@ func finish_game(victory: bool) -> void:
 	SoundFxManagerSingleton.play(SoundFxManager.Type.Pop)
 	score_overlay.set_victory(victory)
 	score_overlay.commit_xp_gain(
-		enemy_kill_count * Config.XP_PER_ENEMY,
+		completed_waves * Config.XP_PER_WAVE + enemy_kill_count * Config.XP_PER_ENEMY,
 		boss_kill_count * Config.XP_PER_BOSS
 	)
 	score_overlay.show()

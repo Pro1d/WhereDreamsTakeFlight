@@ -141,33 +141,33 @@ func get_neighboring_weapon(weapon: Weapon) -> Array[Weapon]:
 func merge_plane_spec(ws: WeaponSpec, weapon_index: int) -> void:
 	match type:
 		Type.Wood:
-			pass
-		Type.FireRed:
 			if ws.type == WeaponSpec.Type.Basic:
 				ws.damage_factor *= 1.5
-		Type.BlackAndWhite:
-			ws.damage_factor *= 1.2
-		Type.EmeraldGreen:
+		Type.FireRed:
 			if weapon_index == 1:
-				ws.fire_delay_factor *= 1 / 1.50
+				ws.fire_delay_factor *= 1 / 1.60
+		Type.BlackAndWhite:
+			ws.damage_factor *= 1.25
+		Type.EmeraldGreen:
+			ws.bonus_bouncing += 1
 		Type.AboveSky:
 			ws.speed_factor *= 1.15
-			ws.damage_factor *= 1.10
-			ws.fire_delay_factor *= 1 / 1.10
+			ws.damage_factor *= 1.20
+			ws.fire_delay_factor *= 1 / 1.20
 			# 15% flying speed
 
 static func display_description(t: Type) -> String:
 	match t:
 		Type.Wood:
-			return "Wooden Plane\n\"My first plane ever!\""
+			return "Wooden Plane\n+50% damage to equipped canons (starting weapons)."
 		Type.FireRed:
-			return "Fire Red\n+50% damage to canons (starting weapons)."
+			return "Fire Red\n+60% fire rate to middle weapon."
 		Type.BlackAndWhite:
-			return "White Shadow\n+20% damage"
+			return "White Shadow\n+25% base damage."
 		Type.EmeraldGreen:
-			return "Emerald Green\n+50% fire rate to middle weapon."
+			return "Emerald Green\n+1 bouncing to all projectiles."
 		Type.AboveSky:
-			return "Sky And Above\n+10% damage and fire rate.\n+15% projectile and plane speed."
+			return "Sky And Above\n+20% damage and fire rate.\n+15% projectile and plane speed."
 		_:
 			return "???"
 

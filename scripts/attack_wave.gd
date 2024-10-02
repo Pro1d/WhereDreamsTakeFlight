@@ -12,6 +12,7 @@ var _enemies : Array[Enemy]
 var total_max_hitpoints := 0.0
 var killed_enemies := 0
 #var _path_follows : Array[PathFollow2D]
+var make_stronger_enemies := false  # must be set before _ready (before it is added to the tree with add_child)
 
 func _ready() -> void:
 	_from_back.progress = 0.0
@@ -19,9 +20,9 @@ func _ready() -> void:
 	total_max_hitpoints = compute_total_hitpoints()
 	#_find_path_follows(self, false)
 
-func make_enemies_be_stronger() -> void:
-	for e in _enemies:
-		e.make_stronger()
+	if make_stronger_enemies:
+		for e in _enemies:
+			e.make_stronger()
 
 func compute_total_hitpoints() -> float:
 	var sum := 0.0

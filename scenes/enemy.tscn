@@ -36,3 +36,4 @@ unique_name_in_owner = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="2D/Body"]
 unique_name_in_owner = true
+rect = Rect2(-28.2843, -28.2843, 56.5685, 56.5685)

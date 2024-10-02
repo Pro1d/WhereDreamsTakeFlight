@@ -25,6 +25,7 @@ enum Type {
 @export var proj_shape := Projectile.Shape.Circle
 @export var proj_color := Color.WHITE
 @export var mesh : ArrayMesh
+@export var bonus_bouncing := 0
 
 func merge_with(other: WeaponSpec) -> void:
 	if other.type == Type.Basic:
@@ -39,6 +40,7 @@ func merge_with(other: WeaponSpec) -> void:
 	bouncing = bouncing or other.bouncing
 	splitting = splitting or other.splitting
 	seeking = seeking or other.seeking
+	bonus_bouncing += other.bonus_bouncing
 
 func display_name() -> String:
 	match type:

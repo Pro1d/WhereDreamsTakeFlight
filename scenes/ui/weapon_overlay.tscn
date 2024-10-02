@@ -205,7 +205,7 @@ flip_h = true
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-text = "Get a new weapon..."
+text = "Pick a new weapon..."
 label_settings = SubResource("LabelSettings_orsab")
 horizontal_alignment = 1
 
@@ -213,7 +213,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-text = "Place the new weapon
+text = "Place the weapon
 "
 label_settings = SubResource("LabelSettings_orsab")
 horizontal_alignment = 1
