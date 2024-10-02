@@ -22,7 +22,7 @@ func commit_xp_gain(enemy: int, boss: int) -> void:
 	(%MenuButton as Button).disabled = false
 
 func _display_xp(e: int, b: int, t: int) -> void:
-	(%SummaryLabel as Label).text = "Enemies killed: %d exp\nBoss killed: %d exp" % [e, b]
+	(%SummaryLabel as Label).text = "Waves completed: %d exp\nBoss killed: %d exp" % [e, b]
 	_display_total_xp(t)
 func _display_total_xp(t: int) -> void:
 	(%TotalLabel as Label).text = "Total: %d exp" % [t]

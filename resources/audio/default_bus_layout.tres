@@ -3,6 +3,7 @@
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_3whfi"]
 resource_name = "Compressor"
 threshold = -20.0
+release_ms = 400.0
 sidechain = &"Voice"
 
 [resource]
@@ -36,5 +37,5 @@ bus/5/name = &"Music"
 bus/5/solo = false
 bus/5/mute = false
 bus/5/bypass_fx = false
-bus/5/volume_db = -9.63278
+bus/5/volume_db = -6.25101
 bus/5/send = &"Compressed"

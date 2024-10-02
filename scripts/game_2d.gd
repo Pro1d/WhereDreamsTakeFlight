@@ -81,6 +81,8 @@ func _on_wave_cleared() -> void:
 	else:
 		enemy_kill_count += current_wave.killed_enemies
 	
+	stop_and_clear_wave()
+	
 	completed_waves += 1
 	if completed_waves < waves_count:
 		# Offer a weapon at start of a new difficulty
@@ -118,18 +120,23 @@ func  load_next_wave(difficulty: Difficulty) -> void:
 	_prev_wave_index = pick_index
 
 func load_wave(scene: PackedScene, boss: bool) -> void:
-	if current_wave != null:
-		current_wave.queue_free()
 	if boss:
 		current_wave = scene.instantiate() as AttackWave
 		overlay.show_enemy_life(current_wave.total_max_hitpoints, current_wave.total_max_hitpoints)
 		VoiceManagerSingleton.play(VoiceManager.Type.BossStarting)
+		MusicManager.switch_to_boss_music()
 	else:
 		current_wave = scene.instantiate() as AttackWave
 		overlay.hide_enemy_life()
 	fighting_boss = boss
 	Config.root_2d.add_child(current_wave)
 	current_wave.cleared.connect(_on_wave_cleared)
+
+func stop_and_clear_wave() -> void:
+	if current_wave != null:
+		current_wave.queue_free()
+		current_wave = null
+	MusicManager.switch_to_main_music()
 
 func drop_and_pick_weapon() -> void:
 	# Weapon 1
@@ -177,8 +184,6 @@ func drop_and_pick_weapon() -> void:
 
 func finish_game(victory: bool) -> void:
 	_state = State.ENDING
-	current_wave.queue_free()
-	current_wave = null
 	player_plane.invunerability = true
 	player_plane.set_firing(victory)
 	overlay.hide()
@@ -188,6 +193,8 @@ func finish_game(victory: bool) -> void:
 	else:
 		await get_tree().create_timer(2.5).timeout
 		VoiceManagerSingleton.play(VoiceManagerSingleton.Type.Defeat, 0.0, true, 0.7)
+	
+	stop_and_clear_wave()
 	
 	SoundFxManagerSingleton.play(SoundFxManager.Type.Pop)
 	score_overlay.set_victory(victory)

@@ -86,6 +86,8 @@ func take_damage(dmg: float) ->  void:
 	# do not take damage when not inside play area
 	if not (%VisibleOnScreenNotifier2D as VisibleOnScreenNotifier2D).is_on_screen():
 		return
+	if hit_points <= 0:
+		return # already dead
 	SoundFxManagerSingleton.play(SoundFxManager.Type.EnemyHit)
 	hit_points -= dmg
 	if hit_points <= 0:

@@ -204,11 +204,11 @@ func take_damage() -> void:
 		return
 	elif invunerability:
 		return
-	elif hitpoint == 0:
+	elif hitpoint <= 0:
 		return
 
 	hitpoint -= 1
-	if hitpoint == 0:
+	if hitpoint <= 0:
 		SoundFxManagerSingleton.play(SoundFxManager.Type.PlayerDeath)
 		_play_destroy_fx()
 		destroyed.emit()

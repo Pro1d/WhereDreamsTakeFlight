@@ -1,0 +1,13 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://kg6trwn587fj"]
+
+[ext_resource type="AudioStream" uid="uid://bcbbwx2jmwjg8" path="res://assets/musics/kevin_macleod_-_bassa_island_game_loop.ogg" id="1_snjpn"]
+[ext_resource type="AudioStream" uid="uid://cfktr8reideu5" path="res://assets/musics/kevin_macleod_-_robobozo.ogg" id="2_am8xn"]
+
+[resource]
+clip_count = 2
+clip_0/name = &"main"
+clip_0/stream = ExtResource("1_snjpn")
+clip_0/auto_advance = 0
+clip_1/name = &"boss"
+clip_1/stream = ExtResource("2_am8xn")
+clip_1/auto_advance = 0

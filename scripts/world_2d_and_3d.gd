@@ -23,6 +23,7 @@ func _ready() -> void:
 	_menu.play_clicked.connect(_on_play_clicked)
 	_game_2d.game_finished.connect(_on_game_finished)
 	SoundFxManagerSingleton.connect_all_buttons($HUD)
+	MusicManager.start_music()
 	pause_2d(true)
 	if false:
 		(%BlackScreen as CanvasLayer).hide()
@@ -48,8 +49,8 @@ func start_audio() -> void:
 		preload("res://assets/sounds/child/intro/ratatata.wav")
 	)
 	VoiceManagerSingleton.play(VoiceManager.Type.Intro)
-	await get_tree().create_timer(7.0).timeout
-	MusicManager.start_music()
+	#await get_tree().create_timer(7.0).timeout
+	#MusicManager.start_music()
 
 func _on_play_clicked() -> void:
 	await hide_menu()

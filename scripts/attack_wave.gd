@@ -47,9 +47,10 @@ func _on_enemy_destroyed(killed: bool, e: Enemy) -> void:
 	_remove_enemy(e)
 
 func _remove_enemy(e: Enemy) -> void:
-	_enemies.erase(e)
-	if _enemies.is_empty():
-		cleared.emit()
+	if _enemies.has(e):
+		_enemies.erase(e)
+		if _enemies.is_empty():
+			cleared.emit()
 
 func _find_enemies(n: Node, from_back: bool) -> void:
 	if n is Enemy:
