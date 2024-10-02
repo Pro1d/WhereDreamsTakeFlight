@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctd3wpumtftk6"]
+[gd_scene load_steps=6 format=3 uid="uid://ctd3wpumtftk6"]
 
 [ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_7adi4"]
+[ext_resource type="PackedScene" uid="uid://ptyf7vrsn81p" path="res://scenes/enemies/spinning.tscn" id="2_571o8"]
 [ext_resource type="PackedScene" uid="uid://imuct0ptm7lp" path="res://scenes/enemies/WarPlane.tscn" id="2_gh1m7"]
 [ext_resource type="Script" path="res://scripts/attack_waves/path_follow_with_offset.gd" id="2_iuwcy"]
 
@@ -13,7 +14,13 @@ point_count = 8
 [node name="AttackWave" instance=ExtResource("1_7adi4")]
 
 [node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
-position = Vector2(6.10352e-05, 0)
+position = Vector2(0, 0)
+
+[node name="Spinning" parent="FromBackPath/FromBackPathFollow2D" index="0" instance=ExtResource("2_571o8")]
+position = Vector2(1024, 544)
+
+[node name="Spinning2" parent="FromBackPath/FromBackPathFollow2D" index="1" instance=ExtResource("2_571o8")]
+position = Vector2(1024, 192)
 
 [node name="Eight" type="Path2D" parent="." index="1"]
 position = Vector2(20, 29)
@@ -29,28 +36,7 @@ script = ExtResource("2_iuwcy")
 first_shoot_delay = 1.5
 auto_shoot_delay = 4.5
 
-[node name="PathFollow2D2" type="PathFollow2D" parent="Eight" index="1"]
-position = Vector2(1196, 867)
-rotation = -1.57703
-loop = false
-script = ExtResource("2_iuwcy")
-start_distance_offset = 300.0
-
-[node name="WarPlane" parent="Eight/PathFollow2D2" index="0" instance=ExtResource("2_gh1m7")]
-auto_shoot_delay = 4.5
-
-[node name="PathFollow2D3" type="PathFollow2D" parent="Eight" index="2"]
-position = Vector2(1196, 867)
-rotation = -1.57703
-loop = false
-script = ExtResource("2_iuwcy")
-start_distance_offset = 600.0
-
-[node name="WarPlane" parent="Eight/PathFollow2D3" index="0" instance=ExtResource("2_gh1m7")]
-first_shoot_delay = 4.5
-auto_shoot_delay = 4.5
-
-[node name="PathFollow2D4" type="PathFollow2D" parent="Eight" index="3"]
+[node name="PathFollow2D4" type="PathFollow2D" parent="Eight" index="1"]
 position = Vector2(1196, 867)
 rotation = -1.57703
 loop = false
@@ -61,7 +47,17 @@ start_distance_offset = 150.0
 first_shoot_delay = 1.5
 auto_shoot_delay = 4.5
 
-[node name="PathFollow2D5" type="PathFollow2D" parent="Eight" index="4"]
+[node name="PathFollow2D2" type="PathFollow2D" parent="Eight" index="2"]
+position = Vector2(1196, 867)
+rotation = -1.57703
+loop = false
+script = ExtResource("2_iuwcy")
+start_distance_offset = 300.0
+
+[node name="WarPlane" parent="Eight/PathFollow2D2" index="0" instance=ExtResource("2_gh1m7")]
+auto_shoot_delay = 4.5
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Eight" index="3"]
 position = Vector2(1196, 867)
 rotation = -1.57703
 loop = false
@@ -69,6 +65,17 @@ script = ExtResource("2_iuwcy")
 start_distance_offset = 450.0
 
 [node name="WarPlane" parent="Eight/PathFollow2D5" index="0" instance=ExtResource("2_gh1m7")]
+auto_shoot_delay = 4.5
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Eight" index="4"]
+position = Vector2(1196, 867)
+rotation = -1.57703
+loop = false
+script = ExtResource("2_iuwcy")
+start_distance_offset = 600.0
+
+[node name="WarPlane" parent="Eight/PathFollow2D3" index="0" instance=ExtResource("2_gh1m7")]
+first_shoot_delay = 4.5
 auto_shoot_delay = 4.5
 
 [node name="PathFollow2D6" type="PathFollow2D" parent="Eight" index="5"]

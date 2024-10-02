@@ -12,9 +12,6 @@ point_count = 7
 
 [node name="AttackWave" instance=ExtResource("1_gs0cn")]
 
-[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
-position = Vector2(6.10352e-05, 0)
-
 [node name="WaveAndPick" type="Path2D" parent="." index="1"]
 curve = SubResource("Curve2D_26psn")
 

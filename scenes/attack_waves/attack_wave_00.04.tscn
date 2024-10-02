@@ -12,9 +12,6 @@ point_count = 11
 
 [node name="AttackWave" instance=ExtResource("1_t8k2k")]
 
-[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
-position = Vector2(6.10352e-05, 0)
-
 [node name="Wave2AndPick" type="Path2D" parent="." index="1"]
 curve = SubResource("Curve2D_ocglt")
 
@@ -31,7 +28,7 @@ position = Vector2(1312, -160)
 rotation = 1.56776
 loop = false
 script = ExtResource("2_5q14k")
-start_distance_offset = 140.0
+start_distance_offset = 160.0
 
 [node name="Bird" parent="Wave2AndPick/PathFollow2D2" index="0" instance=ExtResource("3_uosii")]
 
@@ -40,7 +37,7 @@ position = Vector2(1312, -160)
 rotation = 1.56776
 loop = false
 script = ExtResource("2_5q14k")
-start_distance_offset = 280.0
+start_distance_offset = 320.0
 
 [node name="Bird" parent="Wave2AndPick/PathFollow2D3" index="0" instance=ExtResource("3_uosii")]
 
@@ -49,7 +46,7 @@ position = Vector2(1312, -160)
 rotation = 1.56776
 loop = false
 script = ExtResource("2_5q14k")
-start_distance_offset = 840.0
+start_distance_offset = 480.0
 
 [node name="Bird" parent="Wave2AndPick/PathFollow2D5" index="0" instance=ExtResource("3_uosii")]
 
@@ -58,7 +55,7 @@ position = Vector2(1312, -160)
 rotation = 1.56776
 loop = false
 script = ExtResource("2_5q14k")
-start_distance_offset = 980.0
+start_distance_offset = 1280.0
 
 [node name="Bird" parent="Wave2AndPick/PathFollow2D6" index="0" instance=ExtResource("3_uosii")]
 
@@ -67,6 +64,24 @@ position = Vector2(1312, -160)
 rotation = 1.56776
 loop = false
 script = ExtResource("2_5q14k")
-start_distance_offset = 1120.0
+start_distance_offset = 1440.0
 
 [node name="Bird" parent="Wave2AndPick/PathFollow2D7" index="0" instance=ExtResource("3_uosii")]
+
+[node name="PathFollow2D8" type="PathFollow2D" parent="Wave2AndPick" index="6"]
+position = Vector2(1312, -160)
+rotation = 1.56776
+loop = false
+script = ExtResource("2_5q14k")
+start_distance_offset = 1600.0
+
+[node name="Bird" parent="Wave2AndPick/PathFollow2D8" index="0" instance=ExtResource("3_uosii")]
+
+[node name="PathFollow2D9" type="PathFollow2D" parent="Wave2AndPick" index="7"]
+position = Vector2(1312, -160)
+rotation = 1.56776
+loop = false
+script = ExtResource("2_5q14k")
+start_distance_offset = 1760.0
+
+[node name="Bird" parent="Wave2AndPick/PathFollow2D9" index="0" instance=ExtResource("3_uosii")]

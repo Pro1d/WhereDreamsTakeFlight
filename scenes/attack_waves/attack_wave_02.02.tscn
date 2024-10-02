@@ -6,7 +6,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_riwrd"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1536, 448, 318.355, 12.6571, -318.355, -12.6571, 992, 128, 273.743, -46.79, -273.743, 46.79, 160, 320, 0, 0, 0, 0, -448, 352)
+"points": PackedVector2Array(0, 0, 0, 0, 1536, 448, 318.355, 12.6571, -318.355, -12.6571, 992, 192, 273.743, -46.79, -273.743, 46.79, 160, 320, 0, 0, 0, 0, -224, 352)
 }
 point_count = 4
 
@@ -22,8 +22,8 @@ point_count = 5
 curve = SubResource("Curve2D_riwrd")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Straight" index="0"]
-position = Vector2(1566.42, 396.284)
-rotation = -2.60987
+position = Vector2(1561.55, 393.711)
+rotation = -2.70175
 v_offset = 60.0
 loop = false
 
@@ -31,8 +31,8 @@ loop = false
 auto_shoot_delay = 3.0
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Straight" index="1"]
-position = Vector2(1505.58, 499.716)
-rotation = -2.60987
+position = Vector2(1510.45, 502.289)
+rotation = -2.70175
 v_offset = -60.0
 loop = false
 
@@ -40,8 +40,8 @@ loop = false
 auto_shoot_delay = 3.0
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="Straight" index="2"]
-position = Vector2(1566.42, 396.284)
-rotation = -2.60987
+position = Vector2(1561.55, 393.711)
+rotation = -2.70175
 v_offset = 60.0
 loop = false
 script = ExtResource("3_fwkg5")
@@ -51,8 +51,8 @@ start_distance_offset = 1250.0
 auto_shoot_delay = 3.0
 
 [node name="PathFollow2D4" type="PathFollow2D" parent="Straight" index="3"]
-position = Vector2(1505.58, 499.716)
-rotation = -2.60987
+position = Vector2(1510.45, 502.289)
+rotation = -2.70175
 v_offset = -60.0
 loop = false
 script = ExtResource("3_fwkg5")
@@ -69,41 +69,41 @@ position = Vector2(1629, 159)
 rotation = -2.82396
 loop = false
 script = ExtResource("3_fwkg5")
-start_distance_offset = 400.0
+start_distance_offset = 450.0
 
 [node name="Ball" parent="Wave/PathFollow2D" index="0" instance=ExtResource("2_kdhx6")]
 first_shoot_delay = 3.0
-auto_shoot_delay = 4.5
+auto_shoot_delay = 3.0
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Wave" index="1"]
 position = Vector2(1629, 159)
 rotation = -2.82396
 loop = false
 script = ExtResource("3_fwkg5")
-start_distance_offset = 550.0
+start_distance_offset = 600.0
 
 [node name="Ball" parent="Wave/PathFollow2D2" index="0" instance=ExtResource("2_kdhx6")]
-first_shoot_delay = 4.5
-auto_shoot_delay = 4.5
+first_shoot_delay = 3.5
+auto_shoot_delay = 3.0
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="Wave" index="2"]
 position = Vector2(1629, 159)
 rotation = -2.82396
 loop = false
 script = ExtResource("3_fwkg5")
-start_distance_offset = 700.0
+start_distance_offset = 750.0
 
 [node name="Ball" parent="Wave/PathFollow2D3" index="0" instance=ExtResource("2_kdhx6")]
-first_shoot_delay = 6.0
-auto_shoot_delay = 4.5
+first_shoot_delay = 4.0
+auto_shoot_delay = 3.0
 
 [node name="PathFollow2D4" type="PathFollow2D" parent="Wave" index="3"]
 position = Vector2(1629, 159)
 rotation = -2.82396
 loop = false
 script = ExtResource("3_fwkg5")
-start_distance_offset = 850.0
+start_distance_offset = 900.0
 
 [node name="Ball" parent="Wave/PathFollow2D4" index="0" instance=ExtResource("2_kdhx6")]
-first_shoot_delay = 6.0
-auto_shoot_delay = 4.5
+first_shoot_delay = 4.5
+auto_shoot_delay = 3.0

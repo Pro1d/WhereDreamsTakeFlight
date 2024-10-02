@@ -12,9 +12,17 @@ enum State {
 	WEAPON_SELECTION,
 	ENDING
 }
-enum Difficulty { Easy=0, Medium, Hard, Boss }
+enum Difficulty { Easy=0, Medium, Hard, Boss, Hardest }
 const waves_per_difficulty := 2
 const waves_count := waves_per_difficulty * 3 + 1
+const waves_seq : Array[int] = [
+	Difficulty.Easy, Difficulty.Easy,
+	Difficulty.Medium, Difficulty.Medium,
+	Difficulty.Hard, Difficulty.Hard,
+	Difficulty.Boss,
+	Difficulty.Hardest, Difficulty.Hardest, Difficulty.Hardest,
+	Difficulty.Boss,
+]
 
 @export var overlay : Overlay = null
 @export var weapon_overlay : WeaponOverlay = null
@@ -86,6 +94,7 @@ func _on_wave_cleared() -> void:
 	completed_waves += 1
 	if completed_waves < waves_count:
 		# Offer a weapon at start of a new difficulty
+		#var difficulty := waves_seq[completed_waves]
 		if completed_waves % waves_per_difficulty == 0 and completed_waves > 0:
 			_prev_wave_index = -1
 			clear_world()

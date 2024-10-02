@@ -19,6 +19,10 @@ func _ready() -> void:
 	total_max_hitpoints = compute_total_hitpoints()
 	#_find_path_follows(self, false)
 
+func make_enemies_be_stronger() -> void:
+	for e in _enemies:
+		e.make_stronger()
+
 func compute_total_hitpoints() -> float:
 	var sum := 0.0
 	for e in _enemies:

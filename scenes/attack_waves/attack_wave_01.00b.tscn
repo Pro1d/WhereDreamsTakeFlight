@@ -12,9 +12,6 @@ point_count = 5
 [node name="AttackWave" instance=ExtResource("1_47s8p")]
 from_back_speed = 150.0
 
-[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
-position = Vector2(6.10352e-05, 0)
-
 [node name="Path2D" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
 rotation = 3.14159
 curve = SubResource("Curve2D_s13m3")
@@ -63,55 +60,7 @@ first_shoot_delay = 3.0
 auto_shoot_delay = 5.0
 aim_player = false
 
-[node name="PathFollow2D5" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="4"]
-position = Vector2(-729.996, -122)
-progress = 1248.0
-h_offset = 70.0
-v_offset = 70.0
-rotates = false
-
-[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D5" index="0" instance=ExtResource("2_36vr0")]
-first_shoot_delay = 7.5
-auto_shoot_delay = 3.5
-aim_player = false
-
-[node name="PathFollow2D6" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="5"]
-position = Vector2(-729.996, -262)
-progress = 1248.0
-h_offset = 70.0
-v_offset = -70.0
-rotates = false
-
-[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D6" index="0" instance=ExtResource("2_36vr0")]
-first_shoot_delay = 7.5
-auto_shoot_delay = 3.5
-aim_player = false
-
-[node name="PathFollow2D7" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="6"]
-position = Vector2(-869.996, -262)
-progress = 1248.0
-h_offset = -70.0
-v_offset = -70.0
-rotates = false
-
-[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D7" index="0" instance=ExtResource("2_36vr0")]
-first_shoot_delay = 7.5
-auto_shoot_delay = 3.5
-aim_player = false
-
-[node name="PathFollow2D8" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="7"]
-position = Vector2(-869.996, -122)
-progress = 1248.0
-h_offset = -70.0
-v_offset = 70.0
-rotates = false
-
-[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D8" index="0" instance=ExtResource("2_36vr0")]
-first_shoot_delay = 7.5
-auto_shoot_delay = 3.5
-aim_player = false
-
-[node name="PathFollow2D5-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="8"]
+[node name="PathFollow2D5-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="4"]
 position = Vector2(-698, -506)
 progress = 832.0
 h_offset = 70.0
@@ -122,7 +71,7 @@ rotates = false
 auto_shoot_delay = 6.0
 aim_player = false
 
-[node name="PathFollow2D6-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="9"]
+[node name="PathFollow2D6-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="5"]
 position = Vector2(-698, -646)
 progress = 832.0
 h_offset = 70.0
@@ -133,7 +82,7 @@ rotates = false
 auto_shoot_delay = 6.0
 aim_player = false
 
-[node name="PathFollow2D7-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="10"]
+[node name="PathFollow2D7-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="6"]
 position = Vector2(-838, -646)
 progress = 832.0
 h_offset = -70.0
@@ -144,7 +93,7 @@ rotates = false
 auto_shoot_delay = 6.0
 aim_player = false
 
-[node name="PathFollow2D8-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="11"]
+[node name="PathFollow2D8-IF+1" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="7"]
 position = Vector2(-838, -506)
 progress = 832.0
 h_offset = -70.0
@@ -155,7 +104,7 @@ rotates = false
 auto_shoot_delay = 6.0
 aim_player = false
 
-[node name="PathFollow2D5-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="12"]
+[node name="PathFollow2D5-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="8"]
 position = Vector2(-1114, -506)
 progress = 416.0
 h_offset = 70.0
@@ -167,7 +116,7 @@ first_shoot_delay = 6.5
 auto_shoot_delay = 6.0
 aim_player = false
 
-[node name="PathFollow2D6-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="13"]
+[node name="PathFollow2D6-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="9"]
 position = Vector2(-1114, -646)
 progress = 416.0
 h_offset = 70.0
@@ -179,7 +128,7 @@ first_shoot_delay = 6.5
 auto_shoot_delay = 6.0
 aim_player = false
 
-[node name="PathFollow2D7-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="14"]
+[node name="PathFollow2D7-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="10"]
 position = Vector2(-1254, -646)
 progress = 416.0
 h_offset = -70.0
@@ -191,7 +140,7 @@ first_shoot_delay = 6.5
 auto_shoot_delay = 6.0
 aim_player = false
 
-[node name="PathFollow2D8-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="15"]
+[node name="PathFollow2D8-IF+2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="11"]
 position = Vector2(-1254, -506)
 progress = 416.0
 h_offset = -70.0
@@ -201,4 +150,52 @@ rotates = false
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D8-IF+2" index="0" instance=ExtResource("2_36vr0")]
 first_shoot_delay = 6.5
 auto_shoot_delay = 6.0
+aim_player = false
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="12"]
+position = Vector2(-729.996, -122)
+progress = 1248.0
+h_offset = 70.0
+v_offset = 70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D5" index="0" instance=ExtResource("2_36vr0")]
+first_shoot_delay = 7.5
+auto_shoot_delay = 3.5
+aim_player = false
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="13"]
+position = Vector2(-729.996, -262)
+progress = 1248.0
+h_offset = 70.0
+v_offset = -70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D6" index="0" instance=ExtResource("2_36vr0")]
+first_shoot_delay = 7.5
+auto_shoot_delay = 3.5
+aim_player = false
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="14"]
+position = Vector2(-869.996, -262)
+progress = 1248.0
+h_offset = -70.0
+v_offset = -70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D7" index="0" instance=ExtResource("2_36vr0")]
+first_shoot_delay = 7.5
+auto_shoot_delay = 3.5
+aim_player = false
+
+[node name="PathFollow2D8" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Path2D" index="15"]
+position = Vector2(-869.996, -122)
+progress = 1248.0
+h_offset = -70.0
+v_offset = 70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Path2D/PathFollow2D8" index="0" instance=ExtResource("2_36vr0")]
+first_shoot_delay = 7.5
+auto_shoot_delay = 3.5
 aim_player = false

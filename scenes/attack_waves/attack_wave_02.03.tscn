@@ -12,9 +12,6 @@ point_count = 7
 
 [node name="AttackWave" instance=ExtResource("1_r7td8")]
 
-[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
-position = Vector2(6.10352e-05, 0)
-
 [node name="Straight" type="Path2D" parent="." index="1"]
 curve = SubResource("Curve2D_rhspx")
 
@@ -30,6 +27,47 @@ position = Vector2(1408, 960)
 rotation = -1.85885
 loop = false
 script = ExtResource("3_tsayn")
-start_distance_offset = 300.0
+start_distance_offset = 150.0
 
 [node name="Ball" parent="Straight/PathFollow2D2" index="0" instance=ExtResource("2_5p648")]
+first_shoot_delay = 2.5
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Straight" index="2"]
+position = Vector2(1408, 960)
+rotation = -1.85885
+loop = false
+script = ExtResource("3_tsayn")
+start_distance_offset = 300.0
+
+[node name="Ball" parent="Straight/PathFollow2D3" index="0" instance=ExtResource("2_5p648")]
+first_shoot_delay = 3.0
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Straight" index="3"]
+position = Vector2(1408, 960)
+rotation = -1.85885
+loop = false
+script = ExtResource("3_tsayn")
+start_distance_offset = 1050.0
+
+[node name="Ball" parent="Straight/PathFollow2D4" index="0" instance=ExtResource("2_5p648")]
+first_shoot_delay = 6.0
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Straight" index="4"]
+position = Vector2(1408, 960)
+rotation = -1.85885
+loop = false
+script = ExtResource("3_tsayn")
+start_distance_offset = 1200.0
+
+[node name="Ball" parent="Straight/PathFollow2D5" index="0" instance=ExtResource("2_5p648")]
+first_shoot_delay = 6.5
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="Straight" index="5"]
+position = Vector2(1408, 960)
+rotation = -1.85885
+loop = false
+script = ExtResource("3_tsayn")
+start_distance_offset = 1350.0
+
+[node name="Ball" parent="Straight/PathFollow2D6" index="0" instance=ExtResource("2_5p648")]
+first_shoot_delay = 7.0

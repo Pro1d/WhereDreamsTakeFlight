@@ -11,9 +11,6 @@ point_count = 5
 
 [node name="AttackWave" instance=ExtResource("1_o1gjg")]
 
-[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
-position = Vector2(6.10352e-05, 0)
-
 [node name="BounceDown" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
 position = Vector2(-71.0012, 8.99969)
 curve = SubResource("Curve2D_wa215")
@@ -24,6 +21,7 @@ rotation = 2.33876
 rotates = false
 
 [node name="Spinning" parent="FromBackPath/FromBackPathFollow2D/BounceDown/PathFollow2D" index="0" instance=ExtResource("2_vqam6")]
+first_shoot_delay = 3.0
 
 [node name="BounceUp" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="1"]
 position = Vector2(1932, 751)
@@ -36,4 +34,4 @@ rotation = 2.33876
 rotates = false
 
 [node name="Spinning" parent="FromBackPath/FromBackPathFollow2D/BounceUp/PathFollow2D" index="0" instance=ExtResource("2_vqam6")]
-first_shoot_delay = 3.25
+first_shoot_delay = 3.0

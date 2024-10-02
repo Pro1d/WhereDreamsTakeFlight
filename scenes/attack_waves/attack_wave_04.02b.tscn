@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://1paybpym2car"]
+
+[ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_5yhtr"]
+[ext_resource type="PackedScene" uid="uid://ptyf7vrsn81p" path="res://scenes/enemies/spinning.tscn" id="2_mnnpr"]
+
+[sub_resource type="Curve2D" id="Curve2D_wa215"]
+_data = {
+"points": PackedVector2Array(39.4302, -40.8301, -39.4302, 40.8301, 1004, 419.997, 0.278313, -39.6747, -0.278313, 39.6747, 940.001, 526.998, -38.1838, -0.707107, 38.1838, 0.707107, 1004, 590.997, 1.88136, 39.1948, -1.88136, -39.1948, 1068, 526.997, 30.8416, 42.9148, -30.8416, -42.9148, 1004, 419.997)
+}
+point_count = 5
+
+[node name="AttackWave" instance=ExtResource("1_5yhtr")]
+
+[node name="BounceDown" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
+position = Vector2(-71.0012, 8.99969)
+curve = SubResource("Curve2D_wa215")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/BounceDown" index="0"]
+position = Vector2(1004, 419.997)
+rotation = 2.33876
+rotates = false
+
+[node name="Spinning" parent="FromBackPath/FromBackPathFollow2D/BounceDown/PathFollow2D" index="0" instance=ExtResource("2_mnnpr")]
+first_shoot_delay = 3.0
+
+[node name="BounceUp" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="1"]
+position = Vector2(1932, 751)
+rotation = -3.14159
+curve = SubResource("Curve2D_wa215")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/BounceUp" index="0"]
+position = Vector2(1004, 419.997)
+rotation = 2.33876
+rotates = false
+
+[node name="Spinning" parent="FromBackPath/FromBackPathFollow2D/BounceUp/PathFollow2D" index="0" instance=ExtResource("2_mnnpr")]
+first_shoot_delay = 3.0
+
+[node name="BounceDown2" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="2"]
+position = Vector2(556.129, 1379.44)
+rotation = -1.57079
+curve = SubResource("Curve2D_wa215")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/BounceDown2" index="0"]
+position = Vector2(1003.75, 590.992)
+rotation = 2.33876
+progress = 229.836
+rotates = false
+
+[node name="Spinning" parent="FromBackPath/FromBackPathFollow2D/BounceDown2/PathFollow2D" index="0" instance=ExtResource("2_mnnpr")]
+first_shoot_delay = 4.25
+
+[node name="BounceUp2" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="3"]
+position = Vector2(1298.14, -623.557)
+rotation = -4.71238
+curve = SubResource("Curve2D_wa215")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/BounceUp2" index="0"]
+position = Vector2(1003.75, 590.992)
+rotation = 2.33876
+progress = 229.836
+rotates = false
+
+[node name="Spinning" parent="FromBackPath/FromBackPathFollow2D/BounceUp2/PathFollow2D" index="0" instance=ExtResource("2_mnnpr")]
+first_shoot_delay = 4.25

@@ -14,6 +14,7 @@ point_count = 5
 [node name="AttackWave" instance=ExtResource("1_exkb3")]
 
 [node name="EightLoop" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
+position = Vector2(-211.926, -0.148125)
 curve = SubResource("Curve2D_qsey3")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/EightLoop" index="0"]
@@ -65,16 +66,16 @@ progress = 1686.92
 [node name="Bird" parent="FromBackPath/FromBackPathFollow2D/EightLoop/PathFollow2D7" index="0" instance=ExtResource("2_pjdnt")]
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D" index="1" instance=ExtResource("3_x8xit")]
-position = Vector2(1028, 201)
+position = Vector2(816.074, 200.852)
 rotation = -3.14159
 first_shoot_delay = 4.0
 auto_shoot_delay = 2.0
 
 [node name="Copter2" parent="FromBackPath/FromBackPathFollow2D" index="2" instance=ExtResource("3_x8xit")]
-position = Vector2(1029, 563)
+position = Vector2(817.074, 562.852)
 rotation = -3.14159
 first_shoot_delay = 3.0
 auto_shoot_delay = 2.0
 
 [node name="Spinning" parent="FromBackPath/FromBackPathFollow2D" index="3" instance=ExtResource("4_lopwe")]
-position = Vector2(703, 378)
+position = Vector2(1049, 385)

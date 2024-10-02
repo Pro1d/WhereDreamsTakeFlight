@@ -3,24 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://c3cgew3up283b" path="res://scenes/attack_wave.tscn" id="1_ie8va"]
 [ext_resource type="PackedScene" uid="uid://bkr5nqrgfbf2w" path="res://scenes/enemies/copter.tscn" id="2_kreds"]
 
-[sub_resource type="Curve2D" id="Curve2D_fopem"]
+[sub_resource type="Curve2D" id="Curve2D_bh862"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1248, 160, 0, 0, 0, 0, 672, 160, 0, 0, 0, 0, 672, 384, 0, 0, 0, 0, 1248, 384, 0, 0, 0, 0, 1248, 608, 0, 0, 0, 0, 672, 608, 0, 0, 0, 0, 672, 384, 0, 0, 0, 0, 1248, 384, 0, 0, 0, 0, 1248, 160)
+"points": PackedVector2Array(0, 0, 0, 0, 1184, 160, 0, 0, 0, 0, 672, 160, 0, 0, 0, 0, 672, 384, 0, 0, 0, 0, 1184, 384, 0, 0, 0, 0, 1184, 608, 0, 0, 0, 0, 672, 608, 0, 0, 0, 0, 672, 384, 0, 0, 0, 0, 1184, 384, 0, 0, 0, 0, 1184, 160)
 }
 point_count = 9
 
 [node name="AttackWave" instance=ExtResource("1_ie8va")]
 from_back_speed = 150.0
 
-[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
-position = Vector2(6.10352e-05, 0)
-
 [node name="DoubleSquare" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
-curve = SubResource("Curve2D_fopem")
+curve = SubResource("Curve2D_bh862")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="0"]
-position = Vector2(773.984, 230)
-progress = 544.0
+position = Vector2(1249.88, 454)
+progress = 1243.84
 h_offset = 70.0
 v_offset = 70.0
 rotates = false
@@ -29,11 +26,10 @@ rotates = false
 rotation = 3.14159
 first_shoot_delay = 1.5
 auto_shoot_delay = 3.0
-aim_player = false
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="1"]
-position = Vector2(773.984, 90)
-progress = 544.0
+position = Vector2(1249.88, 314)
+progress = 1243.84
 h_offset = 70.0
 v_offset = -70.0
 rotates = false
@@ -42,30 +38,49 @@ rotates = false
 rotation = 3.14159
 first_shoot_delay = 1.5
 auto_shoot_delay = 3.0
-aim_player = false
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="2"]
-position = Vector2(633.984, 90)
-progress = 544.0
-h_offset = -70.0
-v_offset = -70.0
+position = Vector2(1119.88, 384)
+progress = 1243.84
+h_offset = -60.0
 rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D3" index="0" instance=ExtResource("2_kreds")]
 rotation = 3.14159
-first_shoot_delay = 1.7
+first_shoot_delay = 1.5
 auto_shoot_delay = 3.0
-aim_player = false
 
 [node name="PathFollow2D4" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="3"]
-position = Vector2(633.984, 230)
-progress = 544.0
-h_offset = -70.0
+position = Vector2(741.94, 230.15)
+progress = 512.256
+h_offset = 70.0
 v_offset = 70.0
 rotates = false
 
 [node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D4" index="0" instance=ExtResource("2_kreds")]
 rotation = 3.14159
-first_shoot_delay = 1.7
+first_shoot_delay = 3.0
 auto_shoot_delay = 3.0
-aim_player = false
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="4"]
+position = Vector2(741.94, 90.1504)
+progress = 512.256
+h_offset = 70.0
+v_offset = -70.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D5" index="0" instance=ExtResource("2_kreds")]
+rotation = 3.14159
+first_shoot_delay = 3.0
+auto_shoot_delay = 3.0
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare" index="5"]
+position = Vector2(611.94, 160.15)
+progress = 512.256
+h_offset = -60.0
+rotates = false
+
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/DoubleSquare/PathFollow2D6" index="0" instance=ExtResource("2_kreds")]
+rotation = 3.14159
+first_shoot_delay = 3.0
+auto_shoot_delay = 3.0

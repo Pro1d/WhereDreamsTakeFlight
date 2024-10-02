@@ -750,6 +750,7 @@ weapon_overlay = NodePath("../HUD/WeaponOverlay")
 score_overlay = NodePath("../HUD/ScoreOverlay")
 waves_collection = ExtResource("12_3j57w")
 weapon_specs = Array[ExtResource("35_ubv56")]([ExtResource("36_uls65"), ExtResource("37_x01gp"), ExtResource("5_08cbb"), ExtResource("39_0aimb"), ExtResource("3_a6i1r"), ExtResource("41_3y5ex")])
+current_wave_index = null
 
 [node name="WorldBoundary" type="StaticBody2D" parent="2D" groups=["world_boundary"]]
 position = Vector2(683, 384)
