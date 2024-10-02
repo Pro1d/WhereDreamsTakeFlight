@@ -12,9 +12,6 @@ point_count = 3
 [node name="AttackWave" instance=ExtResource("1_ojlky")]
 from_back_speed = 150.0
 
-[node name="FromBackPathFollow2D" parent="FromBackPath" index="0"]
-position = Vector2(6.10352e-05, 0)
-
 [node name="Line" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
 curve = SubResource("Curve2D_v1bc7")
 
@@ -27,46 +24,38 @@ rotation = 3.14159
 auto_shoot_delay = 4.0
 aim_player = false
 
-[node name="Line2" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="1"]
-position = Vector2(128, 0)
-curve = SubResource("Curve2D_v1bc7")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Line2" index="0"]
-position = Vector2(832, 294.394)
+[node name="PathFollow2D2" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Line" index="1"]
+position = Vector2(932, 294.394)
+rotation = 3.14159
 progress = 134.4
+h_offset = 100.0
 rotates = false
 
-[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Line2/PathFollow2D" index="0" instance=ExtResource("2_vb8u0")]
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Line/PathFollow2D2" index="0" instance=ExtResource("2_vb8u0")]
 rotation = 3.14159
 first_shoot_delay = 3.0
 auto_shoot_delay = 4.0
 aim_player = false
 
-[node name="Line3" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="2"]
-position = Vector2(256, 0)
-curve = SubResource("Curve2D_v1bc7")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Line3" index="0"]
-position = Vector2(832, 428.8)
+[node name="PathFollow2D3" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Line" index="2"]
+position = Vector2(1032, 428.8)
 progress = 268.8
+h_offset = 200.0
 rotates = false
 
-[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Line3/PathFollow2D" index="0" instance=ExtResource("2_vb8u0")]
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Line/PathFollow2D3" index="0" instance=ExtResource("2_vb8u0")]
 rotation = 3.14159
 first_shoot_delay = 4.0
 auto_shoot_delay = 4.0
 aim_player = false
 
-[node name="Line4" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="3"]
-position = Vector2(384, 0)
-curve = SubResource("Curve2D_v1bc7")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Line4" index="0"]
-position = Vector2(832, 518.407)
-progress = 358.4
+[node name="PathFollow2D4" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/Line" index="3"]
+position = Vector2(1132, 563.203)
+progress = 403.2
+h_offset = 300.0
 rotates = false
 
-[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Line4/PathFollow2D" index="0" instance=ExtResource("2_vb8u0")]
+[node name="Copter" parent="FromBackPath/FromBackPathFollow2D/Line/PathFollow2D4" index="0" instance=ExtResource("2_vb8u0")]
 rotation = 3.14159
 first_shoot_delay = 5.0
 auto_shoot_delay = 4.0

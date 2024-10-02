@@ -39,7 +39,7 @@ var seeking := false
 var explosive := false
 var split_on_hit := false
 
-var damage := 10.0
+var damage := 10.0 / Config.ATTACK_SPEED
 var lifetime := 1.0 :
 	set(l):
 		lifetime = l

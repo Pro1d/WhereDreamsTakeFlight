@@ -21,7 +21,7 @@ color_ramp = SubResource("Gradient_iy2ek")
 noise = SubResource("FastNoiseLite_gbg6u")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbnis"]
-albedo_color = Color(0.412352, 0.607299, 0.677231, 1)
+albedo_color = Color(0.507619, 0.701806, 0.772318, 1)
 albedo_texture = SubResource("NoiseTexture2D_oa0t7")
 uv1_scale = Vector3(50, 50, 50)
 
@@ -38,7 +38,7 @@ color_ramp = SubResource("Gradient_w6sw4")
 noise = SubResource("FastNoiseLite_gbg6u")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q23og"]
-albedo_color = Color(0.0482754, 0.172201, 0.239075, 1)
+albedo_color = Color(0.0658237, 0.210377, 0.288417, 1)
 albedo_texture = SubResource("NoiseTexture2D_hivua")
 uv1_scale = Vector3(40, 40, 40)
 

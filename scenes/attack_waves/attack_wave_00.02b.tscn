@@ -11,13 +11,14 @@ _data = {
 point_count = 5
 
 [node name="AttackWave" instance=ExtResource("1_s653l")]
+from_back_speed = 150.0
 
 [node name="EightLoop" type="Path2D" parent="FromBackPath/FromBackPathFollow2D" index="0"]
 curve = SubResource("Curve2D_qsey3")
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="FromBackPath/FromBackPathFollow2D/EightLoop" index="0"]
 position = Vector2(1189.64, 196.748)
-rotation = 1.7425
+rotation = 1.74249
 progress = 423.747
 
 [node name="Bird" parent="FromBackPath/FromBackPathFollow2D/EightLoop/PathFollow2D3" index="0" instance=ExtResource("2_gsjvy")]

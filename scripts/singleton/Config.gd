@@ -7,6 +7,7 @@ extends Node
 const SAVE_PATH := "user://save.cfg"
 var save_file := ConfigFile.new()
 
+const ATTACK_SPEED := 1.7
 const REPAIR_HEALTH := 2
 const XP_PER_BOSS := 75
 const XP_PER_ENEMY := 1

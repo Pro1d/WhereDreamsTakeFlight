@@ -125,5 +125,5 @@ libraries = {
 "": SubResource("AnimationLibrary_mktsu")
 }
 
-[node name="Marker2D" parent="2D/Body/ProjectileSpawns" index="0"]
-position = Vector2(45, 0)
+[node name="VisibleOnScreenNotifier2D" parent="2D/Body" index="3"]
+rect = Rect2(-31.8198, -31.8198, 63.6396, 63.6396)

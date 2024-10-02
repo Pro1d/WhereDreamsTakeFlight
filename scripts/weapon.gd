@@ -15,7 +15,7 @@ const ProjectileResource := preload("res://scenes/projectile.tscn")
 @onready var proj_spawn_position := $"2D/ProjectileSpawn" as Node2D
 @onready var _root_3d := %"3D" as Node3D
 		
-const base_fire_delay := 0.55
+const base_fire_delay := 0.55 / Config.ATTACK_SPEED
 
 var cooldown := 0.0
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://do4q1xtyjh4u1"]
+[gd_scene load_steps=41 format=3 uid="uid://do4q1xtyjh4u1"]
 
 [ext_resource type="Script" path="res://scripts/world_2d_and_3d.gd" id="1_xm0yb"]
 [ext_resource type="Texture2D" uid="uid://da0uv6a1fj1w8" path="res://resources/materials/line_texture.tres" id="2_2l4cb"]
@@ -181,11 +181,8 @@ _data = {
 
 [sub_resource type="Environment" id="Environment_afcjq"]
 ambient_light_source = 2
-ambient_light_color = Color(0.843137, 0.917647, 1, 1)
-ambient_light_energy = 0.3
-tonemap_mode = 1
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_u0sot"]
+ambient_light_color = Color(1, 0.974208, 0.942083, 1)
+ambient_light_energy = 0.25
 
 [sub_resource type="Animation" id="Animation_dgxy6"]
 length = 0.001
@@ -575,11 +572,10 @@ fov = 40.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D"]
 transform = Transform3D(0.997198, -6.28367e-08, -0.0748046, 0.0739851, 0.14762, 0.986273, 0.0110426, -0.989044, 0.147206, 0, 0, 0)
-light_energy = 0.5
-light_angular_distance = 10.0
+light_energy = 0.6
 shadow_enabled = true
-shadow_normal_bias = 6.594
-shadow_opacity = 0.47
+shadow_normal_bias = 3.985
+shadow_opacity = 0.55
 directional_shadow_mode = 1
 directional_shadow_max_distance = 1.7
 directional_shadow_pancake_size = 10.0
@@ -587,7 +583,6 @@ sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="3D/DirectionalLight3D"]
 environment = SubResource("Environment_afcjq")
-camera_attributes = SubResource("CameraAttributesPractical_u0sot")
 
 [node name="BedRoom" parent="3D" instance=ExtResource("4_03kti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0, 0)
